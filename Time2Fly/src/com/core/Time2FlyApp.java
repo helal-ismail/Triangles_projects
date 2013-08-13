@@ -52,26 +52,6 @@ public class Time2FlyApp extends Application {
 
 	// ===== Core Functions =====
 	
-	public void init() {
-		Thread t = new Thread() {
-			@Override
-			public void run() {
-				while (true) {
-					try {
-						GetDataTask task = new GetDataTask();
-						task.execute();
-						int update_rate = getResponseVals().update_rate;
-						synchronized (this) {
-							wait(1000 * update_rate);
-						}
-					} catch (Exception e) {
-						Log.d(Constants.TAG, "Exception " + e.getMessage());
-						return;
-					}
-				}
-			};
-		};
-		t.start();
-	}
+
 
 }
