@@ -3,22 +3,16 @@ package navymail.adapters;
 import java.util.HashMap;
 
 import navymail.UI.R;
-import navymail.core.ApplicationController;
 import navymail.modules.Ta2shera;
 import navymail.modules.Topic;
-import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ImageAdapter extends PagerAdapter {
