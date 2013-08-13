@@ -1,0 +1,19 @@
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="all">
+        <item android:id="@+id/unit1"
+              android:title="قائد اللواء الأول لنشات" />
+        <item android:id="@+id/unit2"
+              android:title="قائد اللواء الثانى لنشات" />
+           <item android:id="@+id/unit3"
+              android:title="قائد لواء سفن الإبرار " />
+    </group>
+    
+    <group android:checkableBehavior="all">
+        <item android:id="@+id/unit4"
+              android:title="قائد قاعدة الاسكندرية البحرية" />
+        <item android:id="@+id/unit5"
+              android:title="قائد قاعدة بورسعيد البحرية" />
+    </group>
+    
+</menu>
