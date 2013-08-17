@@ -2,9 +2,9 @@ package com.modules;
 
 public class Tab {
 	public String addr ; //unique hex code
-	public double alt ;  // altitude value in feet
-	public double lat ; // Latitude
-	public double lon ; // Longitude
+	public float alt ;  // altitude value in feet
+	public float lat ; // Latitude
+	public float lon ; // Longitude
 	public int track  ; // track of target
 	public String sqw;
 	public String callSign;

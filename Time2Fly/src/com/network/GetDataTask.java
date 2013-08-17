@@ -69,9 +69,9 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 				JSONArray tabArray = tabs.optJSONArray(i);
 				Tab t = new Tab();
 				t.addr = tabArray.optString(0);
-				t.alt = tabArray.optDouble(1);
-				t.lat = tabArray.optDouble(2);
-				t.lon = tabArray.optDouble(3);
+				t.alt = (float) tabArray.optDouble(1);
+				t.lat = (float) tabArray.optDouble(2);
+				t.lon = (float) tabArray.optDouble(3);
 				t.track = tabArray.optInt(4);
 				t.sqw = tabArray.optString(5);
 				t.callSign = tabArray.optString(6);
@@ -85,7 +85,7 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 				t.code = tabArray.optString(14);
 				
 				//Insert to DB
-				tabsTable.insertTab(t);
+	//			tabsTable.insertTab(t);
 				
 				//Insert to Hash
 				CacheManager.getInstance().addTab(t);

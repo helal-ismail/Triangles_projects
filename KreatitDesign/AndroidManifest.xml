@@ -13,10 +13,11 @@
     <application
         android:name="com.kreatitdesign.core.KreatitDesignApp"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/logo_2"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
+            android:screenOrientation="portrait"
             android:name="com.kreatitdesign.ui.Splash"
             android:label="@string/app_name" >
             <intent-filter>
@@ -25,6 +26,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity
+            android:screenOrientation="portrait"
+            android:name="com.kreatitdesign.ui.Login"
+            android:label="@string/app_name" >
+        </activity>
+        
+        <activity
+            android:screenOrientation="portrait"
+            android:name="com.kreatitdesign.ui.MainDash"
+            android:label="@string/app_name" >
+        </activity>
+        
+        <activity
+            android:screenOrientation="portrait"
+            android:name="com.kreatitdesign.ui.ManagementDash"
+            android:label="@string/app_name" >
+        </activity>
+        
     </application>
 
 </manifest>

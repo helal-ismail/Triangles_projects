@@ -10,6 +10,9 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -21,6 +24,8 @@ import com.kreatitdesign.core.Constants;
 public class RequestTask extends AsyncTask<Void, Void, Boolean> {
 	String params = "";
 	String result = "";
+
+
 
 	public String setupParams(String bname, int task, String bindid,
 			String susername, String spassword, JSONArray msg) {
@@ -54,11 +59,16 @@ public class RequestTask extends AsyncTask<Void, Void, Boolean> {
 			httpPost.setHeader("Accept", "application/json");
 
 			if (!params.equals("")) {
-				StringEntity se = new StringEntity(params);
+				StringEntity se = new StringEntity(params,HTTP.UTF_8);
+                se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+				
+/*                se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+                se.setContentType("application/json");
+*/				
 				httpPost.setEntity(se);
 			}
+			
 			httpResponse = httpClient.execute(httpPost);
-
 			int status = httpResponse.getStatusLine().getStatusCode();
 			Log.d(Constants.TAG, "STAUS = " + status);
 			if (status == 200) {

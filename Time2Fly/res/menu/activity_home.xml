@@ -1,9 +1,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
-        android:id="@+id/menu_settings"
-        android:orderInCategory="100"
+    
+        <item
+        android:id="@+id/normal"
         android:showAsAction="never"
-        android:title="@string/menu_settings"/>
+        android:title="Normal"/>
+        
+    <item
+        android:id="@+id/sat"
+        android:showAsAction="never"
+        android:title="Satellite"/>
+    
+        <item
+        android:id="@+id/ter"
+        android:showAsAction="never"
+        android:title="Terrain"/>
 
 </menu>

@@ -120,9 +120,9 @@ public class TabsTable extends TableHelper{
 	private Tab hydrateNewObject(Cursor c) {
 		Tab tab = new Tab();
 		tab.addr = c.getString(0);
-		tab.alt = c.getDouble(1);  // altitude value in feet
-		tab.lat = c.getDouble(2); // Latitude
-		tab.lon = c.getDouble(3); // Longitude
+		tab.alt = c.getFloat(1);  // altitude value in feet
+		tab.lat = c.getFloat(2); // Latitude
+		tab.lon = c.getFloat(3); // Longitude
 		tab.track  = c.getInt(4); // track of target
 		tab.sqw = c.getString(5);
 		tab.callSign = c.getString(6);
