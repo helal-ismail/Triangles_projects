@@ -9,9 +9,9 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
-import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -62,13 +62,12 @@ public class RequestTask extends AsyncTask<Void, Void, Boolean> {
 				StringEntity se = new StringEntity(params,HTTP.UTF_8);
                 se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 				
-/*                se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-                se.setContentType("application/json");
-*/				
 				httpPost.setEntity(se);
 			}
 			
-			httpResponse = httpClient.execute(httpPost);
+			
+			BasicResponseHandler responseHandler = new BasicResponseHandler();
+			String response = httpClient.execute(httpPost, responseHandler);
 			int status = httpResponse.getStatusLine().getStatusCode();
 			Log.d(Constants.TAG, "STAUS = " + status);
 			if (status == 200) {

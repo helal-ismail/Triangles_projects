@@ -1,0 +1,8 @@
+<?php
+require('config.php');
+$story_id = $_REQUEST['story_id'];
+$query = "SELECT * FROM phpfox_user WHERE user_id in (SELECT user_id FROM phpfox_repost where story_id = '$story_id' )";
+$data = mysql_query($query);
+
+
+?>

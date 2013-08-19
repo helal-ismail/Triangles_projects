@@ -1,5 +1,7 @@
 package com.modules;
 
+import java.util.Date;
+
 public class Tab {
 	public String addr ; //unique hex code
 	public float alt ;  // altitude value in feet
@@ -16,7 +18,10 @@ public class Tab {
 	public 	String type ; //aircraft type
 	public 	String owner ; //aircraft owner
 	public 	String code; //airline code
+	public Date timeStamp;
 	
+	public float xLat;
+	public float xLon;
 	
 
 }

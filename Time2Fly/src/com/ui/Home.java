@@ -26,8 +26,11 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.GroundOverlay;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.modules.Tab;
 import com.network.GetDataTask;
 
@@ -99,6 +102,7 @@ public class Home extends FragmentActivity {
 		googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 		googleMap.getUiSettings().setCompassEnabled(true);
 		googleMap.getUiSettings().setZoomControlsEnabled(true);
+		googleMap.setMyLocationEnabled(true);
 		renderTargets();
 		
 		googleMap.setOnCameraChangeListener(new OnCameraChangeListener() {	
@@ -126,12 +130,12 @@ public class Home extends FragmentActivity {
 			String key = (String) itr.next();
 			Tab t = (Tab) hash.get(key);
 			LatLng latLng = new LatLng(t.lat, t.lon);
+			
+			Bitmap bmp = BitmapFactory.decodeResource(getResources(), Utils.getInstance().getResourceID(t));
 
-			Bitmap bmp = BitmapFactory.decodeResource(getResources(), Utils.getInstance().getResourceID(t.reg));
 			bmp = Utils.getInstance().rotateImage(bmp, t.track, bearing_angle);
 			
-			float alt = (int)(t.alt)/100;
-			alt = alt / 100;
+			float alt = ((int)t.alt)/100;
 			int altitude = Math.round(alt);
 			String flightLevel = "";
 			if(alt > 100){
@@ -146,8 +150,8 @@ public class Home extends FragmentActivity {
 					.position(latLng)
 					.title("Flight : " +t.callSign)
 					.snippet(
-							"Altitude:" + flightLevel + " - " +
-							"Ground Speed:" +t.spd +"Kts")
+							"Altitude : " + flightLevel + " - " +
+							"Ground Speed : " +t.spd +"Kts")
 					.icon(BitmapDescriptorFactory
 							.fromBitmap(bmp)));
 			if (!started)
@@ -157,6 +161,7 @@ public class Home extends FragmentActivity {
 			started = true;
 		}
 		
+		//setMyLocationMarker();
 		
 	}
 	
@@ -185,6 +190,7 @@ public class Home extends FragmentActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
 	
 	private void setMyLocationMarker(){
 		try{

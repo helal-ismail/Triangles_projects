@@ -5,8 +5,7 @@ require('config.php');
 	$aVals['user_name']		=		$_REQUEST['user_name'];  
 	$aVals['email']			=		$_REQUEST['email'];
 	$aVals['password']		=		$_REQUEST['password'];
-	$aVals['image']			=		$_FILES['image'];
-
+	
 	$user_name = $aVals['user_name'];
 	$email = $aVals['email'];
 
@@ -23,9 +22,7 @@ require('config.php');
 	{
 		$aUser = Phpfox::getService('user.process')->add($aVals);
 		$response[]=array('success'=>true,'user_id'=>$aUser,'msg'=>'User registered succesfully');
-
-
-}
+	}
 	echo json_encode($response);
 ?>
 

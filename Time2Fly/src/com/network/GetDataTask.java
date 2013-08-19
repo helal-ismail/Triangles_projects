@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Date;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -83,9 +84,9 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 				t.type = tabArray.optString(12);
 				t.owner = tabArray.optString(13);
 				t.code = tabArray.optString(14);
-				
+				t.timeStamp = new Date();
 				//Insert to DB
-	//			tabsTable.insertTab(t);
+				//tabsTable.insertTab(t);
 				
 				//Insert to Hash
 				CacheManager.getInstance().addTab(t);
