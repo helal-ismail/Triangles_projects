@@ -12,8 +12,11 @@ import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.core.CacheManager;
@@ -37,24 +40,24 @@ import com.network.GetDataTask;
 public class Home extends FragmentActivity {
 	Time2FlyApp appInstance;
 	Context mContext = this;
-	int update_rate = 10000;
 	int bearing_angle = 0;
 	boolean started = false;
 	Timer timer = new Timer();
 	GoogleMap googleMap;
 	Location myLoc = null ;
-	
-
+	CacheManager cache = CacheManager.getInstance();
+	LinearLayout drawer;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+		drawer = (LinearLayout)findViewById(R.id.drawer);
 		appInstance = (Time2FlyApp) getApplication();
 		initGoogleMap();
 		
 		Toast.makeText(mContext, "Loading flights data", Toast.LENGTH_LONG).show();
-		timer.scheduleAtFixedRate(refreshVals, 0, update_rate);
-		timer.scheduleAtFixedRate(refreshMap, 5000, update_rate + 2000);
+		timer.scheduleAtFixedRate(refreshVals, 0, cache.update_rate);
+		timer.scheduleAtFixedRate(refreshMap, 5000, cache.update_rate + 2000);
 
 	}
 	
@@ -64,7 +67,7 @@ public class Home extends FragmentActivity {
 		public void run() {
 			GetDataTask task = new GetDataTask();
 			task.execute();
-			update_rate = appInstance.getResponseVals().update_rate * 1000;
+//			cache.update_rate = appInstance.getResponseVals().update_rate * 1000;
 		}
 	};
 
@@ -125,10 +128,16 @@ public class Home extends FragmentActivity {
 
 		HashMap hash = CacheManager.getInstance().tabs_hash;
 		Iterator itr = hash.keySet().iterator();
-
 		while (itr.hasNext()) {
 			String key = (String) itr.next();
 			Tab t = (Tab) hash.get(key);
+			
+			LayoutInflater inflater = LayoutInflater.from(mContext);
+			LinearLayout list_item = (LinearLayout)inflater.inflate(R.layout.custom_list_item, null);
+			TextView tv = (TextView)list_item.getChildAt(0);
+			tv.setText(t.callSign);
+			drawer.addView(list_item);
+			
 			LatLng latLng = new LatLng(t.lat, t.lon);
 			
 			Bitmap bmp = BitmapFactory.decodeResource(getResources(), Utils.getInstance().getResourceID(t));
@@ -219,5 +228,7 @@ public class Home extends FragmentActivity {
 			Toast.makeText(mContext, "E: "+e.getMessage(), Toast.LENGTH_LONG).show();
 		}
 	}
+	
+	
 	
 }

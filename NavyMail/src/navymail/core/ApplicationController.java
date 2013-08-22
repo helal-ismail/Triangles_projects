@@ -2,9 +2,6 @@
 package navymail.core;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
-import android.widget.FrameLayout;
 
 import navymail.modules.Topic;
 import navymail.modules.User;

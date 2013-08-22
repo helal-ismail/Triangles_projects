@@ -1,6 +1,8 @@
 <?php
 require('config.php');
 $story_id = $_REQUEST['story_id'];
+$my_id = $_REQUEST['user_id'];
+
 $query = "select * from phpfox_story WHERE story_id = $story_id"; 
 $data = mysql_query($query);
 $row = mysql_fetch_array( $data );
@@ -42,7 +44,7 @@ while($comment_row = mysql_fetch_array( $comments_data ))
 	$comment_user_row = mysql_fetch_array( $comment_user_data );
 	$comments[$comments_index]['user_fullname'] = $comment_user_row['full_name'];
 
-	if($comment_user_row['user_image'])
+	if($comment_user_row['user_image'] == '')
 		$_user_image = '';
 	else
 		$_user_image = "http://paperv.com/file/pic/user/" . $comment_user_row['user_image'];
@@ -88,6 +90,17 @@ while($media_row = mysql_fetch_array( $media_data ))
 	$customRow['media'][$media_index]['caption'] = $caption_row['caption']; 
 	$media_index++;
 }
+
+// is liked
+$like_query = "SELECT * FROM phpfox_like WHERE user_id = $my_id AND item_id = $story_id AND type_id ='story'";
+$like_data = mysql_query($like_query);
+$row = mysql_fetch_array( $like_data );
+echo $row;
+if($row == '' || $row == null )
+	$customRow['is_liked'] = false; 
+else
+	$customRow['is_liked'] = true; 
+
 
 $response[] = array('success'=>true, 'data'=>$customRow);
 echo json_encode($response);

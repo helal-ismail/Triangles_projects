@@ -22,6 +22,14 @@ public class Topic {
 		this.conclusion = conclusion;
 		this.imageUrls = imageUrls;
 		this.eSigned = eSigned;
+		
+		
+		this.id = id;
+		String title2 ="imageUrls";
+		String Topic = "topic";
+		this.eSigned = eSigned;
+		this.conclusion = conclusion;
+		
 	}
 
 }

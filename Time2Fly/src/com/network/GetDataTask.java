@@ -63,8 +63,10 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 				return false;
 			int num = obj.optInt("num");
 			
+			int update_rate = obj.optInt("update_rate");
+			if(update_rate > 0)
+				CacheManager.getInstance().update_rate = update_rate;
 			
-
 			JSONArray tabs = obj.getJSONArray("tab");
 			for (int i = 0; i < num; i++) {
 				JSONArray tabArray = tabs.optJSONArray(i);

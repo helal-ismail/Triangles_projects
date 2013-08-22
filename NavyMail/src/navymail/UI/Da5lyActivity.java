@@ -14,6 +14,7 @@ public class Da5lyActivity extends Activity{
 		Da5lyGridViewAdapter adapter = new Da5lyGridViewAdapter(this);
 		GridView da5ly_grid = (GridView)findViewById(R.id.da5ly_grid);
 		da5ly_grid.setAdapter(adapter);
+		
 	
 	}
 
