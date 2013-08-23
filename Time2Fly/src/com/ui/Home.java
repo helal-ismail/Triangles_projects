@@ -15,6 +15,8 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,11 +31,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.CircleOptions;
-import com.google.android.gms.maps.model.GroundOverlay;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polyline;
-import com.google.android.gms.maps.model.PolylineOptions;
 import com.modules.Tab;
 import com.network.GetDataTask;
 
@@ -132,11 +131,7 @@ public class Home extends FragmentActivity {
 			String key = (String) itr.next();
 			Tab t = (Tab) hash.get(key);
 			
-			LayoutInflater inflater = LayoutInflater.from(mContext);
-			LinearLayout list_item = (LinearLayout)inflater.inflate(R.layout.custom_list_item, null);
-			TextView tv = (TextView)list_item.getChildAt(0);
-			tv.setText(t.callSign);
-			drawer.addView(list_item);
+			
 			
 			LatLng latLng = new LatLng(t.lat, t.lon);
 			
@@ -229,6 +224,28 @@ public class Home extends FragmentActivity {
 		}
 	}
 	
+	
+	private void addFlightTab(Tab t){
+		LayoutInflater inflater = LayoutInflater.from(mContext);
+		LinearLayout list_item = (LinearLayout)inflater.inflate(R.layout.custom_list_item, null);
+		TextView tv0 = (TextView)list_item.getChildAt(0);
+		tv0.setText("Flight : " + t.callSign);
+		TextView tv1 = (TextView)list_item.getChildAt(1);
+		tv1.setText("Speed : " + t.spd + " Kts");
+		list_item.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				LinearLayout l = (LinearLayout)view;
+				for (int i = 0 ; i < l.getChildCount() ; i ++){
+					TextView tv0 = (TextView)l.getChildAt(0);
+					tv0.setTextColor(Color.BLACK);
+					TextView tv1 = (TextView)l.getChildAt(1);
+					tv1.setTextColor(Color.BLACK);
+				}
+			}
+		});
+		drawer.addView(list_item);
+	}
 	
 	
 }

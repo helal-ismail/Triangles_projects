@@ -21,13 +21,6 @@ public class Splash extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
 		
-		JSONArray arr = new JSONArray();		
-		arr.put("request");
-		
-		RequestTask task = new RequestTask();
-		task.setupParams("Tyrone", 16, "demo0001", "tcousins", "getin123", arr);
-		task.execute();
-		
 		
 		Runnable r = new Runnable() {
 			public void run() {

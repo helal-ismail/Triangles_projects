@@ -18,7 +18,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:orientation="vertical" >
 
             <ImageView
@@ -36,7 +36,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:layout_marginTop="-10dp"
+                    android:layout_marginTop="-15dp"
                     android:layout_marginBottom="10dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
@@ -65,10 +65,11 @@
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:gravity="center"
+                            android:layout_margin="5dp"
                             android:lines="1"
                             android:tag="bold"
                             android:text="Lock"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="@color/gray_35"
                             android:textSize="@dimen/tex_size_normal"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -97,10 +98,11 @@
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:gravity="center"
+                            android:layout_margin="5dp"
                             android:lines="1"
                             android:tag="bold"
                             android:text="Status"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="@color/gray_35"
                             android:textSize="@dimen/tex_size_normal"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -120,7 +122,7 @@
                     android:orientation="horizontal" >
 
                     <LinearLayout
-                        android:id="@+id/btn"
+                        android:id="@+id/panic_btn"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
@@ -143,17 +145,18 @@
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:gravity="center"
+                            android:layout_margin="5dp"
                             android:lines="1"
                             android:tag="bold"
                             android:text="Panic"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="@color/gray_35"
                             android:textSize="@dimen/tex_size_normal"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     
                     <LinearLayout
-                        android:id="@+id/btn"
+                        android:id="@+id/ns_panic_btn"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
@@ -175,10 +178,11 @@
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:gravity="center"
+                            android:layout_margin="5dp"
                             android:lines="1"
                             android:tag="bold"
                             android:text="NS Panic"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="@color/gray_35"
                             android:textSize="@dimen/tex_size_normal"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -194,7 +198,7 @@
                     android:orientation="horizontal" >
 
                     <LinearLayout
-                        android:id="@+id/btn"
+                        android:id="@+id/camera_btn"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
@@ -216,10 +220,11 @@
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:gravity="center"
+                            android:layout_margin="5dp"
                             android:lines="1"
                             android:tag="bold"
                             android:text="Cameras"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="@color/gray_35"
                             android:textSize="@dimen/tex_size_normal"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -248,10 +253,11 @@
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:gravity="center"
+                            android:layout_margin="5dp"
                             android:lines="1"
                             android:tag="bold"
                             android:text="Management"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="@color/gray_35"
                             android:textSize="@dimen/tex_size_normal"
                             android:textStyle="bold" />
                     </LinearLayout>

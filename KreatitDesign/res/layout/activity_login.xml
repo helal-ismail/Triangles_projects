@@ -15,93 +15,110 @@
         android:layout_height="0dip"
         android:layout_weight="1" >
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/dim_40"
-            android:layout_marginRight="@dimen/dim_40"
-            android:orientation="vertical" >
+            android:layout_gravity="center" >
 
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/bind_logo" />
-
-           
-
-          
-
-            <EditText
-                android:id="@+id/user_name"
-                style="@style/EditText_Blue"
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:ems="10"
-                android:hint="UserName"
-                android:inputType="textPersonName" />
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dim_40"
+                android:layout_marginRight="@dimen/dim_40"
+                android:orientation="vertical" >
 
-            <EditText
-                android:id="@+id/password"
-                style="@style/EditText_Blue"
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/bind_logo" />
+
+                <EditText
+                    android:id="@+id/user_name"
+                    style="@style/EditText_Gray"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:ems="10"
+                    android:hint="UserName"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/password"
+                    style="@style/EditText_Gray"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:hint="Password"
+                    android:inputType="textPassword" />
+
+                <EditText
+                    android:id="@+id/name"
+                    style="@style/EditText_Gray"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/device_ID"
+                    style="@style/EditText_Gray"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:hint="Device ID"
+                    android:inputType="textPersonName" />
+
+                <CheckBox
+                    android:id="@+id/remember_me"
+                    style="@style/CheckBox_Blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/editText2"
+                    android:layout_marginTop="10dp"
+                    android:checked="true"
+                    android:text="   Remember Me ...         " />
+
+                <Button
+                    android:id="@+id/signin"
+                    style="@style/Button_Blue"
+                    android:layout_width="100dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Sign In"
+                    android:textColor="#ffffff"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/progress_bar_container"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:hint="Password"
-                android:inputType="textPassword" />
-            
-            <EditText
-                android:id="@+id/name"
-                style="@style/EditText_Blue"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:hint="Name"
-                android:inputType="textPersonName" />
-            
-            <EditText
-                android:id="@+id/device_ID"
-                style="@style/EditText_Blue"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:hint="Device ID"
-                android:inputType="textPersonName" />
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dim_40"
+                android:layout_marginRight="@dimen/dim_40"
+                android:orientation="vertical" >
 
-            <CheckBox
-                android:id="@+id/remember_me"
-                style="@style/CheckBox_Blue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/editText2"
-                android:layout_marginTop="10dp"
-                android:checked="true"
-                android:text="   Remember Me ...         " />
-
-            <Button
-                android:id="@+id/signin"
-                style="@style/Button_Blue"
-                android:layout_width="100dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="25dp"
-                android:text="Sign In"
-                android:textColor="#ffffff"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-            
-        </LinearLayout>
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal" />
+                
+            </LinearLayout>
+        </FrameLayout>
     </ScrollView>
 
 </LinearLayout>

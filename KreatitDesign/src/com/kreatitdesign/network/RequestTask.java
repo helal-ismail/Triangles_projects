@@ -14,12 +14,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.os.AsyncTask;
-import android.util.Base64;
 import android.util.Log;
 
 import com.kreatitdesign.core.Constants;
 
-public class RequestTask extends AsyncTask<Void, Void, Boolean> {
+public class RequestTask extends AsyncTask<Void, Void, String> {
 	String params = "";
 	String result = "";
 
@@ -38,7 +37,6 @@ public class RequestTask extends AsyncTask<Void, Void, Boolean> {
 			jObject.put("msg", msg);
 			params = jObject.toString();
 			
-//			params = params.replace("\"", "");
 			Log.d(Constants.TAG, "PARAMS : " + params);
 			
 			return jObject.toString();
@@ -49,7 +47,7 @@ public class RequestTask extends AsyncTask<Void, Void, Boolean> {
 	}
 
 	@Override
-	protected Boolean doInBackground(Void... arg0) {
+	protected String doInBackground(Void... arg0) {
 
 		try {
 			
@@ -64,7 +62,6 @@ public class RequestTask extends AsyncTask<Void, Void, Boolean> {
 			httpPost.setHeader("Accept-Language", "ar,en-US;q=0.8,en;q=0.6");
 			httpPost.setHeader("Accept-Charset", "UTF-8,*;q=0.5");
 			
-//			httpPost.addHeader("Authorization", "Basic "+Base64.encodeToString("rat#1:rat".getBytes(),Base64.DEFAULT));
 			
 			if (!params.equals("")) {
 				StringEntity se = new StringEntity(params);
@@ -78,30 +75,20 @@ public class RequestTask extends AsyncTask<Void, Void, Boolean> {
 			if (status == 200) {
 				HttpEntity httpEntity = httpResponse.getEntity();
 				result = convertStreamToString(httpEntity.getContent());
-				return true;
+				return result;
 			}
 			else
-				return false;
+				return "";
 
 		}
 
 		catch (Exception e) {
 			Log.d(Constants.TAG, "Exception : "+e.getMessage());
-			return false;
+			return "";
 		}
 	}
 
-	@Override
-	protected void onPostExecute(Boolean result) {
-		super.onPostExecute(result);
-		
-			Log.d(Constants.TAG, "RESULT : " + this.result);
-		
-			
-		params = "";
-		this.result = "";
-		
-	}
+	
 
 	private String convertStreamToString(InputStream is) throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
