@@ -31,7 +31,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.modules.Tab;
 import com.network.GetDataTask;
@@ -131,7 +133,7 @@ public class Home extends FragmentActivity {
 			String key = (String) itr.next();
 			Tab t = (Tab) hash.get(key);
 			
-			
+			addFlightTab(t);
 			
 			LatLng latLng = new LatLng(t.lat, t.lon);
 			
@@ -229,23 +231,40 @@ public class Home extends FragmentActivity {
 		LayoutInflater inflater = LayoutInflater.from(mContext);
 		LinearLayout list_item = (LinearLayout)inflater.inflate(R.layout.custom_list_item, null);
 		TextView tv0 = (TextView)list_item.getChildAt(0);
-		tv0.setText("Flight : " + t.callSign);
+		tv0.setText("Flight  : " + t.callSign);
 		TextView tv1 = (TextView)list_item.getChildAt(1);
 		tv1.setText("Speed : " + t.spd + " Kts");
 		list_item.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				LinearLayout l = (LinearLayout)view;
-				for (int i = 0 ; i < l.getChildCount() ; i ++){
-					TextView tv0 = (TextView)l.getChildAt(0);
+				
+				for (int i = 0 ; i < drawer.getChildCount() ; i ++){
+					LinearLayout childLayout = (LinearLayout)drawer.getChildAt(i);
+					TextView tv0 = (TextView)childLayout.getChildAt(0);
 					tv0.setTextColor(Color.BLACK);
-					TextView tv1 = (TextView)l.getChildAt(1);
+					TextView tv1 = (TextView)childLayout.getChildAt(1);
 					tv1.setTextColor(Color.BLACK);
 				}
+				LinearLayout clickedLayout = (LinearLayout)view;
+				TextView tv0 = (TextView)clickedLayout.getChildAt(0);
+				tv0.setTextColor(Color.RED);
+				TextView tv1 = (TextView)clickedLayout.getChildAt(1);
+				tv1.setTextColor(Color.RED);
 			}
+			
+			
 		});
 		drawer.addView(list_item);
 	}
 	
+	private void addWeatherOverlay(){
+		LatLng southwest = new LatLng(111.68321, 20.00107);
+		LatLng northeast = new LatLng(116.66013, 24.60560);
+		
+		LatLngBounds bounds = new LatLngBounds(southwest, northeast);
+		googleMap.addGroundOverlay(new GroundOverlayOptions()
+									.positionFromBounds(bounds)
+									.image(BitmapDescriptorFactory.fromBitmap(cache.weather_bmp)));
+	}
 	
 }

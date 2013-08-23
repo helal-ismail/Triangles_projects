@@ -20,6 +20,7 @@ import android.util.Log;
 import com.core.CacheManager;
 import com.core.Constants;
 import com.core.Time2FlyApp;
+import com.core.Utils;
 import com.db.TabsTable;
 import com.modules.Tab;
 
@@ -44,7 +45,7 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 			HttpEntity entity = response.getEntity();
 			if (entity != null) {
 				InputStream instream = entity.getContent();
-				String result = convertStreamToString(instream);
+				String result = Utils.getInstance().convertStreamToString(instream);
 				JSONObject obj = new JSONObject(result);
 				insertIntoDb(obj);
 			}
@@ -102,23 +103,5 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 		}
 	}
 
-	private String convertStreamToString(InputStream is) throws IOException {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-		StringBuilder sb = new StringBuilder();
-		String line = null;
-		try {
-			while ((line = reader.readLine()) != null) {
-				sb.append(line + "\n");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				is.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return sb.toString();
-	}
+	
 }

@@ -9,5 +9,9 @@ public class Constants {
 	public static String TAG = "helal";
 	public static long TS_THRESHOLD = 60 * 1000;
 	
+	public static String WEATHER_256_URL = "http://hk.time2fly.org/time2fly/current_radar/filelist_256.txt";
+	public static String WEATHER_128_URL = "http://hk.time2fly.org/time2fly/current_radar/filelist_128.txt";
+	public static String WEATHER_064_URL = "http://hk.time2fly.org/time2fly/current_radar/filelist_064.txt";
+	
 
 }
