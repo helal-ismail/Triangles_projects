@@ -22,6 +22,26 @@ public class MainDash extends Activity {
 		TextView pageTitle = (TextView) findViewById(R.id.page_title);
 		pageTitle.setText("Main Dashboard");
 
+		// STATUS BUTTON
+		LinearLayout status_btn = (LinearLayout) findViewById(R.id.sys_btn);
+		status_btn.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				new AlertDialog.Builder(myContext)
+						.setTitle("System Status")
+						.setIcon(R.drawable.icon_1)
+						.setMessage("System Installed Successfully")
+						.setPositiveButton("OK",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int which) {
+										dialog.dismiss();
+									}
+								}).show();
+
+			}
+		});
+
 		// PANIC BUTTON
 		LinearLayout panic_btn = (LinearLayout) findViewById(R.id.panic_btn);
 		panic_btn.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +70,8 @@ public class MainDash extends Activity {
 				new AlertDialog.Builder(myContext)
 						.setTitle("NS.Panic Alert")
 						.setIcon(R.drawable.icon_1)
-						.setMessage("Panic alert issue between 14 Evergreen St to 36 Evergreen St ")
+						.setMessage(
+								"Panic alert issue between 14 Evergreen St to 36 Evergreen St ")
 						.setPositiveButton("OK",
 								new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog,
@@ -74,20 +95,19 @@ public class MainDash extends Activity {
 
 			}
 		});
-		
-		
+
 		// Camera BUTTON
-				LinearLayout camera = (LinearLayout) findViewById(R.id.camera_btn);
-				camera.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View v) {
+		LinearLayout camera = (LinearLayout) findViewById(R.id.camera_btn);
+		camera.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
 
-						Intent i = new Intent(myContext, Camera.class);
-						startActivityForResult(i, 700);
-						overridePendingTransition(R.anim.slide_in_right,
-								R.anim.slide_out_left);
+				Intent i = new Intent(myContext, Camera.class);
+				startActivityForResult(i, 700);
+				overridePendingTransition(R.anim.slide_in_right,
+						R.anim.slide_out_left);
 
-					}
-				});
+			}
+		});
 
 	}
 }
