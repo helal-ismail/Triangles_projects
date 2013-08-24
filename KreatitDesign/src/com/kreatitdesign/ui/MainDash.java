@@ -1,18 +1,24 @@
 package com.kreatitdesign.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+@SuppressLint("InlinedApi")
 public class MainDash extends Activity {
 
 	Context myContext = this;
+	
+	String lock_key = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +28,49 @@ public class MainDash extends Activity {
 		TextView pageTitle = (TextView) findViewById(R.id.page_title);
 		pageTitle.setText("Main Dashboard");
 
+		// LOCK BUTTON
+		LinearLayout lock_btn = (LinearLayout) findViewById(R.id.lock_btn);
+		lock_btn.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				AlertDialog.Builder alert = new AlertDialog.Builder( new ContextThemeWrapper(myContext, android.R.style.Theme_Holo_Dialog)); 
+				
+
+		        alert.setTitle("System Lock");  
+		        alert.setMessage("Please enter your lock / unlock key ");
+		        alert.setIcon(R.drawable.icon_1);
+
+		        // Set an EditText view to get user input   
+		        final EditText inputName = new EditText(new ContextThemeWrapper(myContext, android.R.style.Theme_Holo_Dialog));  
+		        alert.setView(inputName);  
+
+		        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {  
+		        public void onClick(DialogInterface dialog, int whichButton) {  
+		            lock_key = inputName.getText().toString();  
+		          }  
+		        
+		        }); 
+		        
+		        
+		        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		            @Override
+		            public void onClick(DialogInterface dialog, int which) {
+		                dialog.cancel();
+		            }
+		        });
+		        
+		        
+
+		        alert.show();
+			}
+		});
+
 		// STATUS BUTTON
 		LinearLayout status_btn = (LinearLayout) findViewById(R.id.sys_btn);
 		status_btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
-				new AlertDialog.Builder(myContext)
+				new AlertDialog.Builder(new ContextThemeWrapper(myContext, android.R.style.Theme_Holo_Dialog))
 						.setTitle("System Status")
 						.setIcon(R.drawable.icon_1)
 						.setMessage("System Installed Successfully")
@@ -35,7 +78,7 @@ public class MainDash extends Activity {
 								new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog,
 											int which) {
-										dialog.dismiss();
+										dialog.cancel();
 									}
 								}).show();
 
@@ -47,7 +90,7 @@ public class MainDash extends Activity {
 		panic_btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
-				new AlertDialog.Builder(myContext)
+				new AlertDialog.Builder(new ContextThemeWrapper(myContext, android.R.style.Theme_Holo_Dialog))
 						.setTitle("Panic Alert")
 						.setIcon(R.drawable.icon_1)
 						.setMessage("Panic Alert from Tyrone ")
@@ -55,7 +98,7 @@ public class MainDash extends Activity {
 								new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog,
 											int which) {
-										dialog.dismiss();
+										dialog.cancel();
 									}
 								}).show();
 
@@ -67,7 +110,7 @@ public class MainDash extends Activity {
 		ns_panic_btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
-				new AlertDialog.Builder(myContext)
+				new AlertDialog.Builder(new ContextThemeWrapper(myContext, android.R.style.Theme_Holo_Dialog))
 						.setTitle("NS.Panic Alert")
 						.setIcon(R.drawable.icon_1)
 						.setMessage(
@@ -76,7 +119,7 @@ public class MainDash extends Activity {
 								new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog,
 											int which) {
-										dialog.dismiss();
+										dialog.cancel();
 									}
 								}).show();
 
