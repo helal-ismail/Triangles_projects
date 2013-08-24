@@ -20,10 +20,9 @@ public class Utils {
 		return instance;
 	}
 
-	public int getResourceID(Tab tab){
-		Date now = new Date();
-		long timeDiff = now.getTime() - tab.timeStamp.getTime();
-		if(timeDiff < Constants.TS_THRESHOLD)
+	public int getResourceID(Tab tab, boolean isBlack){
+		
+		if(isBlack)
 			return getResourceID_BLACK(tab.type);
 		else
 			return getResourceID_RED(tab.type);

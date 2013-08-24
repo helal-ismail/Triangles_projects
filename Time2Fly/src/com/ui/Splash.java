@@ -13,6 +13,9 @@ public class Splash extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
+		
+		getActionBar().hide();
+		
 		Handler handler = new Handler();
 		Runnable r = new Runnable() {
 			@Override

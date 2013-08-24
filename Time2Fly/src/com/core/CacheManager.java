@@ -15,6 +15,7 @@ public class CacheManager {
 	public int update_rate = 10000;
 	public HashMap<String, Tab> tabs_hash = new HashMap<String, Tab>();
 	public Bitmap weather_bmp;
+	public String current_key="";
 	
 	public void addTab(Tab t){
 		Tab oldTab = tabs_hash.get(t.addr);

@@ -1,10 +1,12 @@
 package com.ui;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,10 +20,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.core.CacheManager;
+import com.core.Constants;
 import com.core.Time2FlyApp;
 import com.core.Utils;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,6 +41,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.modules.Tab;
 import com.network.GetDataTask;
+import com.network.GetWeatherOvelay;
 
 public class Home extends FragmentActivity {
 	Time2FlyApp appInstance;
@@ -48,17 +53,25 @@ public class Home extends FragmentActivity {
 	Location myLoc = null ;
 	CacheManager cache = CacheManager.getInstance();
 	LinearLayout drawer;
+	LatLng hkLatLng = new LatLng(22.2783, 114.1589);
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+		initActionBar();
+		
 		drawer = (LinearLayout)findViewById(R.id.drawer);
 		appInstance = (Time2FlyApp) getApplication();
 		initGoogleMap();
+		//setMyLocationMarker();
+		
+
 		
 		Toast.makeText(mContext, "Loading flights data", Toast.LENGTH_LONG).show();
 		timer.scheduleAtFixedRate(refreshVals, 0, cache.update_rate);
 		timer.scheduleAtFixedRate(refreshMap, 5000, cache.update_rate + 2000);
+		
 
 	}
 	
@@ -68,7 +81,6 @@ public class Home extends FragmentActivity {
 		public void run() {
 			GetDataTask task = new GetDataTask();
 			task.execute();
-//			cache.update_rate = appInstance.getResponseVals().update_rate * 1000;
 		}
 	};
 
@@ -107,6 +119,10 @@ public class Home extends FragmentActivity {
 		googleMap.getUiSettings().setCompassEnabled(true);
 		googleMap.getUiSettings().setZoomControlsEnabled(true);
 		googleMap.setMyLocationEnabled(true);
+		
+		googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(hkLatLng, 8));
+		
+		
 		renderTargets();
 		
 		googleMap.setOnCameraChangeListener(new OnCameraChangeListener() {	
@@ -121,23 +137,46 @@ public class Home extends FragmentActivity {
 			}
 		});
 		
+		
 	}
 	
 	private void renderTargets(){
 		googleMap.clear();
+		drawer.removeAllViews();
+		
+		googleMap.addMarker(new MarkerOptions()
+		.position(hkLatLng)
+		.title("Current location")
+		.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
+		
+		googleMap.addCircle(new CircleOptions()
+		.center(hkLatLng)
+		.fillColor(Color.TRANSPARENT)
+		.radius(10000)
+		.strokeColor(Color.BLUE)
+		.strokeWidth(5));
+		
 		//setMyLocationMarker();
-
+		addWeatherOverlay();
+		
 		HashMap hash = CacheManager.getInstance().tabs_hash;
 		Iterator itr = hash.keySet().iterator();
 		while (itr.hasNext()) {
 			String key = (String) itr.next();
 			Tab t = (Tab) hash.get(key);
+			boolean isBlack;
+			Date now = new Date();
+			long timeDiff = now.getTime() - t.timeStamp.getTime();
+			isBlack = (timeDiff < Constants.TS_THRESHOLD);
 			
-			addFlightTab(t);
+			if(timeDiff > Constants.TS_REMOVE)
+				continue;
+				
+			addFlightTab(t,isBlack);
 			
 			LatLng latLng = new LatLng(t.lat, t.lon);
 			
-			Bitmap bmp = BitmapFactory.decodeResource(getResources(), Utils.getInstance().getResourceID(t));
+			Bitmap bmp = BitmapFactory.decodeResource(getResources(), Utils.getInstance().getResourceID(t,isBlack));
 
 			bmp = Utils.getInstance().rotateImage(bmp, t.track, bearing_angle);
 			
@@ -212,7 +251,7 @@ public class Home extends FragmentActivity {
 		googleMap.addMarker(new MarkerOptions()
 		.position(pos)
 		.title("Current location")
-		.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin1)));
+		.icon(BitmapDescriptorFactory.fromResource(R.drawable .pin)));
 		
 		googleMap.addCircle(new CircleOptions()
 		.center(pos)
@@ -227,29 +266,33 @@ public class Home extends FragmentActivity {
 	}
 	
 	
-	private void addFlightTab(Tab t){
+	private void addFlightTab(Tab t, boolean isBlack){
 		LayoutInflater inflater = LayoutInflater.from(mContext);
 		LinearLayout list_item = (LinearLayout)inflater.inflate(R.layout.custom_list_item, null);
+		if(!isBlack)
+			list_item.setBackgroundResource(R.drawable.rounded_border_red);
+		
 		TextView tv0 = (TextView)list_item.getChildAt(0);
 		tv0.setText("Flight  : " + t.callSign);
 		TextView tv1 = (TextView)list_item.getChildAt(1);
 		tv1.setText("Speed : " + t.spd + " Kts");
+		final float lat = t.lat;
+		final float lon = t.lon;
+		final String key = t.reg;
 		list_item.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				
+				cache.current_key = key;
 				for (int i = 0 ; i < drawer.getChildCount() ; i ++){
 					LinearLayout childLayout = (LinearLayout)drawer.getChildAt(i);
-					TextView tv0 = (TextView)childLayout.getChildAt(0);
-					tv0.setTextColor(Color.BLACK);
-					TextView tv1 = (TextView)childLayout.getChildAt(1);
-					tv1.setTextColor(Color.BLACK);
+					childLayout.setBackgroundResource(R.drawable.rounded_border);
+
 				}
 				LinearLayout clickedLayout = (LinearLayout)view;
-				TextView tv0 = (TextView)clickedLayout.getChildAt(0);
-				tv0.setTextColor(Color.RED);
-				TextView tv1 = (TextView)clickedLayout.getChildAt(1);
-				tv1.setTextColor(Color.RED);
+				clickedLayout.setBackgroundResource(R.drawable.rounded_border_yellow);
+				
+				LatLng latLng = new LatLng(lat, lon);
+				googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
 			}
 			
 			
@@ -257,14 +300,19 @@ public class Home extends FragmentActivity {
 		drawer.addView(list_item);
 	}
 	
+	private void initActionBar(){
+		ActionBar bar = getActionBar();
+		bar.setDisplayShowHomeEnabled(false);
+	}
+	
 	private void addWeatherOverlay(){
-		LatLng southwest = new LatLng(111.68321, 20.00107);
-		LatLng northeast = new LatLng(116.66013, 24.60560);
+		LatLng southwest = new LatLng(20.00107, 111.68321);
+		LatLng northeast = new LatLng(24.60560, 116.66013);
 		
 		LatLngBounds bounds = new LatLngBounds(southwest, northeast);
 		googleMap.addGroundOverlay(new GroundOverlayOptions()
 									.positionFromBounds(bounds)
-									.image(BitmapDescriptorFactory.fromBitmap(cache.weather_bmp)));
+									.image(BitmapDescriptorFactory.fromResource(R.drawable.weather)));
 	}
 	
 }

@@ -10,6 +10,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.core.Constants;
 import com.core.Utils;
@@ -29,6 +30,7 @@ public class GetWeatherOvelay extends AsyncTask<Void, Void, Void> {
 				InputStream instream = entity.getContent();
 				String result = Utils.getInstance().convertStreamToString(
 						instream);
+				Log.d(Constants.TAG, result);
 				JSONObject obj = new JSONObject(result);
 			}
 		} catch (Exception e) {
