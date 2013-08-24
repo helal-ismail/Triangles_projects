@@ -28,6 +28,7 @@ import com.core.CacheManager;
 import com.core.Constants;
 import com.core.Time2FlyApp;
 import com.core.Utils;
+import com.google.android.gms.internal.ca;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
@@ -60,14 +61,9 @@ public class Home extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		initActionBar();
-		
 		drawer = (LinearLayout)findViewById(R.id.drawer);
 		appInstance = (Time2FlyApp) getApplication();
 		initGoogleMap();
-		//setMyLocationMarker();
-		
-
-		
 		Toast.makeText(mContext, "Loading flights data", Toast.LENGTH_LONG).show();
 		timer.scheduleAtFixedRate(refreshVals, 0, cache.update_rate);
 		timer.scheduleAtFixedRate(refreshMap, 5000, cache.update_rate + 2000);
@@ -128,12 +124,18 @@ public class Home extends FragmentActivity {
 		googleMap.setOnCameraChangeListener(new OnCameraChangeListener() {	
 			@Override
 			public void onCameraChange(CameraPosition position) {
-				
 				int new_bearing_angle = (int)position.bearing;
 				if (new_bearing_angle != bearing_angle){
 					bearing_angle = new_bearing_angle;
 					renderTargets();
 				}
+				
+				if(position.zoom != cache.zoom){
+					cache.zoom = position.zoom;
+					addWeatherOverlay();
+					
+				}
+				
 			}
 		});
 		
@@ -152,7 +154,7 @@ public class Home extends FragmentActivity {
 		googleMap.addCircle(new CircleOptions()
 		.center(hkLatLng)
 		.fillColor(Color.TRANSPARENT)
-		.radius(10000)
+		.radius(15000)
 		.strokeColor(Color.BLUE)
 		.strokeWidth(5));
 		
@@ -271,6 +273,8 @@ public class Home extends FragmentActivity {
 		LinearLayout list_item = (LinearLayout)inflater.inflate(R.layout.custom_list_item, null);
 		if(!isBlack)
 			list_item.setBackgroundResource(R.drawable.rounded_border_red);
+		if (t.reg.equalsIgnoreCase(cache.selectedReg))
+			list_item.setBackgroundResource(R.drawable.rounded_border_yellow);
 		
 		TextView tv0 = (TextView)list_item.getChildAt(0);
 		tv0.setText("Flight  : " + t.callSign);
@@ -293,11 +297,12 @@ public class Home extends FragmentActivity {
 				
 				LatLng latLng = new LatLng(lat, lon);
 				googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+				cache.selectedReg = key;
 			}
-			
-			
 		});
 		drawer.addView(list_item);
+		
+	
 	}
 	
 	private void initActionBar(){
@@ -306,13 +311,40 @@ public class Home extends FragmentActivity {
 	}
 	
 	private void addWeatherOverlay(){
-		LatLng southwest = new LatLng(20.00107, 111.68321);
-		LatLng northeast = new LatLng(24.60560, 116.66013);
+		if (cache.weatherOverlay !=null)
+			cache.weatherOverlay.remove();
+		LatLng southwest = null;
+		LatLng northeast = null;
 		
+		
+		if(cache.zoom <= 7)
+		{
+			southwest = new LatLng(20.00107, 111.68321);
+			northeast = new LatLng(24.60560, 116.66013);
+		}
+
+		if(cache.zoom <= 10)
+		{
+			
+		southwest = new LatLng(21.15220, 112.92745);
+		northeast = new LatLng(23.45446, 115.41589);
+			
+		}
+		
+		else
+		{
+			southwest = new LatLng(21.72777, 113.54956);
+			northeast = new LatLng(22.87890, 114.79378);
+		}
 		LatLngBounds bounds = new LatLngBounds(southwest, northeast);
-		googleMap.addGroundOverlay(new GroundOverlayOptions()
+		cache.weatherOverlay = googleMap.addGroundOverlay(new GroundOverlayOptions()
 									.positionFromBounds(bounds)
 									.image(BitmapDescriptorFactory.fromResource(R.drawable.weather)));
+		
+		
+
+		
+		
 	}
 	
 }
