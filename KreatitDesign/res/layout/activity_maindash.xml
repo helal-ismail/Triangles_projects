@@ -15,38 +15,41 @@
         android:layout_height="0dip"
         android:layout_weight="1" >
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical" >
+            android:layout_gravity="center" >
 
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"
-                android:src="@drawable/bind_logo" />
+                android:layout_gravity="center"
+                android:orientation="vertical" >
 
-            
-            
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
+                    android:src="@drawable/bind_logo" />
+
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:layout_marginTop="-15dp"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginTop="-15dp"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
                     <LinearLayout
-                        android:id="@+id/btn"
+                        android:id="@+id/lock_btn"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1"
                         android:layout_marginTop="0dp"
+                        android:layout_weight="1"
                         android:background="@color/white"
                         android:gravity="center"
                         android:orientation="vertical" >
@@ -63,9 +66,9 @@
                             android:id="@+id/text2"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:ellipsize="end"
                             android:gravity="center"
-                            android:layout_margin="5dp"
                             android:lines="1"
                             android:tag="bold"
                             android:text="Lock"
@@ -74,7 +77,6 @@
                             android:textStyle="bold" />
                     </LinearLayout>
 
-                    
                     <LinearLayout
                         android:id="@+id/sys_btn"
                         android:layout_width="fill_parent"
@@ -96,9 +98,9 @@
                             android:id="@+id/text6"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:ellipsize="end"
                             android:gravity="center"
-                            android:layout_margin="5dp"
                             android:lines="1"
                             android:tag="bold"
                             android:text="Status"
@@ -108,16 +110,11 @@
                     </LinearLayout>
                 </LinearLayout>
 
-            
-            
-            
-           
-
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="1"
                     android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
@@ -125,8 +122,8 @@
                         android:id="@+id/panic_btn"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1"
                         android:layout_marginTop="0dp"
+                        android:layout_weight="1"
                         android:background="@color/white"
                         android:gravity="center"
                         android:orientation="vertical" >
@@ -143,9 +140,9 @@
                             android:id="@+id/text2"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:ellipsize="end"
                             android:gravity="center"
-                            android:layout_margin="5dp"
                             android:lines="1"
                             android:tag="bold"
                             android:text="Panic"
@@ -154,7 +151,6 @@
                             android:textStyle="bold" />
                     </LinearLayout>
 
-                    
                     <LinearLayout
                         android:id="@+id/ns_panic_btn"
                         android:layout_width="fill_parent"
@@ -176,9 +172,9 @@
                             android:id="@+id/text6"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:ellipsize="end"
                             android:gravity="center"
-                            android:layout_margin="5dp"
                             android:lines="1"
                             android:tag="bold"
                             android:text="NS Panic"
@@ -188,12 +184,11 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                               
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="1"
                     android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
@@ -218,9 +213,9 @@
                             android:id="@+id/text2"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:ellipsize="end"
                             android:gravity="center"
-                            android:layout_margin="5dp"
                             android:lines="1"
                             android:tag="bold"
                             android:text="Cameras"
@@ -229,7 +224,6 @@
                             android:textStyle="bold" />
                     </LinearLayout>
 
-                    
                     <LinearLayout
                         android:id="@+id/management_btn"
                         android:layout_width="fill_parent"
@@ -251,9 +245,9 @@
                             android:id="@+id/text6"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:ellipsize="end"
                             android:gravity="center"
-                            android:layout_margin="5dp"
                             android:lines="1"
                             android:tag="bold"
                             android:text="Management"
@@ -261,9 +255,25 @@
                             android:textSize="@dimen/tex_size_normal"
                             android:textStyle="bold" />
                     </LinearLayout>
-                
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/progress_bar_container"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dim_40"
+                android:layout_marginRight="@dimen/dim_40"
+                android:orientation="vertical" >
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+        </FrameLayout>
     </ScrollView>
 
 </LinearLayout>

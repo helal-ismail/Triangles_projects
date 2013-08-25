@@ -13,7 +13,7 @@
     <application
         android:name="com.kreatitdesign.core.KreatitDesignApp"
         android:allowBackup="true"
-        android:icon="@drawable/logo_2"
+        android:icon="@drawable/bind_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity

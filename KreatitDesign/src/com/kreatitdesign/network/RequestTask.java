@@ -75,6 +75,7 @@ public class RequestTask extends AsyncTask<Void, Void, String> {
 			if (status == 200) {
 				HttpEntity httpEntity = httpResponse.getEntity();
 				result = convertStreamToString(httpEntity.getContent());
+				
 				return result;
 			}
 			else
@@ -86,9 +87,11 @@ public class RequestTask extends AsyncTask<Void, Void, String> {
 			Log.d(Constants.TAG, "Exception : "+e.getMessage());
 			return "";
 		}
+		
+		
+		
 	}
 
-	
 
 	private String convertStreamToString(InputStream is) throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is));

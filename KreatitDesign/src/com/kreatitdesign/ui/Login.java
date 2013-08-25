@@ -81,6 +81,11 @@ public class Login extends Activity {
 	}
 
 	private class LoginTask extends RequestTask {
+
+		JSONArray arr;
+		JSONObject object;
+		JSONObject msg;
+
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
@@ -93,7 +98,7 @@ public class Login extends Activity {
 			_name = name.getText().toString();
 			_devID = devID.getText().toString();
 
-			JSONArray arr = new JSONArray();
+			arr = new JSONArray();
 			arr.put("request");
 
 			this.setupParams(_name, 16, _devID, _userName, _pass, arr);
@@ -104,18 +109,48 @@ public class Login extends Activity {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			try {
-				JSONObject object = new JSONObject(result);
-				JSONObject msg = object.optJSONObject("msg");
+				object = new JSONObject(result);
+				msg = object.optJSONObject("msg");
 				int code = msg.optInt("code");
 				String disp = msg.optString("disp");
 
 				if (code == 13000
 						&& disp.equalsIgnoreCase(" Successfully Login")) {
+
+					arr = new JSONArray();
+					arr.put("complete");
+					
+					
+					RequestTask installRequest = new RequestTask();
+					installRequest.setupParams(_name, 16, _devID, _userName, _pass, arr);
+					String install_result = installRequest.execute().get();
+					
+					object = new JSONObject(install_result);
+					msg = object.optJSONObject("msg");
+					int install_code = msg.optInt("code");
+					String install_disp = msg.optString("disp");
+					
+					if (install_code == 13000
+							&& install_disp.equalsIgnoreCase(" Installation Completed")) {
+						
+						
+						Intent i = new Intent(myContext, MainDash.class);
+						startActivityForResult(i, 700);
+						overridePendingTransition(R.anim.slide_in_right,
+								R.anim.slide_out_left);
+						
+					}
+
+				}
+				
+				else if (code == 13001
+						&& disp.equalsIgnoreCase(" Installation already completed. See admin")){
+					
 					Intent i = new Intent(myContext, MainDash.class);
 					startActivityForResult(i, 700);
 					overridePendingTransition(R.anim.slide_in_right,
 							R.anim.slide_out_left);
-
+					
 				}
 
 				else {
@@ -124,7 +159,7 @@ public class Login extends Activity {
 				}
 
 				progress.setVisibility(View.GONE);
-				
+
 				Log.d(Constants.TAG, "RESULT : " + result);
 
 			} catch (Exception e) {
