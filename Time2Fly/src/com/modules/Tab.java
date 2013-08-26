@@ -2,6 +2,8 @@ package com.modules;
 
 import java.util.Date;
 
+import com.google.android.gms.maps.model.Marker;
+
 public class Tab {
 	public String addr ; //unique hex code
 	public float alt ;  // altitude value in feet
@@ -22,6 +24,8 @@ public class Tab {
 	
 	public float xLat;
 	public float xLon;
+	
+	public Marker marker;
 	
 
 }

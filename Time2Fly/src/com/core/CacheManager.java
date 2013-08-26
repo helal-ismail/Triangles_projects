@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 
 import com.google.android.gms.maps.model.GroundOverlay;
 import com.modules.Tab;
-import com.modules.Weather;
 
 public class CacheManager {
 	
@@ -20,9 +19,6 @@ public class CacheManager {
 	public String current_key="";
 	public String selectedReg = "";
 	 
-	public Weather weather256 = new Weather();
-	public Weather weather128 = new Weather();
-	public Weather weather064 = new Weather();
 	
 	public float zoom= 0;
 	public GroundOverlay weatherOverlay;

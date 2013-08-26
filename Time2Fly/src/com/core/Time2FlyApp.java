@@ -1,14 +1,12 @@
 package com.core;
 
-import com.modules.ResponseBlock;
-import com.network.GetDataTask;
-
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
-import android.util.Log;
+
+import com.modules.ResponseBlock;
 
 public class Time2FlyApp extends Application {
 	private static Context context;

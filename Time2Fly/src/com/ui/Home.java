@@ -20,7 +20,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +27,6 @@ import com.core.CacheManager;
 import com.core.Constants;
 import com.core.Time2FlyApp;
 import com.core.Utils;
-import com.google.android.gms.internal.ca;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
@@ -39,10 +37,10 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.modules.Tab;
 import com.network.GetDataTask;
-import com.network.GetWeatherOvelay;
 
 public class Home extends FragmentActivity {
 	Time2FlyApp appInstance;
@@ -132,7 +130,7 @@ public class Home extends FragmentActivity {
 				
 				if(position.zoom != cache.zoom){
 					cache.zoom = position.zoom;
-					addWeatherOverlay();
+				//	addWeatherOverlay();
 					
 				}
 				
@@ -146,20 +144,7 @@ public class Home extends FragmentActivity {
 		googleMap.clear();
 		drawer.removeAllViews();
 		
-		googleMap.addMarker(new MarkerOptions()
-		.position(hkLatLng)
-		.title("Current location")
-		.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin)));
-		
-		googleMap.addCircle(new CircleOptions()
-		.center(hkLatLng)
-		.fillColor(Color.TRANSPARENT)
-		.radius(15000)
-		.strokeColor(Color.BLUE)
-		.strokeWidth(5));
-		
-		//setMyLocationMarker();
-		addWeatherOverlay();
+		//addWeatherOverlay();
 		
 		HashMap hash = CacheManager.getInstance().tabs_hash;
 		Iterator itr = hash.keySet().iterator();
@@ -193,7 +178,7 @@ public class Home extends FragmentActivity {
 				flightLevel = "A0"+altitude;
 			}
 			
-			googleMap.addMarker(new MarkerOptions()
+			t.marker = googleMap.addMarker(new MarkerOptions()
 					.position(latLng)
 					.title("Flight : " +t.callSign)
 					.snippet(
@@ -201,9 +186,12 @@ public class Home extends FragmentActivity {
 							"Ground Speed : " +t.spd +"Kts")
 					.icon(BitmapDescriptorFactory
 							.fromBitmap(bmp)));
+			
+			
+			hash.put(key, t);
 			if (!started)
 				googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-						latLng, 11));
+						hkLatLng, 11));
 			
 			started = true;
 		}
@@ -249,18 +237,19 @@ public class Home extends FragmentActivity {
 				return;
 			}
 		}
-		LatLng pos = new LatLng(myLoc.getLatitude(), myLoc.getLongitude());
-		googleMap.addMarker(new MarkerOptions()
-		.position(pos)
-		.title("Current location")
-		.icon(BitmapDescriptorFactory.fromResource(R.drawable .pin)));
-		
-		googleMap.addCircle(new CircleOptions()
-		.center(pos)
-		.fillColor(Color.TRANSPARENT)
-		.radius(35)
-		.strokeColor(Color.BLUE)
-		.strokeWidth(3));
+	
+//		LatLng pos = new LatLng(myLoc.getLatitude(), myLoc.getLongitude());
+//		googleMap.addMarker(new MarkerOptions()
+//		.position(pos)
+//		.title("Current location")
+//		.icon(BitmapDescriptorFactory.fromResource(R.drawable .pin)));
+//		
+//		googleMap.addCircle(new CircleOptions()
+//		.center(pos)
+//		.fillColor(Color.TRANSPARENT)
+//		.radius(35)
+//		.strokeColor(Color.BLUE)
+//		.strokeWidth(3));
 		}
 		catch(Exception e){
 			Toast.makeText(mContext, "E: "+e.getMessage(), Toast.LENGTH_LONG).show();
@@ -283,6 +272,7 @@ public class Home extends FragmentActivity {
 		final float lat = t.lat;
 		final float lon = t.lon;
 		final String key = t.reg;
+		final Marker marker = t.marker;
 		list_item.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -297,7 +287,15 @@ public class Home extends FragmentActivity {
 				
 				LatLng latLng = new LatLng(lat, lon);
 				googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+				
+				if(marker != null)
+					marker.showInfoWindow();
+				else
+					Toast.makeText(mContext, "NULL", 3000).show();
+				
 				cache.selectedReg = key;
+				
+				
 			}
 		});
 		drawer.addView(list_item);
@@ -310,41 +308,41 @@ public class Home extends FragmentActivity {
 		bar.setDisplayShowHomeEnabled(false);
 	}
 	
-	private void addWeatherOverlay(){
-		if (cache.weatherOverlay !=null)
-			cache.weatherOverlay.remove();
-		LatLng southwest = null;
-		LatLng northeast = null;
-		
-		
-		if(cache.zoom <= 7)
-		{
-			southwest = new LatLng(20.00107, 111.68321);
-			northeast = new LatLng(24.60560, 116.66013);
-		}
-
-		if(cache.zoom <= 10)
-		{
-			
-		southwest = new LatLng(21.15220, 112.92745);
-		northeast = new LatLng(23.45446, 115.41589);
-			
-		}
-		
-		else
-		{
-			southwest = new LatLng(21.72777, 113.54956);
-			northeast = new LatLng(22.87890, 114.79378);
-		}
-		LatLngBounds bounds = new LatLngBounds(southwest, northeast);
-		cache.weatherOverlay = googleMap.addGroundOverlay(new GroundOverlayOptions()
-									.positionFromBounds(bounds)
-									.image(BitmapDescriptorFactory.fromResource(R.drawable.weather)));
-		
-		
-
-		
-		
-	}
+//	private void addWeatherOverlay(){
+//		if (cache.weatherOverlay !=null)
+//			cache.weatherOverlay.remove();
+//		LatLng southwest = null;
+//		LatLng northeast = null;
+//		
+//		
+//		if(cache.zoom <= 7)
+//		{
+//			southwest = new LatLng(20.00107, 111.68321);
+//			northeast = new LatLng(24.60560, 116.66013);
+//		}
+//
+//		if(cache.zoom <= 10)
+//		{
+//			
+//		southwest = new LatLng(21.15220, 112.92745);
+//		northeast = new LatLng(23.45446, 115.41589);
+//			
+//		}
+//		
+//		else
+//		{
+//			southwest = new LatLng(21.72777, 113.54956);
+//			northeast = new LatLng(22.87890, 114.79378);
+//		}
+//		LatLngBounds bounds = new LatLngBounds(southwest, northeast);
+//		cache.weatherOverlay = googleMap.addGroundOverlay(new GroundOverlayOptions()
+//									.positionFromBounds(bounds)
+//									.image(BitmapDescriptorFactory.fromResource(R.drawable.weather)));
+//		
+//		
+//
+//		
+//		
+//	}
 	
 }
