@@ -10,7 +10,7 @@ import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -27,13 +27,16 @@ import com.core.CacheManager;
 import com.core.Constants;
 import com.core.Time2FlyApp;
 import com.core.Utils;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -42,7 +45,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.modules.Tab;
 import com.network.GetDataTask;
 
-public class Home extends FragmentActivity {
+public class Home extends FragmentActivity  {
 	Time2FlyApp appInstance;
 	Context mContext = this;
 	int bearing_angle = 0;
@@ -54,15 +57,19 @@ public class Home extends FragmentActivity {
 	LinearLayout drawer;
 	LatLng hkLatLng = new LatLng(22.2783, 114.1589);
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		initActionBar();
+        
+
 		drawer = (LinearLayout)findViewById(R.id.drawer);
 		appInstance = (Time2FlyApp) getApplication();
 		initGoogleMap();
 		Toast.makeText(mContext, "Loading flights data", Toast.LENGTH_LONG).show();
+		
 		timer.scheduleAtFixedRate(refreshVals, 0, cache.update_rate);
 		timer.scheduleAtFixedRate(refreshMap, 5000, cache.update_rate + 2000);
 		
@@ -70,7 +77,7 @@ public class Home extends FragmentActivity {
 	}
 	
 
-	Runnable r0 = new Runnable() {
+	Runnable refreshValsRunnable = new Runnable() {
 		@Override
 		public void run() {
 			GetDataTask task = new GetDataTask();
@@ -81,12 +88,11 @@ public class Home extends FragmentActivity {
 	TimerTask refreshVals = new TimerTask() {
 		@Override
 		public void run() {
-			runOnUiThread(r0);
+			runOnUiThread(refreshValsRunnable);
 		}
-
 	};
 
-	Runnable r = new Runnable() {
+	Runnable refreshMapRunnable = new Runnable() {
 		@Override
 		public void run() {
 			renderTargets();
@@ -95,9 +101,10 @@ public class Home extends FragmentActivity {
 	TimerTask refreshMap = new TimerTask() {
 		@Override
 		public void run() {
-			runOnUiThread(r);
+			runOnUiThread(refreshMapRunnable);
 		}
 	};
+	
 
 	@Override
 	public void onBackPressed() {
@@ -113,7 +120,6 @@ public class Home extends FragmentActivity {
 		googleMap.getUiSettings().setCompassEnabled(true);
 		googleMap.getUiSettings().setZoomControlsEnabled(true);
 		googleMap.setMyLocationEnabled(true);
-		
 		googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(hkLatLng, 8));
 		
 		
@@ -129,43 +135,55 @@ public class Home extends FragmentActivity {
 				}
 				
 				if(position.zoom != cache.zoom){
-					cache.zoom = position.zoom;
-				//	addWeatherOverlay();
-					
+					cache.zoom = position.zoom;					
 				}
 				
 			}
 		});
 		
+		googleMap.setOnMarkerClickListener(new OnMarkerClickListener() {
+			@Override
+			public boolean onMarkerClick(Marker marker) {
+				String title = marker.getTitle();
+				for(int i = 0 ; i < drawer.getChildCount() ; i ++)
+					drawer.getChildAt(i).setBackgroundResource(R.drawable.rounded_border);
+				
+				int layoutIndex = Utils.getInstance().searchByTitle(title);
+				LinearLayout selectedLayout = (LinearLayout)drawer.getChildAt(layoutIndex);
+				selectedLayout.setBackgroundResource(R.drawable.rounded_border_yellow);
+				selectedLayout.requestFocus();
+				cache.current_key = (String)selectedLayout.getTag();
+				return false;
+			}
+		});
+		
+		addWeatherOverlay();
+		
 		
 	}
 	
 	private void renderTargets(){
-		googleMap.clear();
-		drawer.removeAllViews();
-		
-		//addWeatherOverlay();
-		
+		clearMap();
+		drawer.removeAllViews();		
 		HashMap hash = CacheManager.getInstance().tabs_hash;
 		Iterator itr = hash.keySet().iterator();
 		while (itr.hasNext()) {
 			String key = (String) itr.next();
 			Tab t = (Tab) hash.get(key);
-			boolean isBlack;
+			boolean isActive;
 			Date now = new Date();
 			long timeDiff = now.getTime() - t.timeStamp.getTime();
-			isBlack = (timeDiff < Constants.TS_THRESHOLD);
-			
+			isActive = (timeDiff < Constants.TS_THRESHOLD);
 			if(timeDiff > Constants.TS_REMOVE)
 				continue;
-				
-			addFlightTab(t,isBlack);
-			
+					
 			LatLng latLng = new LatLng(t.lat, t.lon);
 			
-			Bitmap bmp = BitmapFactory.decodeResource(getResources(), Utils.getInstance().getResourceID(t,isBlack));
-
+			Bitmap bmp = BitmapFactory.decodeResource(getResources(), Utils.getInstance().getResourceID(t,isActive));
 			bmp = Utils.getInstance().rotateImage(bmp, t.track, bearing_angle);
+			BitmapDrawable d = new BitmapDrawable(bmp);
+			d.setAlpha(50);
+			Bitmap b = d.getBitmap();
 			
 			float alt = ((int)t.alt)/100;
 			int altitude = Math.round(alt);
@@ -178,21 +196,23 @@ public class Home extends FragmentActivity {
 				flightLevel = "A0"+altitude;
 			}
 			
+
+			
 			t.marker = googleMap.addMarker(new MarkerOptions()
 					.position(latLng)
-					.title("Flight : " +t.callSign)
+					.title(t.callSign)
+					
 					.snippet(
 							"Altitude : " + flightLevel + " - " +
 							"Ground Speed : " +t.spd +"Kts")
 					.icon(BitmapDescriptorFactory
-							.fromBitmap(bmp)));
+							.fromBitmap(b)));
+			
 			
 			
 			hash.put(key, t);
-			if (!started)
-				googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-						hkLatLng, 11));
-			
+			addFlightTab(t,isActive);
+
 			started = true;
 		}
 		
@@ -227,48 +247,22 @@ public class Home extends FragmentActivity {
 	}
 	
 	
-	private void setMyLocationMarker(){
-		try{
-		if(myLoc == null){
-			myLoc = googleMap.getMyLocation();
-			if(myLoc == null)
-			{
-				Toast.makeText(mContext, "Couldnt capture current location", Toast.LENGTH_LONG).show();
-				return;
-			}
-		}
-	
-//		LatLng pos = new LatLng(myLoc.getLatitude(), myLoc.getLongitude());
-//		googleMap.addMarker(new MarkerOptions()
-//		.position(pos)
-//		.title("Current location")
-//		.icon(BitmapDescriptorFactory.fromResource(R.drawable .pin)));
-//		
-//		googleMap.addCircle(new CircleOptions()
-//		.center(pos)
-//		.fillColor(Color.TRANSPARENT)
-//		.radius(35)
-//		.strokeColor(Color.BLUE)
-//		.strokeWidth(3));
-		}
-		catch(Exception e){
-			Toast.makeText(mContext, "E: "+e.getMessage(), Toast.LENGTH_LONG).show();
-		}
-	}
 	
 	
-	private void addFlightTab(Tab t, boolean isBlack){
+	
+	private void addFlightTab(Tab t, boolean isActive){
 		LayoutInflater inflater = LayoutInflater.from(mContext);
 		LinearLayout list_item = (LinearLayout)inflater.inflate(R.layout.custom_list_item, null);
-		if(!isBlack)
+		
+		if(!isActive)
 			list_item.setBackgroundResource(R.drawable.rounded_border_red);
 		if (t.reg.equalsIgnoreCase(cache.selectedReg))
 			list_item.setBackgroundResource(R.drawable.rounded_border_yellow);
 		
 		TextView tv0 = (TextView)list_item.getChildAt(0);
-		tv0.setText("Flight  : " + t.callSign);
+		tv0.setText(t.callSign);
 		TextView tv1 = (TextView)list_item.getChildAt(1);
-		tv1.setText("Speed : " + t.spd + " Kts");
+		tv1.setText( t.spd + " Kts");
 		final float lat = t.lat;
 		final float lon = t.lon;
 		final String key = t.reg;
@@ -298,6 +292,8 @@ public class Home extends FragmentActivity {
 				
 			}
 		});
+		list_item.setId(t.reg.hashCode());
+		list_item.setTag(key);
 		drawer.addView(list_item);
 		
 	
@@ -307,42 +303,53 @@ public class Home extends FragmentActivity {
 		ActionBar bar = getActionBar();
 		bar.setDisplayShowHomeEnabled(false);
 	}
+
+
 	
-//	private void addWeatherOverlay(){
-//		if (cache.weatherOverlay !=null)
-//			cache.weatherOverlay.remove();
-//		LatLng southwest = null;
-//		LatLng northeast = null;
-//		
-//		
-//		if(cache.zoom <= 7)
-//		{
-//			southwest = new LatLng(20.00107, 111.68321);
-//			northeast = new LatLng(24.60560, 116.66013);
-//		}
-//
-//		if(cache.zoom <= 10)
-//		{
-//			
-//		southwest = new LatLng(21.15220, 112.92745);
-//		northeast = new LatLng(23.45446, 115.41589);
-//			
-//		}
-//		
-//		else
-//		{
-//			southwest = new LatLng(21.72777, 113.54956);
-//			northeast = new LatLng(22.87890, 114.79378);
-//		}
-//		LatLngBounds bounds = new LatLngBounds(southwest, northeast);
-//		cache.weatherOverlay = googleMap.addGroundOverlay(new GroundOverlayOptions()
-//									.positionFromBounds(bounds)
-//									.image(BitmapDescriptorFactory.fromResource(R.drawable.weather)));
-//		
-//		
-//
-//		
-//		
-//	}
+
+	
+	private void addWeatherOverlay(){
+		if (cache.weatherOverlay !=null)
+			cache.weatherOverlay.remove();
+		LatLng southwest = null;
+		LatLng northeast = null;
+		
+		if(cache.zoom <= 8)
+		{
+			southwest = new LatLng(20.00107, 111.68321);
+			northeast = new LatLng(24.60560, 116.66013);
+		}
+
+		if(cache.zoom <= 10)
+		{		
+		southwest = new LatLng(21.15220, 112.92745);
+		northeast = new LatLng(23.45446, 115.41589);	
+		}
+		
+		else
+		{
+			southwest = new LatLng(21.72777, 113.54956);
+			northeast = new LatLng(22.87890, 114.79378);
+		}
+		float transparency = (float) 0.5;
+		
+		LatLngBounds bounds = new LatLngBounds(southwest, northeast);
+		cache.weatherOverlay = googleMap.addGroundOverlay(new GroundOverlayOptions()
+									.positionFromBounds(bounds)
+									.transparency(transparency)
+									.image(BitmapDescriptorFactory.fromResource(R.drawable.weather)));
+	}		
+	
+
+	private void clearMap(){
+		Iterator itr = cache.tabs_hash.keySet().iterator();
+		while (itr.hasNext()) {
+			String key = (String) itr.next();
+			Tab t = (Tab) cache.tabs_hash.get(key);
+			if(t.marker != null)
+				t.marker.remove();
+			t.marker = null;
+		}
+	}
 	
 }

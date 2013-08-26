@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Iterator;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -174,6 +175,20 @@ public class Utils {
 			}
 		}
 		return sb.toString();
+	}
+	
+	
+	public int searchByTitle(String title){
+		int index = 0;
+		Iterator itr = CacheManager.getInstance().tabs_hash.keySet().iterator();
+		while(itr.hasNext()){
+			String key = (String) itr.next();
+			Tab t = (Tab) CacheManager.getInstance().tabs_hash.get(key);
+			if(t.callSign.equalsIgnoreCase(title))
+				return index;
+			index++;
+		}
+		return -1;
 	}
 
 }
