@@ -2,29 +2,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@android:color/white"
     tools:context=".Splash" >
 
     <ImageView
-        android:id="@+id/image" 
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content" 
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/logo_2"/>
-    
-    
+        android:src="@drawable/logo_2" />
+
     <ImageView
-        android:id="@+id/image" 
-        android:layout_marginTop="40dp"
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content" 
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/bind_logo"/>
+        android:layout_marginTop="40dp"
+        android:src="@drawable/bind_logo" />
+
+    <LinearLayout
+        android:id="@+id/progress_bar_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/dim_40"
+        android:layout_marginRight="@dimen/dim_40"
+        android:orientation="vertical" >
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
 
 </LinearLayout>

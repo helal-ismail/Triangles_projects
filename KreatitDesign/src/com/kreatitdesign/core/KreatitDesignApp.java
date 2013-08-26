@@ -3,12 +3,15 @@ package com.kreatitdesign.core;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 
 public class KreatitDesignApp extends Application{
 	
 	private static Context context;
-	protected SharedPreferences prefs;
+	public SharedPreferences prefs;
+	
+	public User user;
 
 	@Override
 	public void onCreate() {
@@ -25,6 +28,11 @@ public class KreatitDesignApp extends Application{
 
 	public static Context getAppContext() {
 		return context;
+	}
+
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

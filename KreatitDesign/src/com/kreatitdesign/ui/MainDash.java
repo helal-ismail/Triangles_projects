@@ -20,6 +20,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.kreatitdesign.core.Constants;
+import com.kreatitdesign.core.GlobalState;
+import com.kreatitdesign.core.KreatitDesignApp;
+import com.kreatitdesign.core.User;
 import com.kreatitdesign.network.RequestTask;
 
 @SuppressLint("InlinedApi")
@@ -28,9 +31,14 @@ public class MainDash extends Activity {
 	Context myContext = this;
 
 	String lock_key = "";
-	
+
 	ProgressBar prog_bar;
 	LinearLayout progress;
+
+	KreatitDesignApp bindAlertApp = new KreatitDesignApp();
+	
+	GlobalState globalState = GlobalState.getInstance();
+	User user;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +47,15 @@ public class MainDash extends Activity {
 
 		TextView pageTitle = (TextView) findViewById(R.id.page_title);
 		pageTitle.setText("Main Dashboard");
-		
-		
+
+		user = globalState.user;
+
 		progress = (LinearLayout) findViewById(R.id.progress_bar_container);
 
 		prog_bar = (ProgressBar) findViewById(R.id.progress_bar);
 		prog_bar.getIndeterminateDrawable().setColorFilter(0xFFFF0000,
 				android.graphics.PorterDuff.Mode.MULTIPLY);
 		progress.setVisibility(View.GONE);
-		
 
 		// LOCK BUTTON
 		LinearLayout lock_btn = (LinearLayout) findViewById(R.id.lock_btn);
@@ -76,7 +84,23 @@ public class MainDash extends Activity {
 
 								try {
 
-									LockTask task = new LockTask();
+									MainDashTask task = new MainDashTask();
+									task.taskNumber = 3;
+									task.title = "System Lock";
+
+									JSONArray arr = new JSONArray();
+									JSONObject arm = new JSONObject();
+									try {
+										arm.put("arm", lock_key);
+
+									} catch (JSONException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									arr.put(arm);
+
+									task.arr = arr;
+
 									task.execute();
 
 								} catch (Exception e) {
@@ -106,18 +130,22 @@ public class MainDash extends Activity {
 		status_btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
-				new AlertDialog.Builder(new ContextThemeWrapper(myContext,
-						android.R.style.Theme_Holo_Dialog))
-						.setTitle("System Status")
-						.setIcon(R.drawable.icon_1)
-						.setMessage("System Installed Successfully")
-						.setPositiveButton("OK",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int which) {
-										dialog.cancel();
-									}
-								}).show();
+				try {
+
+					MainDashTask task = new MainDashTask();
+					task.taskNumber = 19;
+					task.title = "System Status";
+
+					JSONArray arr = new JSONArray();
+					task.arr = arr;
+
+					task.execute();
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 
 			}
 		});
@@ -127,18 +155,21 @@ public class MainDash extends Activity {
 		panic_btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
-				new AlertDialog.Builder(new ContextThemeWrapper(myContext,
-						android.R.style.Theme_Holo_Dialog))
-						.setTitle("Panic Alert")
-						.setIcon(R.drawable.icon_1)
-						.setMessage("Panic Alert from Tyrone ")
-						.setPositiveButton("OK",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int which) {
-										dialog.cancel();
-									}
-								}).show();
+				try {
+
+					MainDashTask task = new MainDashTask();
+					task.taskNumber = 1;
+					task.title = "Panic Alert";
+
+					JSONArray arr = new JSONArray();
+					task.arr = arr;
+
+					task.execute();
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
 		});
@@ -148,19 +179,23 @@ public class MainDash extends Activity {
 		ns_panic_btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
-				new AlertDialog.Builder(new ContextThemeWrapper(myContext,
-						android.R.style.Theme_Holo_Dialog))
-						.setTitle("NS.Panic Alert")
-						.setIcon(R.drawable.icon_1)
-						.setMessage(
-								"Panic alert issue between 14 Evergreen St to 36 Evergreen St ")
-						.setPositiveButton("OK",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int which) {
-										dialog.cancel();
-									}
-								}).show();
+				try {
+
+					MainDashTask task = new MainDashTask();
+					task.taskNumber = 2;
+					task.title = "NS.Panic Alert";
+					
+
+					JSONArray arr = new JSONArray();
+					task.arr = arr;
+					
+					task.execute();
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 
 			}
 		});
@@ -195,28 +230,21 @@ public class MainDash extends Activity {
 
 	// =================================================================================
 
-	private class LockTask extends RequestTask {
+	private class MainDashTask extends RequestTask {
+
+		int taskNumber;
+		String title;
+		JSONArray arr;
+
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 
-			 progress.setVisibility(View.VISIBLE);
+			progress.setVisibility(View.VISIBLE);
 
-			JSONArray arr = new JSONArray();
-			JSONObject arm = new JSONObject();
-			try 
-			{
-				arm.put("arm", lock_key);
-
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			arr.put(arm);
-
-			this.setupParams("Tyrone", 3, "demo0001", "tcousins", "getin123",
-					arr);
+			this.setupParams(user.name, taskNumber, user.devID, user.userName,
+					user.password, arr);
 		}
 
 		@Override
@@ -224,14 +252,20 @@ public class MainDash extends Activity {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			try {
-				
+
 				JSONObject object = new JSONObject(result);
 				JSONObject msg = object.optJSONObject("msg");
-				String disp = msg.optString("disp");
+				
+				String disp = "";
+				if (taskNumber == 19)
+					disp = msg.optString("status");
+				
+				else
+					disp = msg.optString("disp");
 
 				new AlertDialog.Builder(new ContextThemeWrapper(myContext,
 						android.R.style.Theme_Holo_Dialog))
-						.setTitle("System Lock")
+						.setTitle(title)
 						.setIcon(R.drawable.icon_1)
 						.setMessage(disp)
 						.setPositiveButton("OK",
@@ -241,9 +275,8 @@ public class MainDash extends Activity {
 										dialog.cancel();
 									}
 								}).show();
-				
 
-				 progress.setVisibility(View.GONE);
+				progress.setVisibility(View.GONE);
 
 				Log.d(Constants.TAG, "RESULT : " + result);
 
@@ -253,5 +286,8 @@ public class MainDash extends Activity {
 			}
 		}
 	}
+	
+	
+	
 
 }

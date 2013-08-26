@@ -3,21 +3,29 @@ package com.kreatitdesign.ui;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.kreatitdesign.core.Constants;
+import com.kreatitdesign.core.GlobalState;
+import com.kreatitdesign.core.KreatitDesignApp;
+import com.kreatitdesign.core.User;
 import com.kreatitdesign.network.RequestTask;
 
+@SuppressLint("ShowToast")
 public class Login extends Activity {
 
 	Context myContext = this;
@@ -28,6 +36,7 @@ public class Login extends Activity {
 	EditText pass;
 	EditText name;
 	EditText devID;
+	CheckBox remember_me;
 
 	ProgressBar prog_bar;
 	LinearLayout progress;
@@ -36,14 +45,28 @@ public class Login extends Activity {
 	String _pass = "";
 	String _name = "";
 	String _devID = "";
+	
+	
+	public static final String PREFS_NAME = "MyPrefsFile";
+	KreatitDesignApp bindAlertApp = new KreatitDesignApp();
+	
+	GlobalState globalState = GlobalState.getInstance();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		
+		
+		getWindow().setSoftInputMode(
+				WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+		
+		bindAlertApp.prefs = getSharedPreferences(PREFS_NAME, 0);
+		
+
+		remember_me = (CheckBox) findViewById(R.id.remember_me);
 
 		progress = (LinearLayout) findViewById(R.id.progress_bar_container);
-
 		prog_bar = (ProgressBar) findViewById(R.id.progress_bar);
 		prog_bar.getIndeterminateDrawable().setColorFilter(0xFFFF0000,
 				android.graphics.PorterDuff.Mode.MULTIPLY);
@@ -66,6 +89,8 @@ public class Login extends Activity {
 			public void onClick(View v) {
 
 				try {
+					
+					globalState.user = new User(_userName, _pass, _name, _devID);
 
 					LoginTask task = new LoginTask();
 					task.execute();
@@ -80,7 +105,11 @@ public class Login extends Activity {
 
 	}
 
-	private class LoginTask extends RequestTask {
+	
+	//================================================================================
+	
+	
+	public class LoginTask extends RequestTask {
 
 		JSONArray arr;
 		JSONObject object;
@@ -133,7 +162,28 @@ public class Login extends Activity {
 					if (install_code == 13000
 							&& install_disp.equalsIgnoreCase(" Installation Completed")) {
 						
+						if (remember_me.isChecked()){
+							Editor editor = bindAlertApp.prefs.edit();
+							editor.putString("userName", _userName);
+							editor.putString("pass", _pass);
+							editor.putString("name", _name);
+							editor.putString("devID", _devID);
+							editor.putBoolean("remember_me", true);
+							editor.commit();
+						}
+						else
+						{
+							Editor editor = bindAlertApp.prefs.edit();
+							editor.remove("userName");
+							editor.remove("pass");
+							editor.remove("name");
+							editor.remove("devID");
+							editor.putBoolean("remember_me", false);
+							editor.commit();
+						}
 						
+						
+						finish();
 						Intent i = new Intent(myContext, MainDash.class);
 						startActivityForResult(i, 700);
 						overridePendingTransition(R.anim.slide_in_right,
@@ -146,6 +196,29 @@ public class Login extends Activity {
 				else if (code == 13001
 						&& disp.equalsIgnoreCase(" Installation already completed. See admin")){
 					
+					
+					if (remember_me.isChecked()){
+						Editor editor = bindAlertApp.prefs.edit();
+						editor.putString("userName", _userName);
+						editor.putString("pass", _pass);
+						editor.putString("name", _name);
+						editor.putString("devID", _devID);
+						editor.putBoolean("remember_me", true);
+						editor.commit();
+					}
+					else
+					{
+						Editor editor = bindAlertApp.prefs.edit();
+						editor.remove("userName");
+						editor.remove("pass");
+						editor.remove("name");
+						editor.remove("devID");
+						editor.putBoolean("remember_me", false);
+						editor.commit();
+					}
+					
+					
+					finish();
 					Intent i = new Intent(myContext, MainDash.class);
 					startActivityForResult(i, 700);
 					overridePendingTransition(R.anim.slide_in_right,
@@ -154,8 +227,7 @@ public class Login extends Activity {
 				}
 
 				else {
-					Toast.makeText(myContext, "Username or Password Incorrect",
-							3000).show();
+					Toast.makeText(myContext, disp, 3000).show();
 				}
 
 				progress.setVisibility(View.GONE);
