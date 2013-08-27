@@ -1,12 +1,13 @@
 package com.ui;
 
-import com.core.Time2FlyApp;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.bugsense.trace.BugSenseHandler;
+import com.core.Time2FlyApp;
 
 public class Splash extends Activity{
 	Context mComtext = this;
@@ -15,6 +16,8 @@ public class Splash extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+        BugSenseHandler.initAndStartSession(mComtext, "c417ebfa");
+
 		setContentView(R.layout.activity_splash);
 		appInstance = (Time2FlyApp)getApplication();
 		

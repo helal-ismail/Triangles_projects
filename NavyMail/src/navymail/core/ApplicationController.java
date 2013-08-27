@@ -14,7 +14,10 @@ public class ApplicationController {
 	}
 	
 	public User currentUser = (User)LookUp.getInstance().usersHash.get(2);
-	public ArrayList<Topic> topics = new ArrayList<Topic>();
+	public ArrayList<Topic> da5ly_topics = new ArrayList<Topic>();
+	public ArrayList<Topic> khargy_topics = new ArrayList<Topic>();
+	public String cachedOrders = "";
+	
 	
 	public String arabization(String original){
 		original = original.replaceAll("0", "٠");

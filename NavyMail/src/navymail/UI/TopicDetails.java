@@ -1,7 +1,7 @@
 package navymail.UI;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.io.FileOutputStream;
 import java.util.Date;
 
 import navymail.adapters.ImageAdapter;
@@ -11,10 +11,12 @@ import navymail.modules.Topic;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -24,6 +26,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,7 +37,6 @@ import android.widget.Toast;
 public class TopicDetails extends Activity {
 
 	int topicID;
-	int topicPhotoIndex;
 	Context mContext = this;
 	ApplicationController controller = ApplicationController.getInstance();
 	ViewPager pager;
@@ -57,19 +59,8 @@ public class TopicDetails extends Activity {
 
 	private void setUpTopic() {
 		topicID = (Integer) getIntent().getExtras().get("topicID");
-
-		ArrayList<String> imageUrls = new ArrayList<String>();
-		File PhotoDir = new File(Environment.getExternalStorageDirectory(),
-				"navy");
-		PhotoDir.mkdir();
-
-		File[] urls = PhotoDir.listFiles();
-		for (int i = 0; i < urls.length; i++) {
-			if (urls[i].getPath().contains(".jp"))
-				imageUrls.add(urls[i].getPath());
-		}
-
-	currentTopic = new Topic(1, "بشأن أى حاجة", "ملخص الموضوع الفلانى",imageUrls, false);
+		currentTopic = controller.khargy_topics.get(topicID);
+		
 	}
 	
 	
@@ -178,8 +169,10 @@ public class TopicDetails extends Activity {
 				TextView sigDate = (TextView)l.getChildAt(1);
 				Date d = new Date();
 				String date = d.getDate() + "-"+ (d.getMonth()+1) +"-"+(d.getYear()+1900);
-				date = controller.arabization(date);
-				sigDate.setText(date);
+				//date = controller.arabization(date);
+				String preparedStr = prepareSignature();
+				
+				sigDate.setText(date+"\n"+preparedStr);
 				
 				imgFrame.addView(l);
 				l.setX(x);
@@ -190,10 +183,12 @@ public class TopicDetails extends Activity {
 				
 				Ta2shera ta2shera = new Ta2shera(x,y,R.layout.custom_signature);
 				currentTopic.hash.put(pager.getCurrentItem(), ta2shera);
+			//	exportImage();
 				return false;
 			}
 		});
 		}
+		
 	}
 	
 	private void restoreSignature(Ta2shera t, FrameLayout frame){
@@ -208,11 +203,55 @@ public class TopicDetails extends Activity {
 		Date d = new Date();
 		String date = d.getDate() + "-"+ (d.getMonth()+1) +"-"+(d.getYear()+1900);
 		date = controller.arabization(date);
-		sigDate.setText(date);
+		sigDate.setText(date + "\n"+controller.cachedOrders);
 		
 		frame.addView(l);
 		l.setX(t.xPos);
 		l.setY(t.yPos);
+	}
+	
+	private String prepareSignature(){
+		RelativeLayout tool_box = (RelativeLayout)findViewById(R.id.tool_box);
+		String str = "";
+		for(int i = 0 ; i < 2 ; i ++){
+			LinearLayout container = (LinearLayout)tool_box.getChildAt(i);
+			for (int j = 0 ; j < container.getChildCount() ; j ++){
+				CheckBox c = (CheckBox)container.getChildAt(j);
+				if(c.isChecked())
+				{
+					 str = str + c.getText() + "\n";
+				}
+			}
+		}
+		controller.cachedOrders = str;
+		return str;
+	}
+	
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		exportImage();
+	}
+	
+	private void exportImage(){
+		try{
+		imgFrame.setDrawingCacheEnabled(true);
+		imgFrame.buildDrawingCache();
+		Bitmap bm = imgFrame.getDrawingCache();
+		
+		File PhotoDir = new File(Environment.getExternalStorageDirectory(),"navy");
+		PhotoDir.mkdir();
+		File topicFolder = new File(PhotoDir, currentTopic.title);
+		topicFolder.mkdir();
+		File newImage = new File(topicFolder, "j"+pager.getCurrentItem()+".jpg");
+		FileOutputStream out = new FileOutputStream(newImage);
+	    bm.compress(Bitmap.CompressFormat.JPEG, 30, out);
+		}
+		catch(Exception e)
+		{
+			Log.d("helal", e.getMessage());
+		}
 	}
 
 }

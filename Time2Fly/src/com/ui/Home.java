@@ -11,7 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.BitmapFactory.Options;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -25,7 +25,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bugsense.trace.BugSense;
 import com.bugsense.trace.BugSenseHandler;
 import com.core.CacheManager;
 import com.core.Constants;
@@ -171,8 +170,10 @@ public class Home extends FragmentActivity  {
 				if(layoutIndex > -1 )
 				{
 					LinearLayout selectedLayout = (LinearLayout)drawer.getChildAt(layoutIndex);
-					selectedLayout.setBackgroundResource(R.drawable.rounded_border_yellow);
-					cache.current_key = (String)selectedLayout.getTag();
+					if(selectedLayout != null){
+						selectedLayout.setBackgroundResource(R.drawable.rounded_border_yellow);
+						cache.current_key = (String)selectedLayout.getTag();
+					}
 				}
 				return false;
 			}
@@ -204,9 +205,6 @@ public class Home extends FragmentActivity  {
 			
 			Bitmap bmp = BitmapFactory.decodeResource(getResources(), Utils.getInstance().getResourceID(t,isActive));
 			bmp = Utils.getInstance().rotateImage(bmp, t.track, bearing_angle);
-			BitmapDrawable d = new BitmapDrawable(bmp);
-			d.setAlpha(50);
-			Bitmap b = d.getBitmap();
 			
 			float alt = ((int)t.alt)/100;
 			int altitude = Math.round(alt);
@@ -229,7 +227,7 @@ public class Home extends FragmentActivity  {
 							"Altitude : " + flightLevel + " - " +
 							"Ground Speed : " +t.spd +"Kts")
 					.icon(BitmapDescriptorFactory
-							.fromBitmap(b)));
+							.fromBitmap(bmp)));
 			
 			
 			addFlightTab(t,isActive);
@@ -385,7 +383,9 @@ public class Home extends FragmentActivity  {
 		}
 		
 		float transparency = appInstance.getWeatherOverlayTransparency();
-		
+		BitmapFactory.Options opts = new Options();
+		opts.inSampleSize = 2;
+		Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.weather, opts);
 		LatLngBounds bounds = new LatLngBounds(southwest, northeast);
 		cache.weatherOverlay = googleMap.addGroundOverlay(new GroundOverlayOptions()
 									.positionFromBounds(bounds)
