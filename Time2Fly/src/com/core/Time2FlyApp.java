@@ -48,8 +48,39 @@ public class Time2FlyApp extends Application {
 
 	}
 
-	// ===== Core Functions =====
+	// ===== Settings Functions =====
 	
-
+	
+	public boolean isHomeHK()
+	{
+		return prefs.getBoolean(Constants.ST_HOME_AS_HK, true);
+	}
+	
+	public boolean isWeatheroverlayEnabled(){
+		return prefs.getBoolean(Constants.ST_WEATHER_ENABLED, false);
+	}
+	
+	public boolean isWeatheroverlayAutoUpdate(){
+		return prefs.getBoolean(Constants.ST_WEATHER_AUTO_UPDATE, false);
+	}
+	
+	public int getWeatheroverlayAutoupdateRate(){
+		String minutes = prefs.getString(Constants.ST_WEATHER_AUTO_UPDATE_RATE, "15");
+		int min = Integer.parseInt(minutes);
+		int milliseconds = min * 60 * 1000;
+		return milliseconds;
+	}
+	
+	public float getWeatherOverlayTransparency(){
+		String val =  prefs.getString(Constants.ST_OVERLAY_TRANSPARENCY, "0.75");
+		float result = Float.parseFloat(val);
+		return result;
+	}
+	
+	public boolean isFirstTime(){
+		return prefs.getBoolean(Constants.IS_FIRST_TIME, false);
+	}
+	
+	
 
 }

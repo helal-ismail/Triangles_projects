@@ -5,6 +5,7 @@ import java.util.HashMap;
 import android.graphics.Bitmap;
 
 import com.google.android.gms.maps.model.GroundOverlay;
+import com.google.android.gms.maps.model.Marker;
 import com.modules.Tab;
 
 public class CacheManager {
@@ -15,6 +16,7 @@ public class CacheManager {
 	}
 	public int update_rate = 10000;
 	public HashMap<String, Tab> tabs_hash = new HashMap<String, Tab>();
+	
 	public Bitmap weather_bmp;
 	public String current_key="";
 	public String selectedReg = "";

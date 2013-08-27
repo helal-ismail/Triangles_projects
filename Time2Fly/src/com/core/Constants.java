@@ -15,4 +15,11 @@ public class Constants {
 	public static String WEATHER_064_URL = "http://hk.time2fly.org/time2fly/current_radar/filelist_064.txt";
 	
 
+	//SETTINGS CONSTS
+	public static String ST_WEATHER_ENABLED = "weather_enabled";
+	public static String ST_HOME_AS_HK = "home_as_hk";
+	public static String ST_WEATHER_AUTO_UPDATE = "weather_auto_update";
+	public static String ST_WEATHER_AUTO_UPDATE_RATE = "weather_auto_update_rate";
+	public static String ST_OVERLAY_TRANSPARENCY = "overlay_transparency";	
+	public static String IS_FIRST_TIME = "is_first_time";
 }

@@ -63,7 +63,7 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 			
 			int update_rate = obj.optInt("update_rate");
 			if(update_rate > 0)
-				CacheManager.getInstance().update_rate = update_rate;
+				CacheManager.getInstance().update_rate = update_rate * 1000;
 			
 			JSONArray tabs = obj.getJSONArray("tab");
 			for (int i = 0; i < num; i++) {
@@ -85,6 +85,7 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 				t.owner = tabArray.optString(13);
 				t.code = tabArray.optString(14);
 				t.timeStamp = new Date();
+				t.marker = null;
 				//Insert to DB
 				//tabsTable.insertTab(t);
 				
