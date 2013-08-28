@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.view.ViewPager;
@@ -43,6 +44,7 @@ public class TopicDetails extends Activity {
 //	FrameLayout currentFrame;
 	FrameLayout imgFrame;
 	Topic currentTopic;
+	String topicType = ""; 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,19 +61,25 @@ public class TopicDetails extends Activity {
 
 	private void setUpTopic() {
 		topicID = (Integer) getIntent().getExtras().get("topicID");
-		currentTopic = controller.khargy_topics.get(topicID);
-		
+		topicType = (String) getIntent().getExtras().getString("topicType");
+		if(topicType.equalsIgnoreCase("khargy"))
+			currentTopic = controller.khargy_topics.get(topicID);
+		else
+			currentTopic = controller.da5ly_topics.get(topicID);
 	}
 	
 	
 	private void setUpClickListners(){
-		Button ta2shera = (Button)findViewById(R.id.ta2shera);	
-		ta2shera.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {				
-				putSignature();
-			}
-		});
+		Button ta2shera = (Button)findViewById(R.id.ta2shera);
+		if(currentTopic.eSigned)
+			ta2shera.setClickable(false);
+		else
+			ta2shera.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View arg0) {				
+					putSignature();
+				}
+			});
 		
 		
 		pager.setOnPageChangeListener(new OnPageChangeListener() {	
@@ -83,7 +91,7 @@ public class TopicDetails extends Activity {
 				
 				Ta2shera t = currentTopic.hash.get(pager.getCurrentItem());
 				if(t != null){
-					restoreSignature(t, imgFrame);
+				//	restoreSignature(t, imgFrame);
 					
 				}
 				
@@ -93,8 +101,6 @@ public class TopicDetails extends Activity {
 			
 			@Override
 			public void onPageScrolled(int arg0, float arg1, int arg2) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 			@Override
@@ -157,33 +163,8 @@ public class TopicDetails extends Activity {
 			pager.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent e) {
-				
-				
-				int x = (int)e.getX();
-				int y = (int)e.getY();
-				LayoutInflater inflater = LayoutInflater.from(mContext);
-				LinearLayout l = (LinearLayout)inflater.inflate(R.layout.custom_signature, null);
-				ImageView signature  = (ImageView)l.getChildAt(0);
-				signature.setLayoutParams(new LinearLayout.LayoutParams(100,100));
-				
-				TextView sigDate = (TextView)l.getChildAt(1);
-				Date d = new Date();
-				String date = d.getDate() + "-"+ (d.getMonth()+1) +"-"+(d.getYear()+1900);
-				//date = controller.arabization(date);
-				String preparedStr = prepareSignature();
-				
-				sigDate.setText(date+"\n"+preparedStr);
-				
-				imgFrame.addView(l);
-				l.setX(x);
-				l.setY(y);
-				
-				currentTopic.eSigned = true;
-				v.setOnTouchListener(null);
-				
-				Ta2shera ta2shera = new Ta2shera(x,y,R.layout.custom_signature);
-				currentTopic.hash.put(pager.getCurrentItem(), ta2shera);
-			//	exportImage();
+				Exporter exporter = new Exporter(e);
+				exporter.execute();
 				return false;
 			}
 		});
@@ -232,6 +213,9 @@ public class TopicDetails extends Activity {
 		// TODO Auto-generated method stub
 		super.onBackPressed();
 		exportImage();
+		finish();
+		Intent intent = new Intent(mContext, Home.class);
+		startActivity(intent);
 	}
 	
 	private void exportImage(){
@@ -240,17 +224,85 @@ public class TopicDetails extends Activity {
 		imgFrame.buildDrawingCache();
 		Bitmap bm = imgFrame.getDrawingCache();
 		
-		File PhotoDir = new File(Environment.getExternalStorageDirectory(),"navy");
+		File dir = new File(Environment.getExternalStorageDirectory(),"navy");
+		dir.mkdir();
+		File PhotoDir = new File(dir, topicType);
 		PhotoDir.mkdir();
+ 		PhotoDir.setWritable(true);
 		File topicFolder = new File(PhotoDir, currentTopic.title);
 		topicFolder.mkdir();
-		File newImage = new File(topicFolder, "j"+pager.getCurrentItem()+".jpg");
+		topicFolder.setWritable(true);
+		File newImage = new File(topicFolder, "i"+(pager.getCurrentItem()+1)+".jpg");
 		FileOutputStream out = new FileOutputStream(newImage);
-	    bm.compress(Bitmap.CompressFormat.JPEG, 30, out);
+	    bm.compress(Bitmap.CompressFormat.JPEG, 50, out);
+	    
+	    //pager.getAdapter().notifyDataSetChanged();
 		}
 		catch(Exception e)
 		{
 			Log.d("helal", e.getMessage());
+		}
+	}
+	
+	
+	private class Exporter extends AsyncTask<Void, Void, Void>
+	{
+		MotionEvent me;
+		public Exporter(MotionEvent me) {
+			this.me = me;
+		}
+		@Override
+		protected void onPreExecute() {		
+			super.onPreExecute();
+			int x = (int)me.getX();
+			int y = (int)me.getY();
+			LayoutInflater inflater = LayoutInflater.from(mContext);
+			LinearLayout l = (LinearLayout)inflater.inflate(R.layout.custom_signature, null);
+			
+			String preparedStr = prepareSignature();
+			/*TextView orders = (TextView)l.getChildAt(0);
+			orders.setText(preparedStr);*/
+			
+			ImageView signature  = (ImageView)l.getChildAt(1);
+			signature.setLayoutParams(new LinearLayout.LayoutParams(200,200));
+			
+			TextView sigDate = (TextView)l.getChildAt(2);
+			Date d = new Date();
+			String date = d.getDate() + "-"+ (d.getMonth()+1) +"-"+(d.getYear()+1900);
+			date = controller.arabization(date);
+			
+			sigDate.setText(date+"\n"+preparedStr+"\n"+controller.selectedUnits);
+			imgFrame.addView(l);
+			l.setX(x);
+			l.setY(y);
+			
+			currentTopic.eSigned = true;
+			String key = topicType+"_"+topicID;
+			controller.signedHash.put(key, true);
+			
+			
+			Button ta2shera_btn = (Button)findViewById(R.id.ta2shera);
+			ta2shera_btn.setClickable(false);
+			
+			pager.setOnTouchListener(null);
+			Ta2shera ta2shera = new Ta2shera(x,y,R.layout.custom_signature);
+			currentTopic.hash.put(pager.getCurrentItem(), ta2shera);
+		}
+		
+		@Override
+		protected Void doInBackground(Void... arg0) {
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			int currentItem = pager.getCurrentItem();
+			exportImage();
+			ImageAdapter adapter = new ImageAdapter(mContext, currentTopic);
+			pager.setAdapter(adapter);
+			imgFrame.removeViewAt(1);
+			pager.setCurrentItem(currentItem);
 		}
 	}
 

@@ -2,6 +2,7 @@
 package navymail.core;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import navymail.modules.Topic;
 import navymail.modules.User;
@@ -17,6 +18,8 @@ public class ApplicationController {
 	public ArrayList<Topic> da5ly_topics = new ArrayList<Topic>();
 	public ArrayList<Topic> khargy_topics = new ArrayList<Topic>();
 	public String cachedOrders = "";
+	public String selectedUnits = "";
+	public HashMap signedHash = new HashMap<String, Boolean>();
 	
 	
 	public String arabization(String original){

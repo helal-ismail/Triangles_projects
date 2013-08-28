@@ -10,6 +10,7 @@ import navymail.UI.R;
 import navymail.UI.TopicDetails;
 import navymail.core.ApplicationController;
 import navymail.modules.Topic;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
@@ -18,13 +19,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class KhargyGridViewAdapter extends BaseAdapter{
 
 	Context mContext;
-	//ArrayList<Topic> topics = new ArrayList<Topic>();
 	ApplicationController app = ApplicationController.getInstance();
 	
 	public KhargyGridViewAdapter(Context c) {
@@ -57,12 +59,23 @@ public class KhargyGridViewAdapter extends BaseAdapter{
 		RelativeLayout container = (RelativeLayout)layout.getChildAt(1);
 		TextView title = (TextView)container.getChildAt(0);
 		title.setText(topic.title);
+		
+		if(topic.eSigned)
+		{
+			FrameLayout fl = (FrameLayout)layout.getChildAt(0);
+			ImageView imgV = (ImageView)fl.getChildAt(1);
+			imgV.setVisibility(View.VISIBLE);
+		}
+		
 		layout.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				Intent topicDetails = new Intent(mContext, TopicDetails.class);
 				topicDetails.putExtra("topicID", topic.id);
+				topicDetails.putExtra("topicType", "khargy");
 				mContext.startActivity(topicDetails);
+				((Activity)mContext).finish();
+
 			}
 		});
 		return layout;
@@ -71,13 +84,15 @@ public class KhargyGridViewAdapter extends BaseAdapter{
 	
 	private void prepareContent(){
 		app.khargy_topics.clear();
-		ArrayList<String> imageUrls = new ArrayList<String>();
-		File PhotoDir = new File(Environment.getExternalStorageDirectory(),"navy");
-		PhotoDir.mkdir();
-		File[] topicFolders = PhotoDir.listFiles();	
+		File dir = new File(Environment.getExternalStorageDirectory(),"navy");
+		dir.mkdir();
+		File photoDir = new File(dir,"khargy");
+		photoDir.mkdir();
+		File[] topicFolders = photoDir.listFiles();	
 		Arrays.sort(topicFolders);
 		for (int i = 0 ; i < topicFolders.length ; i ++)
 		{
+			ArrayList<String> imageUrls = new ArrayList<String>();
 			int id = i;
 			String title = topicFolders[i].getName();
 			String conclusion = "";
@@ -88,7 +103,11 @@ public class KhargyGridViewAdapter extends BaseAdapter{
 					imageUrls.add(urls[j].getPath());
 			}
 			
-			Topic topic = new Topic(id, title, conclusion, imageUrls, false);
+			boolean eSigned = false;
+			Boolean b = (Boolean)app.signedHash.get("khargy"+"_"+id);
+			if (b != null && b == true)
+				eSigned = true;
+			Topic topic = new Topic(id, title, conclusion, imageUrls, eSigned);
 			app.khargy_topics.add(topic);
 		}
 	}

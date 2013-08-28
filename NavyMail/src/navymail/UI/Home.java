@@ -51,5 +51,7 @@ public class Home extends TabActivity{
 		khargy_grid.setAdapter(adapter2);
 	}
 	
+	
+	
 
 }

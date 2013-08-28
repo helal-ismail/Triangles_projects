@@ -3,19 +3,27 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-   
-    
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/elgendy2" />
-
-    <TextView
+   <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="-25dp"
         android:textColor="#ff0022"
         android:textSize="15sp"
+        android:textStyle="bold" />
+    
+    <ImageView
+        android:layout_margin="-25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/elgendy_new" />
+
+    <TextView
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-25dp"
+        android:textColor="#ff0022"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
 </LinearLayout>

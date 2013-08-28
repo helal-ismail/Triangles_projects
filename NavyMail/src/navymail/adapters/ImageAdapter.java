@@ -49,8 +49,7 @@ public class ImageAdapter extends PagerAdapter {
 	public Object instantiateItem(ViewGroup container, int position) {
 
 		LayoutInflater inflater = LayoutInflater.from(context);
-		FrameLayout frame = (FrameLayout) inflater.inflate(
-				R.layout.custom_frame, null);
+		FrameLayout frame = (FrameLayout) inflater.inflate(R.layout.custom_frame, null);
 		TextView tView = (TextView) frame.getChildAt(0);
 		int padding = 10;
 		tView.setPadding(padding, padding, padding, padding);

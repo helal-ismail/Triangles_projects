@@ -1,5 +1,6 @@
 package navymail.UI;
 
+import navymail.adapters.Da5lyGridViewAdapter;
 import navymail.adapters.KhargyGridViewAdapter;
 import navymail.core.ApplicationController;
 import android.app.Activity;
@@ -14,24 +15,25 @@ public class Da5lyActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_da5ly);
-		KhargyGridViewAdapter adapter = new KhargyGridViewAdapter(this);
+		Da5lyGridViewAdapter adapter = new Da5lyGridViewAdapter(this);
 		GridView da5ly_grid = (GridView)findViewById(R.id.da5ly_grid);
 		da5ly_grid.setAdapter(adapter);
 		
 		
 		TextView total_counter = (TextView)findViewById(R.id.total_counter);
-		total_counter.setText("Total : "+ app.khargy_topics.size());
+		total_counter.setText("إجمالــــــى : عدد "+ app.arabization(app.da5ly_topics.size()+"") + " مكاتبة");
+	
 		int finished = 0;
-		for (int i = 0 ; i < app.khargy_topics.size() ; i ++)
+		for (int i = 0 ; i < app.da5ly_topics.size() ; i ++)
 		{
-			if(app.khargy_topics.get(i).eSigned)
+			if(app.da5ly_topics.get(i).eSigned)
 				finished ++;
 		}
 		TextView finished_counter = (TextView)findViewById(R.id.finished_counter);
-		finished_counter.setText("Finished : "+ finished);
+		finished_counter.setText("تم مراجعة : عدد "+ app.arabization(finished+"")+ " مكاتبة");
 
 		TextView remain_counter = (TextView)findViewById(R.id.remain_counter);
-		remain_counter.setText("Remain : " + (app.khargy_topics.size() - finished));
+		remain_counter.setText("المتبقــى : عدد " + app.arabization((app.da5ly_topics.size() - finished)+"")+ " مكاتبة");
 	}
 
 }

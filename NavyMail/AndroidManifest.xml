@@ -3,13 +3,16 @@
     package="navymail.UI"
     android:versionCode="1"
     android:versionName="1.0" >
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="17" />
 
     <application
+        android:name="navymail.core.NavyMailApp"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
@@ -48,6 +51,14 @@
         <activity
             android:name=".UnitSelection"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="Login"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="Settings"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

@@ -22,7 +22,7 @@ public class Splash extends Activity {
 		@Override
 		public void run() {
 			finish();
-			Intent homeScreen = new Intent(mContext, Home.class);
+			Intent homeScreen = new Intent(mContext, Login.class);
 			startActivity(homeScreen);
 		}
 	};
