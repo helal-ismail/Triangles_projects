@@ -29,7 +29,12 @@ else
 	$year = date("Y");
 	$month = date("m");
 	$dir = '../file/pic/photo/'.$year."/".$month."/";
-	
+	$oldmask = umask(0);
+	mkdir($dir, 0777);
+	umask($oldmask);
+	$cached_media_id = '';
+	$cached_media_type = '';
+		
 	$count = 0 ;
 	for ($i=0; $i<sizeOf($_FILES["image"]["name"]); $i++)
   	{	$count++;
@@ -53,31 +58,65 @@ else
 
 		if ($i == 0 )
 		{
-			$query = "UPDATE phpfox_story SET type ='uploadphoto', photo_id = $photo_id WHERE story_id = $story_id";
+			$query = "UPDATE phpfox_story SET type ='uploadphoto', photo_id = $photo_id, default_cover = $photo_id WHERE story_id = $story_id";
 			mysql_query($query);
+			$cached_media_id = 'uploadphoto ';
+			$cached_media_type = $photo_id.' ';
 		}
 	}
 	
+	$dir2 = '../file/pic/video/'.$year."/".$month."/";
+	$oldmask = umask(0);
+	mkdir($dir2, 0777);
+	umask($oldmask);
+	if( $_REQUEST['videos'] != '')
+	{
 	$videos = explode( "," , $_REQUEST['videos'] );
 	for ($i=0; $i<sizeOf($videos); $i++)
   	{
+		
 		$count++;
+		$url = $videos[$i];
+		$queryString = parse_url($url, PHP_URL_QUERY);
+		parse_str($queryString, $params);
+		$thumb_url = "";
+		if (isset($params['v'])) 
+		{
+			$thumb_url =  "http://i3.ytimg.com/vi/{$params['v']}/hqdefault.jpg";
+		}
+		$dest = $dir2.$params['v'].'.jpg';
+		echo $dest;				
+		$filename = $params['v'].'.jpg';
+		$imageString = file_get_contents($thumb_url);
+		$newfile = file_put_contents($dest,$imageString);
 		
-		$query = "INSERT INTO phpfox_story_video (title, user_id, video_url) VALUES ('mobile_video', $user_id, '$videos[$i]' )";
+		$photo_url = $year."/".$month."/".$params['v'].'.jpg';
+		$embed_code = '<object width="425" height="344"><param name="wmode" value="transparent"></param><param name="movie" value="'.$url.'"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed wmode="transparent" src="'.$url.'" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>';
+		
+		$query = "INSERT INTO phpfox_story_video (title, user_id, video_url, image_path, embed_code) VALUES ('mobile_video', $user_id, '$url', '$photo_url', '$embed_code' )";
+
 		mysql_query($query);
-		
+
 		$query = "SELECT video_id FROM phpfox_story_video WHERE user_id = $user_id AND title = 'mobile_video' ORDER BY video_id DESC";
 		$data = mysql_query($query);
 		$row = mysql_fetch_array( $data );
 		$video_id = $row['video_id'];
 
-		$query = "INSERT INTO phpfox_story_item (story_id, item_id, item_type, caption) VALUES ($story_id, $video_id, 'attached_video', 'sample caption' )";
+		$query = "INSERT INTO phpfox_story_item (story_id, item_id, item_type, caption) VALUES ($story_id, $video_id, 'attachvideo', 'sample caption' )";
+
 		mysql_query($query);
+		
+		if ($i == 0 )
+		{
+			$type = $cached_media_id.'attachvideo';
+			$photo_id = $cached_media_type.$video_id;
+			
+			$query = "UPDATE phpfox_story SET type = '$type' , photo_id = '$photo_id' WHERE story_id = $story_id";
 
-
-
+			mysql_query($query);
+		}
 	}
-
+	}
 	$response[] = array('success'=>true, 'story_id'=> $story_id,'media_count'=>$count , 'msg'=> 'Story Added Successfully!' );
 	
 }	
