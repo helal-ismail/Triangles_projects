@@ -6,7 +6,9 @@ $category_id = $_REQUEST['category_id'];
 $title = $_REQUEST['title'];
 $content = $_REQUEST['content'];
 $location = $_REQUEST['location'];
-$captions = $_REQUEST['captions'];
+$captionsArr = $_REQUEST['captions'];
+
+$captions = explode(",",$captionsArr);
 
 $query = "INSERT INTO phpfox_story (title, content, content_parser, owner_type, user_id, story_date, location, time_stamp) VALUES ('$title', '$content', '$content', 'user', $user_id, UNIX_TIMESTAMP(now()), '$location', UNIX_TIMESTAMP(now()))";
 
@@ -37,7 +39,9 @@ else
 		
 	$count = 0 ;
 	for ($i=0; $i<sizeOf($_FILES["image"]["name"]); $i++)
-  	{	$count++;
+  	{	
+		$caption = $captions[$count];
+		$count++;
 		$dest = $dir.$_FILES["image"]["name"][$i];
 		$tmp = $_FILES["image"]["tmp_name"][$i];
 		$moved = move_uploaded_file($tmp , $dest);
@@ -52,7 +56,7 @@ else
 		$row = mysql_fetch_array( $data );
 		$photo_id = $row['photo_id'];
 
-		$query = "INSERT INTO phpfox_story_item (story_id, item_id, item_type, caption) VALUES ($story_id, $photo_id, 'uploadphoto', 'sample caption' )";
+		$query = "INSERT INTO phpfox_story_item (story_id, item_id, item_type, caption) VALUES ($story_id, $photo_id, 'uploadphoto', '$caption' )";
 		mysql_query($query);
 
 
@@ -74,7 +78,7 @@ else
 	$videos = explode( "," , $_REQUEST['videos'] );
 	for ($i=0; $i<sizeOf($videos); $i++)
   	{
-		
+		$caption = $captions[$count];
 		$count++;
 		$url = $videos[$i];
 		$queryString = parse_url($url, PHP_URL_QUERY);
@@ -84,13 +88,11 @@ else
 		{
 			$thumb_url =  "http://i3.ytimg.com/vi/{$params['v']}/hqdefault.jpg";
 		}
-		$dest = $dir2.$params['v'].'.jpg';
-		echo $dest;				
-		$filename = $params['v'].'.jpg';
+		$dest = $dir2.$params['v'].'_480.jpg';
+		echo $dest;
 		$imageString = file_get_contents($thumb_url);
 		$newfile = file_put_contents($dest,$imageString);
-		
-		$photo_url = $year."/".$month."/".$params['v'].'.jpg';
+		$photo_url = $year."/".$month."/".$params['v'].'_480.jpg';
 		$embed_code = '<object width="425" height="344"><param name="wmode" value="transparent"></param><param name="movie" value="'.$url.'"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed wmode="transparent" src="'.$url.'" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>';
 		
 		$query = "INSERT INTO phpfox_story_video (title, user_id, video_url, image_path, embed_code) VALUES ('mobile_video', $user_id, '$url', '$photo_url', '$embed_code' )";
@@ -102,7 +104,7 @@ else
 		$row = mysql_fetch_array( $data );
 		$video_id = $row['video_id'];
 
-		$query = "INSERT INTO phpfox_story_item (story_id, item_id, item_type, caption) VALUES ($story_id, $video_id, 'attachvideo', 'sample caption' )";
+		$query = "INSERT INTO phpfox_story_item (story_id, item_id, item_type, caption) VALUES ($story_id, $video_id, 'attachvideo', '$caption' )";
 
 		mysql_query($query);
 		
@@ -111,9 +113,28 @@ else
 			$type = $cached_media_id.'attachvideo';
 			$photo_id = $cached_media_type.$video_id;
 			
-			$query = "UPDATE phpfox_story SET type = '$type' , photo_id = '$photo_id' WHERE story_id = $story_id";
+			if ($count == 1)
+			{
 
-			mysql_query($query);
+			//$query = "INSERT INTO phpfox_story_upload_photo (title, user_id, destination, time_stamp) VALUES ('mobile_image', $user_id, '$photo_url', UNIX_TIMESTAMP(now()) )";
+			//mysql_query($query);
+		
+			//$query = "SELECT photo_id FROM phpfox_story_upload_photo WHERE user_id = $user_id AND title = 'mobile_image' ORDER BY photo_id DESC";
+			//$data = mysql_query($query);
+			//$row = mysql_fetch_array( $data );
+			//$new_photo_id = $row['photo_id'];
+			
+			//$type = 'uploadphoto attachvideo';
+			//$photo_id = $new_photo_id.' '.$video_id;
+			$query = "UPDATE phpfox_story SET type = '$type' , photo_id = '$photo_id', default_cover = 0 WHERE story_id = $story_id";
+				
+			}
+			else
+			{
+			$query = "UPDATE phpfox_story SET type = '$type' , photo_id = '$photo_id' WHERE story_id = $story_id";
+			}					
+			mysql_query($query);	
+			
 		}
 	}
 	}
