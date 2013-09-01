@@ -86,13 +86,13 @@ else
 		$thumb_url = "";
 		if (isset($params['v'])) 
 		{
-			$thumb_url =  "http://i3.ytimg.com/vi/{$params['v']}/hqdefault.jpg";
+			$thumb_url =  "http://i3.ytimg.com/vi/{$params['v']}/default.jpg";
 		}
-		$dest = $dir2.$params['v'].'_480.jpg';
+		$dest = $dir2.$params['v'].'_120.jpg';
 		echo $dest;
 		$imageString = file_get_contents($thumb_url);
 		$newfile = file_put_contents($dest,$imageString);
-		$photo_url = $year."/".$month."/".$params['v'].'_480.jpg';
+		$photo_url = $year."/".$month."/".$params['v'].'%s.jpg';
 		$embed_code = '<object width="425" height="344"><param name="wmode" value="transparent"></param><param name="movie" value="'.$url.'"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed wmode="transparent" src="'.$url.'" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>';
 		
 		$query = "INSERT INTO phpfox_story_video (title, user_id, video_url, image_path, embed_code) VALUES ('mobile_video', $user_id, '$url', '$photo_url', '$embed_code' )";
