@@ -12,6 +12,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Point;
+import android.hardware.display.DisplayManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -20,6 +22,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MotionEvent;
@@ -41,7 +44,6 @@ public class TopicDetails extends Activity {
 	Context mContext = this;
 	ApplicationController controller = ApplicationController.getInstance();
 	ViewPager pager;
-//	FrameLayout currentFrame;
 	FrameLayout imgFrame;
 	Topic currentTopic;
 	String topicType = ""; 
@@ -49,6 +51,8 @@ public class TopicDetails extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		controller.cachedOrders = "";
+		controller.selectedUnits = "";
 		setContentView(R.layout.activity_topic_details);
 		imgFrame = (FrameLayout)findViewById(R.id.img_frame);
 		pager = (ViewPager)findViewById(R.id.view_pager);
@@ -62,41 +66,44 @@ public class TopicDetails extends Activity {
 	private void setUpTopic() {
 		topicID = (Integer) getIntent().getExtras().get("topicID");
 		topicType = (String) getIntent().getExtras().getString("topicType");
+		Button ta2shera = (Button)findViewById(R.id.ta2shera);
+		
 		if(topicType.equalsIgnoreCase("khargy"))
 			currentTopic = controller.khargy_topics.get(topicID);
 		else
 			currentTopic = controller.da5ly_topics.get(topicID);
+		
+		if(currentTopic.eSigned)
+			ta2shera.setText("حذف التأشيرة");
 	}
 	
 	
 	private void setUpClickListners(){
 		Button ta2shera = (Button)findViewById(R.id.ta2shera);
-		if(currentTopic.eSigned)
-			ta2shera.setClickable(false);
-		else
-			ta2shera.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View arg0) {				
+		ta2shera.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				if(!currentTopic.eSigned){
 					putSignature();
 				}
-			});
+				
+				else
+				{
+					Reverter r = new Reverter();
+					r.execute();
+				}
+			}
+		});
+		
+
 		
 		
 		pager.setOnPageChangeListener(new OnPageChangeListener() {	
 			@Override
 			public void onPageSelected(int pos) {
-				
 				if(imgFrame.getChildCount() > 1)
 					imgFrame.removeViewAt(1);
-				
-				Ta2shera t = currentTopic.hash.get(pager.getCurrentItem());
-				if(t != null){
-				//	restoreSignature(t, imgFrame);
-					
-				}
-				
-				
-
 			}
 			
 			@Override
@@ -150,15 +157,6 @@ public class TopicDetails extends Activity {
 	}
 	
 	private void putSignature(){
-		imgFrame = (FrameLayout)findViewById(R.id.img_frame);
-		
-		if(imgFrame.getChildCount() > 1)
-		{
-			imgFrame.removeViewAt(1);
-			currentTopic.hash.remove(pager.getCurrentItem());
-		}
-		else
-		{
 			Toast.makeText(mContext, "من فضلك ضع تأشيرة القائد", Toast.LENGTH_LONG).show();
 			pager.setOnTouchListener(new OnTouchListener() {
 			@Override
@@ -168,7 +166,6 @@ public class TopicDetails extends Activity {
 				return false;
 			}
 		});
-		}
 		
 	}
 	
@@ -220,9 +217,17 @@ public class TopicDetails extends Activity {
 	
 	private void exportImage(){
 		try{
+		
+
+		/*Bitmap bmp = Bitmap.createBitmap( imgFrame.getLayoutParams().width, imgFrame.getLayoutParams().height, Bitmap.Config.ARGB_8888);                
+		Canvas c = new Canvas(bmp);
+		imgFrame.layout(0, 0, imgFrame.getLayoutParams().width, imgFrame.getLayoutParams().height);
+		imgFrame.draw(c);	*/
+			
 		imgFrame.setDrawingCacheEnabled(true);
 		imgFrame.buildDrawingCache();
 		Bitmap bm = imgFrame.getDrawingCache();
+		
 		
 		File dir = new File(Environment.getExternalStorageDirectory(),"navy");
 		dir.mkdir();
@@ -235,6 +240,8 @@ public class TopicDetails extends Activity {
 		File newImage = new File(topicFolder, "i"+(pager.getCurrentItem()+1)+".jpg");
 		FileOutputStream out = new FileOutputStream(newImage);
 	    bm.compress(Bitmap.CompressFormat.JPEG, 50, out);
+	    
+	    imgFrame.destroyDrawingCache();
 	    
 	    //pager.getAdapter().notifyDataSetChanged();
 		}
@@ -256,12 +263,12 @@ public class TopicDetails extends Activity {
 			super.onPreExecute();
 			int x = (int)me.getX();
 			int y = (int)me.getY();
+			
+		
+			
 			LayoutInflater inflater = LayoutInflater.from(mContext);
 			LinearLayout l = (LinearLayout)inflater.inflate(R.layout.custom_signature, null);
-			
 			String preparedStr = prepareSignature();
-			/*TextView orders = (TextView)l.getChildAt(0);
-			orders.setText(preparedStr);*/
 			
 			ImageView signature  = (ImageView)l.getChildAt(1);
 			signature.setLayoutParams(new LinearLayout.LayoutParams(200,200));
@@ -271,22 +278,21 @@ public class TopicDetails extends Activity {
 			String date = d.getDate() + "-"+ (d.getMonth()+1) +"-"+(d.getYear()+1900);
 			date = controller.arabization(date);
 			
-			sigDate.setText(date+"\n"+preparedStr+"\n"+controller.selectedUnits);
+			String text = date+"\n"+preparedStr+"\n"+controller.selectedUnits;
+			sigDate.setText(text);
 			imgFrame.addView(l);
-			l.setX(x);
-			l.setY(y);
+			Display display = getWindowManager().getDefaultDisplay();
+						
+			Point p = controller.getXY(x, y, display, text.split("\n").length);
 			
+			l.setX(p.x);
+			l.setY(p.y);
+
 			currentTopic.eSigned = true;
 			String key = topicType+"_"+topicID;
 			controller.signedHash.put(key, true);
-			
-			
-			Button ta2shera_btn = (Button)findViewById(R.id.ta2shera);
-			ta2shera_btn.setClickable(false);
-			
 			pager.setOnTouchListener(null);
-			Ta2shera ta2shera = new Ta2shera(x,y,R.layout.custom_signature);
-			currentTopic.hash.put(pager.getCurrentItem(), ta2shera);
+
 		}
 		
 		@Override
@@ -303,7 +309,65 @@ public class TopicDetails extends Activity {
 			pager.setAdapter(adapter);
 			imgFrame.removeViewAt(1);
 			pager.setCurrentItem(currentItem);
+			Button ta2shera = (Button)findViewById(R.id.ta2shera);
+			ta2shera.setText("حذف التأشيرة");
+			
 		}
+	}
+	
+	private class Reverter extends AsyncTask<Void, Void, Void>
+	{
+		
+		@Override
+		protected void onPreExecute() {
+			currentTopic.eSigned = false;
+			String key = topicType+"_"+topicID;
+			controller.signedHash.put(key, false);
+		}
+		
+		@Override
+		protected Void doInBackground(Void... arg0) {
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			File dir = new File(Environment.getExternalStorageDirectory(),"navy");
+			dir.mkdir();
+			File PhotoDir = new File(dir, topicType);
+			PhotoDir.mkdir();
+	 		PhotoDir.setWritable(true);
+			File topicFolder = new File(PhotoDir, currentTopic.title);
+			topicFolder.mkdir();
+			topicFolder.setWritable(true);
+			while(topicFolder.list().length>0)
+				topicFolder.listFiles()[0].delete();
+			
+			File backup_dir = new File(Environment.getExternalStorageDirectory(),"navy_backup");
+			backup_dir.mkdir();
+			File backup_PhotoDir = new File(backup_dir, topicType);
+			backup_PhotoDir.mkdir();
+			backup_PhotoDir.setWritable(true);
+			File backup_topicFolder = new File(backup_PhotoDir, currentTopic.title);
+			backup_topicFolder.mkdir();
+			
+			try{
+			controller.copy(backup_topicFolder, topicFolder);
+			}
+			catch(Exception e)
+			{
+				Log.d("helal", e.getMessage());
+			}
+						
+			int currentItem = pager.getCurrentItem();
+			ImageAdapter adapter = new ImageAdapter(mContext, currentTopic);
+			pager.setAdapter(adapter);
+			pager.setCurrentItem(currentItem);
+			Button ta2shera = (Button)findViewById(R.id.ta2shera);
+			ta2shera.setText("تأشيرة السيد القائد");
+		}
+		
 	}
 
 }

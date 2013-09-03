@@ -9,7 +9,7 @@ public class Topic {
 	public String conclusion;
 	public ArrayList<String> imageUrls = new ArrayList<String>();
 	public boolean eSigned = false;
-	public HashMap<Integer, Ta2shera> hash = new HashMap<Integer, Ta2shera>();
+	//public HashMap<Integer, Ta2shera> hash = new HashMap<Integer, Ta2shera>();
 
 	public Topic() {
 	}
