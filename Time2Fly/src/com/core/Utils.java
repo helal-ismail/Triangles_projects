@@ -185,10 +185,37 @@ public class Utils {
 			String key = (String) itr.next();
 			Tab t = (Tab) CacheManager.getInstance().tabs_hash.get(key);
 			if(t.callSign.equalsIgnoreCase(title))
+			{
+				CacheManager.getInstance().selectedReg = t.addr;
 				return index;
+			}
 			index++;
 		}
 		return -1;
+	}
+	
+	public String getDirectionFromAngle(float bearing){
+		if (bearing < 15)
+			return "N";
+		if (bearing < 90)
+			return "NE";
+		
+		if (bearing < 105)
+			return "E";
+		if (bearing < 180)
+			return "SE";
+		
+		if (bearing < 195)
+			return "S";
+		if (bearing < 270)
+			return "SW";
+		
+		if (bearing < 285)
+			return "W";
+		if (bearing < 345)
+			return "NW";
+		
+		return "N";
 	}
 
 }

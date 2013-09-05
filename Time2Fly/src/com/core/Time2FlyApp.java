@@ -19,7 +19,8 @@ public class Time2FlyApp extends Application {
 		prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
 	}
-
+	
+	
 	@Override
 	public void onTerminate() {
 		super.onTerminate();
@@ -80,6 +81,7 @@ public class Time2FlyApp extends Application {
 	public boolean isFirstTime(){
 		return prefs.getBoolean(Constants.IS_FIRST_TIME, false);
 	}
+	
 	
 	
 

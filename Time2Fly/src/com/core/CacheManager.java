@@ -1,7 +1,9 @@
 package com.core;
 
 import java.util.HashMap;
+import java.util.concurrent.Semaphore;
 
+import android.R.integer;
 import android.graphics.Bitmap;
 
 import com.google.android.gms.maps.model.GroundOverlay;
@@ -18,12 +20,16 @@ public class CacheManager {
 	public HashMap<String, Tab> tabs_hash = new HashMap<String, Tab>();
 	
 	public Bitmap weather_bmp;
-	public String current_key="";
 	public String selectedReg = "";
 	 
 	
 	public float zoom= 0;
 	public GroundOverlay weatherOverlay;
+	public int roundRobin = 0;
+	public int cyclesCount = 0;
+	
+	public int first = 1;
+	public boolean isRunning = false;
 	
 	public void addTab(Tab t){
 		Tab oldTab = tabs_hash.get(t.addr);
@@ -31,10 +37,14 @@ public class CacheManager {
 		{
 			t.xLat = oldTab.lat;
 			t.xLon = oldTab.lon;
+			t.marker = oldTab.marker;
+			t.cycles = cyclesCount;
 		}	
 		else{
 			t.xLat = -1;
 			t.xLon = -1;
+			t.cycles = 0;
+			t.marker = null;
 		}
 		tabs_hash.put(t.addr, t);
 	}

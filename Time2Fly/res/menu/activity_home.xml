@@ -16,16 +16,19 @@
     </group>
 
     <item
+        android:id="@+id/play"
+        android:icon="@drawable/pause"
+        android:showAsAction="always"
+        android:title="Play"/>
+    <item
         android:id="@+id/settings"
-        android:showAsAction="always"
         android:icon="@drawable/gear"
-        android:title="Settings"/>
-    
-        <item
-        android:id="@+id/side_panel"
         android:showAsAction="always"
+        android:title="Settings"/>
+    <item
+        android:id="@+id/side_panel"
         android:icon="@drawable/panel"
-        android:title="Side panel"
-     	/>
+        android:showAsAction="always"
+        android:title="Side panel"/>
 
 </menu>
