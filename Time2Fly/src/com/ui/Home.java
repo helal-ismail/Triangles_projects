@@ -243,11 +243,11 @@ public class Home extends FragmentActivity {
 			} else {
 				LatLng org = new LatLng(tab.xLat, tab.xLon);
 				LatLng dest = new LatLng(tab.lat, tab.lon);
-				animateMarker(tab, org, dest, snippet, isActive);
+				animateMarker(tab, org, dest, snippet, flightLevel,isActive);
 			}
 			if (cache.selectedReg.equalsIgnoreCase(tab.addr)){
 				tab.marker.showInfoWindow();
-				googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+				//googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
 			}
 			
 			count ++;
@@ -260,11 +260,12 @@ public class Home extends FragmentActivity {
 	}
 
 	private void animateMarker(Tab tab, final LatLng org,
-			final LatLng dest, String snippet, boolean isActive) {
+			final LatLng dest, String snippet, String flightLevel, boolean isActive) {
 		
 		final Marker marker = tab.marker;
 		Bitmap bmp = BitmapFactory.decodeResource(getResources(), Utils.getInstance().getResourceID(tab, isActive));
 		bmp = Utils.getInstance().rotateImage(bmp, tab.track, bearing_angle);
+		marker.setTitle(tab.callSign +" | "+ flightLevel);
 		marker.setSnippet(snippet);
 		marker.setIcon(BitmapDescriptorFactory.fromBitmap(bmp));
 		
