@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="shortcut icon" href="../../assets/ico/favicon.png">
+
+		<title>PaperV Documentation</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="./dist/css/bootstrap.css" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="starter-template.css" rel="stylesheet">
+
+	</head>
+
+	<body>
+
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="http://www.paperv.com">PaperV.com</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="./login.html">Login</a>
+						</li>
+						<li>
+							<a href="#">Register</a>
+						</li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div>
+
+		<div class="container">
+
+			<div class="starter-template">
+				<h1>Registration Request</h1>
+			</div>
+
+			<h3>URL</h3>
+			<ol>
+				<li class="breadcrumb">
+					http://paperv.com/api/register.php
+				</li>
+			</ol>
+
+			<h3>Request Type</h3>
+			<ol >
+				<li class="breadcrumb">
+					GET/POST
+				</li>
+			</ol>
+
+			<h3>Request Params</h3>
+			<ol >
+				<li class="breadcrumb">
+					user_name : username
+				</li>
+				<li class="breadcrumb">
+					full_name : user full name
+				</li>
+				<li class="breadcrumb">
+					email : user email
+				</li>
+				
+				<li class="breadcrumb">
+					password : user password
+				</li>
+
+			</ol>
+			
+			<h3>Response Format</h3>
+			<ol >
+				<li class="breadcrumb">
+					Success : {"success":true, "user_id":123, "msg":"User registered succesfully"}
+				</li>
+				<li class="breadcrumb">
+					Fail : {"success":false, "msg":"Username or email already exists" }
+				</li>
+
+			</ol>
+
+
+		</div><!-- /.container -->
+
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="./assets/js/jquery.js"></script>
+		<script src="./dist/js/bootstrap.min.js"></script>
+	</body>
+</html>
