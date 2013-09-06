@@ -32,7 +32,7 @@ if($ID != null)
 
 else
 {
-	$response[] = array('success'=>false);	
+	$response[] = array('success'=>false, 'msg'=>'Login Request Failed!');	
 }
 
 echo json_encode($response);

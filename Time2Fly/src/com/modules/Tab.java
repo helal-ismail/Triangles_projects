@@ -21,7 +21,7 @@ public class Tab {
 	public 	String owner ; //aircraft owner
 	public 	String code; //airline code
 	public Date timeStamp;
-	
+	public int cycles = 0;
 	public float xLat;
 	public float xLon;
 	

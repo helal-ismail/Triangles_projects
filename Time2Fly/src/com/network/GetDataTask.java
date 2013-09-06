@@ -19,18 +19,13 @@ import com.core.Constants;
 import com.core.Time2FlyApp;
 import com.core.Utils;
 import com.db.TabsTable;
+import com.google.android.gms.maps.model.LatLng;
 import com.modules.Tab;
 
 public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 	
-	TabsTable tabsTable ;
+	//TabsTable tabsTable ;
 	
-	@Override
-	protected void onPreExecute() {
-		super.onPreExecute();
-		tabsTable = new TabsTable(Time2FlyApp.getAppContext());
-		
-	}
 
 	@Override
 	protected Boolean doInBackground(Void... params) {
@@ -41,10 +36,12 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 			response = httpclient.execute(httpget);
 			HttpEntity entity = response.getEntity();
 			if (entity != null) {
+				CacheManager.getInstance().cyclesCount++;
 				InputStream instream = entity.getContent();
 				String result = Utils.getInstance().convertStreamToString(instream);
 				JSONObject obj = new JSONObject(result);
-				insertIntoDb(obj);
+				insertIntoDb(obj);					
+				
 			}
 
 			return true;
@@ -53,6 +50,9 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 		}
 
 	}
+	
+	
+	
 
 	private boolean insertIntoDb(JSONObject obj) {
 		try {
@@ -85,13 +85,12 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 				t.owner = tabArray.optString(13);
 				t.code = tabArray.optString(14);
 				t.timeStamp = new Date();
-				t.marker = null;
-				//Insert to DB
-				//tabsTable.insertTab(t);
-				
-				//Insert to Hash
+//				if (t.marker != null){
+//					LatLng loc = new LatLng(t.lat, t.lon);
+//					t.marker.setPosition(loc);
+//					t.marker.setTitle(t.callSign);
+//				}
 				CacheManager.getInstance().addTab(t);
-			//	Log.d(Constants.TAG, "hash size : " + CacheManager.getInstance().tabs_hash.size());
 			
 			}
 			return true;
