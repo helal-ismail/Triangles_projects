@@ -28,12 +28,12 @@
 					<li >
 						<a href="./index.html">Mobile API Documentation</a>
 					</li>
-					
+
 				</ul>
 			</div>
 		</div>
 
-<div style="float:left;">
+		<div style="float:left;">
 			<ul  style="font: normal 15px -webkit-mini-control ; margin-top: 70px; margin-bottom: 30px; margin-left: 15px"  class="nav nav-pills nav-stacked" >
 				<li >
 					<a href="./login.html">Login<i class="icon-chevron-left"></i></a>
@@ -67,7 +67,7 @@
 				<li >
 					<a href="./add_comment.html">Add Comment<i class="icon-chevron-left"></i></a>
 				</li>
-				<li class="active">
+				<li>
 					<a href="./like_story.html">Like story<i class="icon-chevron-left"></i></a>
 				</li>
 				<li>
@@ -109,7 +109,7 @@
 					<a href="./unfollow.html">Unfollow user<i class="icon-chevron-left"></i></a>
 				</li>
 
-				<li>
+				<li class="active">
 					<a href="./get_profile.html">User profile<i class="icon-chevron-left"></i></a>
 				</li>
 
@@ -126,34 +126,28 @@
 		<div class="container"style="margin-left:300px;">
 
 			<div class="starter-template">
-				<h1>Like Story</h1>
-				<h3></h3>
+				<h1>Get User Profile</h1>
+				<h3>This request returns all the details for a single user given his ID</h3>
 			</div>
 
 			<h3>URL</h3>
 			<ol>
 				<li class="breadcrumb">
-					http://paperv.com/api/like.php
+					http://paperv.com/api/get_profile.php
 				</li>
 			</ol>
 
 			<h3>Request Type</h3>
 			<ol >
 				<li class="breadcrumb">
-					POST
+					GET
 				</li>
 			</ol>
 
 			<h3>Request Params</h3>
 			<ol >
 				<li class="breadcrumb">
-					user_id : User ID
-				</li>
-				<li class="breadcrumb">
-					type_id : 'story'
-				</li>
-				<li class="breadcrumb">
-					item_id : Story ID
+					profile_id : ID of the user
 				</li>
 
 			</ol>
@@ -162,12 +156,29 @@
 			<ol >
 				<li class="breadcrumb">
 					Success :
-					<br />
-					{ 
-					<br />	
-					"success" : true,
-					<br />
-					"msg" : "Like request success!"
+					<br/>
+					{
+					<br/>
+					&nbsp;&nbsp;&nbsp;"success":true,
+					<br/>
+					&nbsp;&nbsp;&nbsp;"data":
+					<br/>
+					&nbsp;&nbsp;&nbsp;{
+					<br/>
+
+					&nbsp;&nbsp;&nbsp;"user_id" : 123,
+					<br/>
+					&nbsp;&nbsp;&nbsp;"user_name" : "John123",
+					<br/>
+					&nbsp;&nbsp;&nbsp;"full_name" : "John Smith",
+					<br/>
+					&nbsp;&nbsp;&nbsp;"user_image" : &lt;USER IMAGE URL&gt;,
+					<br/>
+					&nbsp;&nbsp;&nbsp;"email" : "john@mymail.com"
+					<br/>
+					&nbsp;&nbsp;&nbsp;"is_following" : true / false
+					<br/>
+					&nbsp;&nbsp;&nbsp;}
 					<br/>
 					}
 				</li>
@@ -178,7 +189,7 @@
 					<br/>
 					&nbsp;&nbsp;&nbsp;"success" : false,
 					<br/>
-					&nbsp;&nbsp;&nbsp;"msg" : "Like request failed!"
+					&nbsp;&nbsp;&nbsp;"msg" : "User Request Failed!"
 					<br/>
 					}
 				</li>

@@ -1,0 +1,128 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/header"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        layout="@layout/subheader_layout" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" >
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dim_20"
+                android:layout_marginRight="@dimen/dim_20"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     android:layout_marginLeft="@dimen/dim_50"
+                	android:layout_marginRight="@dimen/dim_50"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/bind_logo" />
+
+                <LinearLayout
+                    android:id="@+id/op_mode_btn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="40dp"
+                    android:layout_marginLeft="@dimen/dim_10"
+                    android:layout_marginRight="@dimen/dim_10"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/operational_mode"
+                        android:ellipsize="end"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/text2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:tag="bold"
+                        android:text="Operational Mode"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/tex_size_small"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/dim_10"
+                    android:layout_marginRight="@dimen/dim_10"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/get_mode"
+                        style="@style/Button_Blue"
+                        android:layout_width="120dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="Get Mode"
+                        android:textColor="#ffffff"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    
+                     <Button
+                        android:id="@+id/update_mode"
+                        style="@style/Button_Blue"
+                        android:layout_width="120dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="Update Mode"
+                        android:textColor="#ffffff"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    
+                    
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/progress_bar_container"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dim_40"
+                android:layout_marginRight="@dimen/dim_40"
+                android:orientation="vertical" >
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+        </FrameLayout>
+    </ScrollView>
+
+</LinearLayout>

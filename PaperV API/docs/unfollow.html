@@ -67,7 +67,7 @@
 				<li >
 					<a href="./add_comment.html">Add Comment<i class="icon-chevron-left"></i></a>
 				</li>
-				<li class="active">
+				<li>
 					<a href="./like_story.html">Like story<i class="icon-chevron-left"></i></a>
 				</li>
 				<li>
@@ -105,7 +105,7 @@
 					<a href="./follow.html">Follow user<i class="icon-chevron-left"></i></a>
 				</li>
 
-				<li>
+				<li class="active">
 					<a href="./unfollow.html">Unfollow user<i class="icon-chevron-left"></i></a>
 				</li>
 
@@ -123,17 +123,17 @@
 
 			</ul>
 		</div>
+
 		<div class="container"style="margin-left:300px;">
 
 			<div class="starter-template">
-				<h1>Like Story</h1>
-				<h3></h3>
+				<h1>Unfollow User</h1>
 			</div>
 
 			<h3>URL</h3>
 			<ol>
 				<li class="breadcrumb">
-					http://paperv.com/api/like.php
+					http://paperv.com/api/unfollow.php
 				</li>
 			</ol>
 
@@ -150,10 +150,7 @@
 					user_id : User ID
 				</li>
 				<li class="breadcrumb">
-					type_id : 'story'
-				</li>
-				<li class="breadcrumb">
-					item_id : Story ID
+					target_id : ID of the user to be unfollowed
 				</li>
 
 			</ol>
@@ -161,26 +158,10 @@
 			<h3>Response Format</h3>
 			<ol >
 				<li class="breadcrumb">
-					Success :
-					<br />
-					{ 
-					<br />	
-					"success" : true,
-					<br />
-					"msg" : "Like request success!"
-					<br/>
-					}
+					Success : <br/>{ "success":true, "msg" : "User unfollowed successfully" }
 				</li>
 				<li class="breadcrumb">
-					Fail :
-					<br/>
-					{
-					<br/>
-					&nbsp;&nbsp;&nbsp;"success" : false,
-					<br/>
-					&nbsp;&nbsp;&nbsp;"msg" : "Like request failed!"
-					<br/>
-					}
+					Fail : <br/>{ "success":false, "msg" : "Unfollow request failed!" }
 				</li>
 
 			</ol>

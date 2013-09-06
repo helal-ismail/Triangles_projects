@@ -32,7 +32,6 @@
 				</ul>
 			</div>
 		</div>
-
 <div style="float:left;">
 			<ul  style="font: normal 15px -webkit-mini-control ; margin-top: 70px; margin-bottom: 30px; margin-left: 15px"  class="nav nav-pills nav-stacked" >
 				<li >
@@ -67,7 +66,7 @@
 				<li >
 					<a href="./add_comment.html">Add Comment<i class="icon-chevron-left"></i></a>
 				</li>
-				<li class="active">
+				<li>
 					<a href="./like_story.html">Like story<i class="icon-chevron-left"></i></a>
 				</li>
 				<li>
@@ -101,7 +100,7 @@
 					<a href="./user_stories.html">User stories<i class="icon-chevron-left"></i></a>
 				</li>
 
-				<li>
+				<li class="active">
 					<a href="./follow.html">Follow user<i class="icon-chevron-left"></i></a>
 				</li>
 
@@ -126,14 +125,14 @@
 		<div class="container"style="margin-left:300px;">
 
 			<div class="starter-template">
-				<h1>Like Story</h1>
-				<h3></h3>
+				<h1>Follow User</h1>
+				
 			</div>
 
 			<h3>URL</h3>
 			<ol>
 				<li class="breadcrumb">
-					http://paperv.com/api/like.php
+					http://paperv.com/api/follow.php
 				</li>
 			</ol>
 
@@ -150,10 +149,7 @@
 					user_id : User ID
 				</li>
 				<li class="breadcrumb">
-					type_id : 'story'
-				</li>
-				<li class="breadcrumb">
-					item_id : Story ID
+					target_id : ID of the user to be followed
 				</li>
 
 			</ol>
@@ -161,26 +157,10 @@
 			<h3>Response Format</h3>
 			<ol >
 				<li class="breadcrumb">
-					Success :
-					<br />
-					{ 
-					<br />	
-					"success" : true,
-					<br />
-					"msg" : "Like request success!"
-					<br/>
-					}
+					Success : <br/>{ "success":true, "msg" : "Follow successfully" }
 				</li>
 				<li class="breadcrumb">
-					Fail :
-					<br/>
-					{
-					<br/>
-					&nbsp;&nbsp;&nbsp;"success" : false,
-					<br/>
-					&nbsp;&nbsp;&nbsp;"msg" : "Like request failed!"
-					<br/>
-					}
+					Fail : <br/>{ "success":false, "msg" : "Follow request failed!" }
 				</li>
 
 			</ol>
