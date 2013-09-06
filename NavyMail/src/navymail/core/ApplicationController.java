@@ -64,19 +64,22 @@ public class ApplicationController {
 		}
 	}
 	
-	public Point getXY(int x, int y, Display d, int numLines ){
+	public Point getXY(int x, int y, Display d, int numLines, int maxChars ){
 		int screenW = d.getWidth();
-		int screenH = d.getHeight();
-		
+		int screenH = d.getHeight() - 220;
 		Point point = new Point(x,y);
 		
-		if( (screenW - x) <  200)
-			point.x = x - 225 ;
+		int expectedWidth = 9 * maxChars;
+		if(expectedWidth < 250)
+			expectedWidth = 250;
+		
+		if( (screenW - x) <  expectedWidth)
+			point.x = screenW - expectedWidth ;
 		
 		
-		int expectedHeight = 17 * numLines + 200;
+		int expectedHeight = 17 * numLines + 225;
 		if( (screenH - y ) < expectedHeight )
-			point.y = y - expectedHeight-25;
+			point.y = screenH - expectedHeight;
 		
 		return point;
 	}

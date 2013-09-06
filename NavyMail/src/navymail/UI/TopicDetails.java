@@ -282,8 +282,13 @@ public class TopicDetails extends Activity {
 			sigDate.setText(text);
 			imgFrame.addView(l);
 			Display display = getWindowManager().getDefaultDisplay();
-						
-			Point p = controller.getXY(x, y, display, text.split("\n").length);
+			String[] lines = text.split("\n");
+			int maxLength = 0;
+			for(String s: lines){
+				if(s.length() > maxLength)
+					maxLength = s.length();
+			}
+			Point p = controller.getXY(x, y, display,lines.length, maxLength);
 			
 			l.setX(p.x);
 			l.setY(p.y);

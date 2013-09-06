@@ -1,5 +1,9 @@
 package navymail.UI;
 
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.TreeMap;
+
 import navymail.core.ApplicationController;
 import android.app.Activity;
 import android.os.Bundle;
@@ -31,6 +35,8 @@ public class UnitSelection extends Activity {
 	
 	private String prepareStr()
 	{
+		
+		TreeMap<Integer, String> heap = new TreeMap<Integer, String>(); 
 		String result = "";
 		LinearLayout parent = (LinearLayout)findViewById(R.id.parent);
 		for (int i = 0 ; i < 2 ; i ++){
@@ -42,11 +48,16 @@ public class UnitSelection extends Activity {
 					continue;
 				CheckBox cb = (CheckBox)v;
 				if(cb.isChecked()){
-					result = result + cb.getText() +"\n";
+					heap.put(Integer.parseInt(cb.getTag()+""), cb.getText()+"");
 				}
 			}
 		}
+		Iterator<Integer> itr = heap.navigableKeySet().iterator();
+		while(itr.hasNext()){
+			result += heap.get(itr.next())+"\n";
+		}
 		return result; 
 	}
+	
 
 }

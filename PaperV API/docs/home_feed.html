@@ -37,29 +37,29 @@
 
 		<div style="float:left;">
 			<ul  style="font: normal 15px -webkit-mini-control ; margin-top: 70px; margin-bottom: 30px; margin-left: 15px"  class="nav nav-pills nav-stacked" >
-				<li class="active">
-					<a href="#">Login<i class="icon-chevron-left"></i></a>
+				<li >
+					<a href="./login.html">Login<i class="icon-chevron-left"></i></a>
 				</li>
 
 				<li >
-					<a href="#">Social Login<i class="icon-chevron-left"></i></a>
+					<a href="./sn_login.html">Social Login<i class="icon-chevron-left"></i></a>
 				</li>
 
 				<li>
-					<a href="#">Register<i class="icon-chevron-left"></i></a>
+					<a href="./register.html">Register<i class="icon-chevron-left"></i></a>
 				</li>
 
-				<li>
-					<a href="#">Glide story<i class="icon-chevron-left"></i></a>
-				</li>
-				<li>
+				<li >
+					<a  href="#">Glide story<i class="icon-chevron-left"></i></a>
+				</li >
+				<li c>
 					<a href="#">Reglide story<i class="icon-chevron-left"></i></a>
 				</li>
-				<li>
+				<li >
 					<a href="#">Remove story<i class="icon-chevron-left"></i></a>
 				</li>
 
-				<li>
+				<li class="active">
 					<a href="#">Home feed<i class="icon-chevron-left"></i></a>
 				</li>
 				<li>
@@ -129,30 +129,32 @@
 		<div class="container"style="margin-left:300px;">
 
 			<div class="starter-template">
-				<h1>Login Request</h1>
+				<h1>Home Feed</h1>
+				<h3>Loads all the stories that has been liked, glided, reglided by the user.</h3>
+				<h3> Or glided by other users followed by the user who initiated the request.</h3>
 			</div>
 
 			<h3>URL</h3>
 			<ol>
 				<li class="breadcrumb">
-					http://paperv.com/api/login.php
+					http://paperv.com/api/home.php
 				</li>
 			</ol>
 
 			<h3>Request Type</h3>
 			<ol >
 				<li class="breadcrumb">
-					GET/POST
+					GET
 				</li>
 			</ol>
 
 			<h3>Request Params</h3>
 			<ol >
 				<li class="breadcrumb">
-					login : username or email
+					user_id : user id
 				</li>
 				<li class="breadcrumb">
-					password : user password
+					page : page number
 				</li>
 
 			</ol>
@@ -160,10 +162,52 @@
 			<h3>Response Format</h3>
 			<ol >
 				<li class="breadcrumb">
-					Success : <br/>{<br/>&nbsp;&nbsp;&nbsp;"success":true, <br/>&nbsp;&nbsp;&nbsp;"user_id":123, <br/>&nbsp;&nbsp;&nbsp;"user_name":"John123", <br/>&nbsp;&nbsp;&nbsp;"full_name":"John Smith", <br/>&nbsp;&nbsp;&nbsp;"user_image":"IMAGE URL", <br/>&nbsp;&nbsp;&nbsp;"email":"john@mymail.com"<br/>}
+					Success :
+					<br />
+					{ 
+					<br />	
+					"success" : true,
+					<br />
+					"data" : 
+					<br />
+					[
+					<br/>
+					&nbsp;&nbsp;{
+					<br/>
+					&nbsp;&nbsp;&nbsp;"story_id" : 123,
+					<br/>
+					&nbsp;&nbsp;&nbsp;"title" : "John in Madrid",
+					<br/>
+					&nbsp;&nbsp;&nbsp;"total_comment" : 6,
+					<br/>
+					&nbsp;&nbsp;&nbsp;"total_like" : 15,
+					<br/>
+					&nbsp;&nbsp;&nbsp;"total_repsot" : 5,
+					<br/>
+					&nbsp;&nbsp;&nbsp;"photo_url" : &lt;STORY PHOTO URL&gt;,
+					<br/>
+					&nbsp;&nbsp;&nbsp;"user_id" : &lt;STORY OWNER ID&gt;,
+					<br/>
+					&nbsp;&nbsp;&nbsp;"user_image" : &lt;OWNER PHOTO URL&gt;,
+					<br/>
+					&nbsp;&nbsp;&nbsp;"user_fullname" : &lt;OWNER FULL NAME&gt;
+					<br/>
+					&nbsp;&nbsp;}
+					<br/>
+					]
+					<br/>
+					}
 				</li>
 				<li class="breadcrumb">
-					Fail : <br/>{<br/>&nbsp;&nbsp;&nbsp;"success":false, <br/>&nbsp;&nbsp;&nbsp;"msg":"Login Request Failed!" <br/>}
+					Fail :
+					<br/>
+					{
+					<br/>
+					&nbsp;&nbsp;&nbsp;"success" : false,
+					<br/>
+					&nbsp;&nbsp;&nbsp;"msg" : "Failed to load home feed!"
+					<br/>
+					}
 				</li>
 
 			</ol>

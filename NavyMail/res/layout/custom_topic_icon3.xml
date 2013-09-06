@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:padding="5dp"
+            android:gravity="center"
             android:text="عنوان المكاتبة"
             android:textColor="@android:color/black"
             android:textSize="15sp"

@@ -31,7 +31,7 @@ else
 		$response[] = array('success'=>false, 'msg'=> 'Add comment failed!' );
 	else
 	{
-	$response[] = array('success'=>false, 'msg'=> 'Comment added successfully!' );
+	$response[] = array('success'=>true, 'msg'=> 'Comment added successfully!' );
 	$query = "INSERT INTO phpfox_notification (type_id, item_id, user_id, owner_user_id, is_seen, is_hide, time_stamp) VALUES ('story_comment', $comment_id, $story_owner, $user_id, 0,0,UNIX_TIMESTAMP(now()) )";
 	$result = mysql_query($query);		
 			

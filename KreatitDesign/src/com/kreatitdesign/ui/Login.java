@@ -74,15 +74,20 @@ public class Login extends Activity {
 
 		userName = (EditText) findViewById(R.id.user_name);
 		userName.setText("tcousins");
+		_userName = userName.getEditableText().toString();
 
 		pass = (EditText) findViewById(R.id.password);
 		pass.setText("getin123");
+		_pass = pass.getEditableText().toString();
 
 		name = (EditText) findViewById(R.id.name);
 		name.setText("Tyrone");
 
+		_name = name.getEditableText().toString();
+
 		devID = (EditText) findViewById(R.id.device_ID);
 		devID.setText("demo0001");
+		_devID = devID.getEditableText().toString();
 
 		Button sign_in = (Button) findViewById(R.id.signin);
 		sign_in.setOnClickListener(new View.OnClickListener() {

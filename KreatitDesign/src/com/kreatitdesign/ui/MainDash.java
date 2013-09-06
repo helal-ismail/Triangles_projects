@@ -137,6 +137,7 @@ public class MainDash extends Activity {
 					task.title = "System Status";
 
 					JSONArray arr = new JSONArray();
+					arr.put("status");
 					task.arr = arr;
 
 					task.execute();
