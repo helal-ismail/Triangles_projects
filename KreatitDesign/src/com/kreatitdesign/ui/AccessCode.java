@@ -42,7 +42,7 @@ public class AccessCode extends Activity {
 		setContentView(R.layout.activity_access_code);
 
 		TextView pageTitle = (TextView) findViewById(R.id.page_title);
-		pageTitle.setText("Operational Mode");
+		pageTitle.setText("Access Code");
 
 		user = globalState.user;
 
@@ -323,6 +323,9 @@ public class AccessCode extends Activity {
 
 				else if (!msg.optString("spassword").equals(""))
 					disp = msg.optString("spassword");
+				
+				else if (!msg.optString("disp").equals(""))
+					disp = msg.optString("disp");
 
 				new AlertDialog.Builder(new ContextThemeWrapper(myContext,
 						android.R.style.Theme_Holo_Dialog))

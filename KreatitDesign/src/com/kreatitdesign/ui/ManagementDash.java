@@ -63,6 +63,20 @@ public class ManagementDash extends Activity {
 
 			}
 		});
+		
+		
+		// Monitoring Center BUTTON
+				LinearLayout monitoring_btn = (LinearLayout) findViewById(R.id.monitoring_btn);
+				monitoring_btn.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+
+						Intent i = new Intent(myContext, MonitoringCentre.class);
+						startActivityForResult(i, 700);
+						overridePendingTransition(R.anim.slide_in_right,
+								R.anim.slide_out_left);
+
+					}
+				});
 
 		// Access Code BUTTON
 		LinearLayout access_btn = (LinearLayout) findViewById(R.id.access_btn);

@@ -18,7 +18,7 @@
         <FrameLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" >
+            android:gravity="center" >
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -35,7 +35,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="@dimen/dim_50"
                     android:layout_marginRight="@dimen/dim_50"
-                    android:layout_marginTop="-20dp"
+                    android:layout_marginTop="-10dp"
                     android:src="@drawable/bind_logo" />
 
                 <LinearLayout
@@ -83,8 +83,8 @@
 
                     <TextView
                         android:id="@+id/text6"
-                        android:layout_width="100dp"
-                        android:layout_height="25dp"
+                        android:layout_width="120dp"
+                        android:layout_height="30dp"
                         android:layout_margin="5dp"
                         android:ellipsize="end"
                         android:gravity="right"
@@ -92,31 +92,31 @@
                         android:tag="bold"
                         android:text="Access Code : "
                         android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_normal"
+                        android:textSize="@dimen/tex_size_large"
                         android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/access_view"
                         style="@style/Button_Blue"
-                        android:layout_width="60dp"
-                        android:layout_height="25dp"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
                         android:text="View"
                         android:textColor="#ffffff"
-                        android:textSize="13sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/access_update"
                         style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="25dp"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
                         android:text="Update"
                         android:textColor="#ffffff"
-                        android:textSize="13sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -130,8 +130,8 @@
 
                     <TextView
                         android:id="@+id/text6"
-                        android:layout_width="100dp"
-                        android:layout_height="25dp"
+                        android:layout_width="120dp"
+                        android:layout_height="30dp"
                         android:layout_margin="5dp"
                         android:ellipsize="end"
                         android:gravity="right"
@@ -139,31 +139,31 @@
                         android:tag="bold"
                         android:text="User Name : "
                         android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_normal"
+                        android:textSize="@dimen/tex_size_large"
                         android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/name_view"
                         style="@style/Button_Blue"
-                        android:layout_width="60dp"
-                        android:layout_height="25dp"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
                         android:text="View"
                         android:textColor="#ffffff"
-                        android:textSize="13sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/name_update"
                         style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="25dp"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
                         android:text="Update"
                         android:textColor="#ffffff"
-                        android:textSize="13sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -177,8 +177,8 @@
 
                     <TextView
                         android:id="@+id/text6"
-                        android:layout_width="100dp"
-                        android:layout_height="25dp"
+                        android:layout_width="120dp"
+                        android:layout_height="30dp"
                         android:layout_margin="5dp"
                         android:ellipsize="end"
                         android:gravity="right"
@@ -186,31 +186,31 @@
                         android:tag="bold"
                         android:text="User Pass : "
                         android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_normal"
+                        android:textSize="@dimen/tex_size_large"
                         android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/pass_view"
                         style="@style/Button_Blue"
-                        android:layout_width="60dp"
-                        android:layout_height="25dp"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
                         android:text="View"
                         android:textColor="#ffffff"
-                        android:textSize="13sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/pass_update"
                         style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="25dp"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
                         android:text="Update"
                         android:textColor="#ffffff"
-                        android:textSize="13sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
