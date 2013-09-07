@@ -23,27 +23,25 @@ import com.kreatitdesign.core.User;
 import com.kreatitdesign.network.RequestTask;
 
 public class ManagementDash extends Activity {
-	
+
 	Context myContext = this;
-	
+
 	ProgressBar prog_bar;
 	LinearLayout progress;
 
 	KreatitDesignApp bindAlertApp = new KreatitDesignApp();
-	
+
 	GlobalState globalState = GlobalState.getInstance();
 	User user;
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_managementdash);
-		
+
 		TextView pageTitle = (TextView) findViewById(R.id.page_title);
 		pageTitle.setText("Management Dashboard");
-		
-		
+
 		user = globalState.user;
 
 		progress = (LinearLayout) findViewById(R.id.progress_bar_container);
@@ -53,36 +51,32 @@ public class ManagementDash extends Activity {
 				android.graphics.PorterDuff.Mode.MULTIPLY);
 		progress.setVisibility(View.GONE);
 
-		
-		
 		// OP_MODE BUTTON
-				LinearLayout status_btn = (LinearLayout) findViewById(R.id.op_mode_btn);
-				status_btn.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View v) {
+		LinearLayout status_btn = (LinearLayout) findViewById(R.id.op_mode_btn);
+		status_btn.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
 
-						Intent i = new Intent(myContext, Op_Mode.class);
-						startActivityForResult(i, 700);
-						overridePendingTransition(R.anim.slide_in_right,
-								R.anim.slide_out_left);
+				Intent i = new Intent(myContext, Op_Mode.class);
+				startActivityForResult(i, 700);
+				overridePendingTransition(R.anim.slide_in_right,
+						R.anim.slide_out_left);
 
-					}
-				});
-		
-		
+			}
+		});
+
+		// Access Code BUTTON
+		LinearLayout access_btn = (LinearLayout) findViewById(R.id.access_btn);
+		access_btn.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				Intent i = new Intent(myContext, AccessCode.class);
+				startActivityForResult(i, 700);
+				overridePendingTransition(R.anim.slide_in_right,
+						R.anim.slide_out_left);
+
+			}
+		});
+
 	}
-	
-	
-	
-	
-	
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
 }

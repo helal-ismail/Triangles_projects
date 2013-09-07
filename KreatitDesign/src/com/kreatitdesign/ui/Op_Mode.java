@@ -80,7 +80,7 @@ public class Op_Mode extends Activity {
 			}
 		});
 
-		// Get Mode BUTTON
+		// update Mode BUTTON
 		Button update_mode_btn = (Button) findViewById(R.id.update_mode);
 		update_mode_btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
