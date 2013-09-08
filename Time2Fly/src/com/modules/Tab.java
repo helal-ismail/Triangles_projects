@@ -2,9 +2,12 @@ package com.modules;
 
 import java.util.Date;
 
+import android.location.Location;
+
+import com.core.Utils;
 import com.google.android.gms.maps.model.Marker;
 
-public class Tab {
+public class Tab implements Comparable<Tab>{
 	public String addr ; //unique hex code
 	public float alt ;  // altitude value in feet
 	public float lat ; // Latitude
@@ -26,6 +29,18 @@ public class Tab {
 	public float xLon;
 	
 	public Marker marker;
+
+	@Override
+	public int compareTo(Tab tab) {
+		Location toLoc = null;
+		float distance1 = Utils.getInstance().getDistance(this, toLoc);
+		float distance2 = Utils.getInstance().getDistance(tab, toLoc);
+		
+		if (distance1 < distance2)
+			return -1;
+		else 
+			return 1;
+	}
 	
 
 }

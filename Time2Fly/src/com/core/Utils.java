@@ -4,11 +4,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.location.Location;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.modules.Tab;
 import com.ui.R;
 
@@ -29,6 +34,7 @@ public class Utils {
 	
 	}
 	public int getResourceID_BLACK(String name) {
+		
 		name = name.toLowerCase();
 		if (name == null)
 			return R.drawable.a320;
@@ -221,5 +227,15 @@ public class Utils {
 		
 		return "N";
 	}
-
+	
+	public float getDistance(Tab target, Location toLoc){
+		LatLng latLng = new LatLng(target.lat, target.lon);
+		Location loc = new Location("t2f");
+		loc.setLatitude(latLng.latitude);
+		loc.setLongitude(latLng.longitude);
+		float distance = loc.distanceTo(toLoc) / 1000;
+		return distance;
+	}
+	
+	
 }

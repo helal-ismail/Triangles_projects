@@ -60,6 +60,7 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 			if (result == null || !result.equalsIgnoreCase("success"))
 				return false;
 			int num = obj.optInt("num");
+			CacheManager.getInstance().num_targets = num;
 			
 			int update_rate = obj.optInt("update_rate");
 			if(update_rate > 0)
