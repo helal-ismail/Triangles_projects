@@ -244,7 +244,7 @@
                     android:orientation="horizontal" >
 
                     <LinearLayout
-                        android:id="@+id/btn"
+                        android:id="@+id/wireless_btn"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
@@ -275,7 +275,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/btn"
+                        android:id="@+id/sensors_btn"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_marginTop="0dp"

@@ -12,6 +12,8 @@ public class GlobalState {
 
 	public User user = new User();
 	
+	public Sensor sensor = new Sensor();
+	
 	
 
 }

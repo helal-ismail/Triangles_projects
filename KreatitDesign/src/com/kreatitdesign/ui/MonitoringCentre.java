@@ -1689,6 +1689,9 @@ public class MonitoringCentre extends Activity {
 					disp = msg.optString("modem_channel");
 				else if (!msg.optString("modem_panid").equals(""))
 					disp = msg.optString("modem_panid");
+				
+				else if (!msg.optString("disp").equals(""))
+					disp = msg.optString("disp");
 
 				new AlertDialog.Builder(new ContextThemeWrapper(myContext,
 						android.R.style.Theme_Holo_Dialog))

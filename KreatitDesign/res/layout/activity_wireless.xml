@@ -1,0 +1,472 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/header"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        layout="@layout/subheader_layout" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" >
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dim_20"
+                android:layout_marginRight="@dimen/dim_20"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dim_50"
+                    android:layout_marginRight="@dimen/dim_50"
+                    android:layout_marginTop="-10dp"
+                    android:src="@drawable/bind_logo" />
+
+                <LinearLayout
+                    android:id="@+id/btn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginLeft="@dimen/dim_10"
+                    android:layout_marginRight="@dimen/dim_10"
+                    android:layout_marginTop="-20dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/wireless_access"
+                        android:ellipsize="end"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/text6"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:tag="bold"
+                        android:text="Wireless Modem"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/tex_size_small"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dim_10"
+                    android:layout_marginRight="@dimen/dim_10"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text6"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:ellipsize="end"
+                        android:gravity="right"
+                        android:lines="1"
+                        android:tag="bold"
+                        android:text="Wireless Channel : "
+                        android:textColor="@color/gray_35"
+                        android:textSize="@dimen/tex_size_small"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/channel_view"
+                        style="@style/Button_Blue"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="View"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/channel_update"
+                        style="@style/Button_Red"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="Update"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dim_10"
+                    android:layout_marginRight="@dimen/dim_10"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text6"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:ellipsize="end"
+                        android:gravity="right"
+                        android:lines="1"
+                        android:tag="bold"
+                        android:text="Modem PANID : "
+                        android:textColor="@color/gray_35"
+                        android:textSize="@dimen/tex_size_small"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/panid_view"
+                        style="@style/Button_Blue"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="View"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/panid_update"
+                        style="@style/Button_Red"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="Update"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dim_10"
+                    android:layout_marginRight="@dimen/dim_10"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text6"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:ellipsize="end"
+                        android:gravity="right"
+                        android:lines="1"
+                        android:tag="bold"
+                        android:text="Com. M.C Username : "
+                        android:textColor="@color/gray_35"
+                        android:textSize="@dimen/tex_size_small"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/username_view"
+                        style="@style/Button_Blue"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="View"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/username_update"
+                        style="@style/Button_Red"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="Update"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dim_10"
+                    android:layout_marginRight="@dimen/dim_10"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text6"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:ellipsize="end"
+                        android:gravity="right"
+                        android:lines="1"
+                        android:tag="bold"
+                        android:text="Com. M.C Password : "
+                        android:textColor="@color/gray_35"
+                        android:textSize="@dimen/tex_size_small"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/password_view"
+                        style="@style/Button_Blue"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="View"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/password_update"
+                        style="@style/Button_Red"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="Update"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dim_10"
+                    android:layout_marginRight="@dimen/dim_10"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text6"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:ellipsize="end"
+                        android:gravity="right"
+                        android:lines="1"
+                        android:tag="bold"
+                        android:text="Com. M.C Name : "
+                        android:textColor="@color/gray_35"
+                        android:textSize="@dimen/tex_size_small"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/name_view"
+                        style="@style/Button_Blue"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="View"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/name_update"
+                        style="@style/Button_Red"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="Update"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dim_10"
+                    android:layout_marginRight="@dimen/dim_10"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text6"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:ellipsize="end"
+                        android:gravity="right"
+                        android:lines="1"
+                        android:tag="bold"
+                        android:text="Com. M.C Key : "
+                        android:textColor="@color/gray_35"
+                        android:textSize="@dimen/tex_size_small"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/key_view"
+                        style="@style/Button_Blue"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="View"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/key_update"
+                        style="@style/Button_Red"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="Update"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dim_10"
+                    android:layout_marginRight="@dimen/dim_10"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text6"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:ellipsize="end"
+                        android:gravity="right"
+                        android:lines="1"
+                        android:tag="bold"
+                        android:text="Com. M.C Enable : "
+                        android:textColor="@color/gray_35"
+                        android:textSize="@dimen/tex_size_small"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/enable_view"
+                        style="@style/Button_Blue"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="View"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/enable_update"
+                        style="@style/Button_Red"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="Update"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dim_10"
+                    android:layout_marginRight="@dimen/dim_10"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text6"
+                        android:layout_width="130dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:ellipsize="end"
+                        android:gravity="right"
+                        android:lines="1"
+                        android:tag="bold"
+                        android:text="Update Available : "
+                        android:textColor="@color/gray_35"
+                        android:textSize="@dimen/tex_size_small"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/available_view"
+                        style="@style/Button_Blue"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="View"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/available_update"
+                        style="@style/Button_Red"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:text="Update"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/progress_bar_container"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dim_40"
+                android:layout_marginRight="@dimen/dim_40"
+                android:orientation="vertical" >
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+        </FrameLayout>
+    </ScrollView>
+
+</LinearLayout>
