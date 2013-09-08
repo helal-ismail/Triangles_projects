@@ -1,10 +1,6 @@
 package com.ui;
 
 import java.io.File;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -69,7 +65,8 @@ public class Home extends FragmentActivity {
 	CacheManager cache = CacheManager.getInstance();
 	LinearLayout drawer;
 	LatLng hkLatLng = new LatLng(22.3089, 113.9144);
-	Location hkLoc = new Location("t2f");
+
+	//Location hkLoc = new Location("t2f");
 	boolean weatherPlayed = true;
 
 	float weather_transparency;
@@ -98,6 +95,7 @@ public class Home extends FragmentActivity {
 		initActionBar();
 		drawer = (LinearLayout) findViewById(R.id.drawer);
 		drawer.removeAllViews();
+		appInstance = (Time2FlyApp) getApplication();
 
 		initGoogleMap();
 
@@ -105,7 +103,6 @@ public class Home extends FragmentActivity {
 				.show();
 		runOnUiThread(refreshValsRunnable);
 
-		appInstance = (Time2FlyApp) getApplication();
 		if (appInstance.isWeatheroverlayEnabled()) {
 			timer.schedule(weatherTask, 0, 12 * 60 * 1000);
 		}
@@ -131,12 +128,15 @@ public class Home extends FragmentActivity {
 		googleMap.getUiSettings().setZoomControlsEnabled(true);
 		googleMap.setMyLocationEnabled(true);
 		googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(hkLatLng, 9));
-		hkLoc.setLatitude(hkLatLng.latitude);
-		hkLoc.setLongitude(hkLatLng.longitude);
+		
+		cache.currentLoc.setLatitude(hkLatLng.latitude);
+		cache.currentLoc.setLongitude(hkLatLng.longitude);
 
 		Location myLoc = getCurrentLocation();
-		if(myLoc != null)
+		if(myLoc != null && !appInstance.isHomeHK()){
 			Log.d(Constants.TAG, myLoc.getLatitude()+" - "+myLoc.getLongitude());
+			cache.currentLoc = myLoc;
+		}
 		
 		googleMap.setOnCameraChangeListener(new OnCameraChangeListener() {
 			@Override
@@ -173,7 +173,8 @@ public class Home extends FragmentActivity {
 					drawer.getChildAt(i).setBackgroundResource(
 							R.drawable.rounded_border);
 
-				int layoutIndex = Utils.getInstance().searchByTitle(title);
+				//int layoutIndex = Utils.getInstance().searchByTitle(title);
+				int layoutIndex = cache.tabs_hash.searchByTitle(title);
 				if (layoutIndex > -1) {
 					LinearLayout selectedLayout = (LinearLayout) drawer
 							.getChildAt(layoutIndex);
@@ -189,21 +190,19 @@ public class Home extends FragmentActivity {
 	}
 
 	private void renderTargets() {
-		Toast.makeText(mContext, "Num Returned Targets : "+cache.num_targets,3000).show();
-		cache.getSortedList();
+		Object[] tabs = cache.tabs_hash.exportSortedList();
+		
 		drawer.removeAllViews();
-		HashMap<String, Tab> hash = cache.tabs_hash;
-		Collection<Tab> collection = hash.values();
-		Iterator<Tab> itr = collection.iterator();
 		int count = 0;
-		while (itr.hasNext()) {
-			Tab tab = itr.next();
+		for(int i = 0 ; i < tabs.length ; i ++)
+		{
+			Tab tab = (Tab)tabs[i];
 			boolean isActive = false;
 			isActive = ((cache.cyclesCount - tab.cycles) < 2);
 			if ((cache.cyclesCount - tab.cycles) > 3) {
 				if (tab.marker != null)
 					tab.marker.remove();
-				itr.remove();
+				cache.tabs_hash.remove(tab.addr);
 				continue;
 			}
 
@@ -227,14 +226,14 @@ public class Home extends FragmentActivity {
 			loc.setLongitude(latLng.longitude);
 			// loc.setBearing(t.track);
 
-			float bearingAngle = hkLoc.bearingTo(loc);
+			float bearingAngle = cache.currentLoc.bearingTo(loc);
 			if (bearingAngle < 0)
 				bearingAngle = bearingAngle + 360;
 
 			String direction = Utils.getInstance().getDirectionFromAngle(
 					bearingAngle);
 
-			float distance = loc.distanceTo(hkLoc) / 1000;
+			float distance = loc.distanceTo(cache.currentLoc) / 1000;
 			distance = (float) (Math.round(distance * 20.0) / 20.0);
 			String snippet = distance + "Km | " + direction + " | " + tab.spd
 					+ "Kts";

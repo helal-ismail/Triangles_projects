@@ -184,25 +184,25 @@ public class Utils {
 	}
 	
 	
-	public int searchByTitle(String title){
-		String[] arr = title.split(" | ");
-		String callSign = "";
-		if(arr.length > 0)
-			callSign = arr[0];
-		int index = 0;
-		Iterator itr = CacheManager.getInstance().tabs_hash.keySet().iterator();
-		while(itr.hasNext()){
-			String key = (String) itr.next();
-			Tab t = (Tab) CacheManager.getInstance().tabs_hash.get(key);
-			if(t.callSign.equalsIgnoreCase(callSign))
-			{
-				CacheManager.getInstance().selectedReg = t.addr;
-				return index;
-			}
-			index++;
-		}
-		return -1;
-	}
+//	public int searchByTitle(String title){
+//		String[] arr = title.split(" | ");
+//		String callSign = "";
+//		if(arr.length > 0)
+//			callSign = arr[0];
+//		int index = 0;
+//		Iterator itr = CacheManager.getInstance().tabs_hash.keySet().iterator();
+//		while(itr.hasNext()){
+//			String key = (String) itr.next();
+//			Tab t = (Tab) CacheManager.getInstance().tabs_hash.get(key);
+//			if(t.callSign.equalsIgnoreCase(callSign))
+//			{
+//				CacheManager.getInstance().selectedReg = t.addr;
+//				return index;
+//			}
+//			index++;
+//		}
+//		return -1;
+//	}
 	
 	public String getDirectionFromAngle(float bearing){
 		if (bearing < 15)

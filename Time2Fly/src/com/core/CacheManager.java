@@ -1,18 +1,10 @@
 package com.core;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.concurrent.Semaphore;
-
-import android.R.integer;
 import android.graphics.Bitmap;
-import android.util.Log;
+import android.location.Location;
 
 import com.google.android.gms.maps.model.GroundOverlay;
-import com.google.android.gms.maps.model.Marker;
+import com.modules.MyHash;
 import com.modules.Tab;
 
 public class CacheManager {
@@ -22,11 +14,12 @@ public class CacheManager {
 		return instance;
 	}
 	public int update_rate = 10000;
-	public HashMap<String, Tab> tabs_hash = new HashMap<String, Tab>();
-	public ArrayList<Tab> list = new ArrayList<Tab>();
+	public MyHash tabs_hash = new MyHash();
+	
+	
 	public Bitmap weather_bmp;
 	public String selectedReg = "";
-	 
+	public Location currentLoc = new Location("t2f"); 
 	
 	public float zoom= 0;
 	public GroundOverlay weatherOverlay;
@@ -56,18 +49,6 @@ public class CacheManager {
 	}
 	
 	
-	public void getSortedList(){
-		list.clear();
-		Collection<Tab> collection = tabs_hash.values();
-		Iterator<Tab> itr = collection.iterator();
-		while(itr.hasNext())
-			list.add(itr.next());
-		
-		Collections.sort(list, new MyComparator());
-		for(int i = 0 ; i < list.size() ; i ++){
-			Log.d(Constants.TAG, list.get(i).callSign);
-		}
-	}
 
 	
 }

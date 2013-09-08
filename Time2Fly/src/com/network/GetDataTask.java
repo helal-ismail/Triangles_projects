@@ -91,6 +91,7 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 //					t.marker.setPosition(loc);
 //					t.marker.setTitle(t.callSign);
 //				}
+				
 				CacheManager.getInstance().addTab(t);
 			
 			}
