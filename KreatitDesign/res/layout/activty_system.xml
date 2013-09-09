@@ -1,0 +1,1262 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/header"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        layout="@layout/subheader_layout" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" >
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dim_20"
+                android:layout_marginRight="@dimen/dim_20"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dim_50"
+                    android:layout_marginRight="@dimen/dim_50"
+                    android:layout_marginTop="-10dp"
+                    android:src="@drawable/bind_logo" />
+
+                <LinearLayout
+                    android:id="@+id/op_mode_btn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="40dp"
+                    android:layout_marginLeft="@dimen/dim_10"
+                    android:layout_marginRight="@dimen/dim_10"
+                    android:layout_marginTop="-20dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/system"
+                        android:ellipsize="end"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/text2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:tag="bold"
+                        android:text="System"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/tex_size_small"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dim_10"
+                        android:layout_marginTop="@dimen/dim_5"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <Button
+                            android:id="@+id/basic"
+                            style="@style/Button_Blue"
+                            android:layout_width="90dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="5dp"
+                            android:gravity="center"
+                            android:text="Basic Information"
+                            android:textColor="#ffffff"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/family"
+                            style="@style/Button_Red"
+                            android:layout_width="90dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="5dp"
+                            android:gravity="center"
+                            android:text="Family Members "
+                            android:textColor="#ffffff"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/email"
+                            style="@style/Button_Orange"
+                            android:layout_width="90dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="5dp"
+                            android:gravity="center"
+                            android:text="M.C Emails"
+                            android:textColor="#ffffff"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/family_list"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/dim_10"
+                        android:paddingTop="@dimen/dim_5" >
+
+                        <LinearLayout
+                            android:id="@+id/family1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/gray_167"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/dim_5" >
+
+                            <TextView
+                                android:id="@+id/family_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:gravity="center_vertical"
+                                android:tag="bold"
+                                android:text="Family Member 1"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/tex_size_xlarge"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/image"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center_vertical"
+                                android:adjustViewBounds="true"
+                                android:contentDescription="@string/desc"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/ico_right" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/family2"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/gray_167"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/dim_5" >
+
+                            <TextView
+                                android:id="@+id/family_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:gravity="center_vertical"
+                                android:tag="bold"
+                                android:text="Family Member 2"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/tex_size_xlarge"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/image"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center_vertical"
+                                android:adjustViewBounds="true"
+                                android:contentDescription="@string/desc"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/ico_right" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/family3"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/gray_167"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/dim_5" >
+
+                            <TextView
+                                android:id="@+id/family_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:gravity="center_vertical"
+                                android:tag="bold"
+                                android:text="Family Member 3"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/tex_size_xlarge"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/image"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center_vertical"
+                                android:adjustViewBounds="true"
+                                android:contentDescription="@string/desc"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/ico_right" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/family4"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/gray_167"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/dim_5" >
+
+                            <TextView
+                                android:id="@+id/family_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:gravity="center_vertical"
+                                android:tag="bold"
+                                android:text="Family Member 4"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/tex_size_xlarge"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/image"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center_vertical"
+                                android:adjustViewBounds="true"
+                                android:contentDescription="@string/desc"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/ico_right" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/family5"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/gray_167"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/dim_5" >
+
+                            <TextView
+                                android:id="@+id/family_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:gravity="center_vertical"
+                                android:tag="bold"
+                                android:text="Family Member 5"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/tex_size_xlarge"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/image"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center_vertical"
+                                android:adjustViewBounds="true"
+                                android:contentDescription="@string/desc"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/ico_right" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/family6"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/gray_167"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/dim_5" >
+
+                            <TextView
+                                android:id="@+id/family_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:gravity="center_vertical"
+                                android:tag="bold"
+                                android:text="Family Member 6"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/tex_size_xlarge"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/image"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center_vertical"
+                                android:adjustViewBounds="true"
+                                android:contentDescription="@string/desc"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/ico_right" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/basic_list"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/dim_10"
+                        android:paddingTop="@dimen/dim_5" >
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="Private IP : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/private_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/private_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="Public IP : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/public_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/public_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="System Key : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/key_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/key_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="First Name : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/fname_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/fname_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="Street Number : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/street_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/street_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="City : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/city_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/city_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="State : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/state_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/state_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="City Code : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/code_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/code_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="Country : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/country_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/country_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="System Text : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/stext_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/stext_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="System Email : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/semail_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/semail_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="NS Adress : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/adress_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/adress_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="Broadcast Name : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/broadcast_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/broadcast_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/email_list"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/dim_10"
+                        android:paddingTop="@dimen/dim_5" >
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="M.C Email 1 : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/email1_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/email1_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="M.C Email 2 : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/email2_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/email2_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="M.C Email 3 : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/email3_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/email3_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="M.C Email 4 : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/email4_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/email4_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="M.C Email 5 : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/email5_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/email5_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="Webpass : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/webpass_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/webpass_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                        
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/text6"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="5dp"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:tag="bold"
+                                android:text="Invisible To All : "
+                                android:textColor="@color/gray_35"
+                                android:textSize="@dimen/tex_size_small"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/invisible_view"
+                                style="@style/Button_Blue"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="View"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/invisible_update"
+                                style="@style/Button_Red"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:text="Update"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/progress_bar_container"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/dim_40"
+                        android:layout_marginRight="@dimen/dim_40"
+                        android:orientation="vertical" >
+
+                        <ProgressBar
+                            android:id="@+id/progress_bar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+    </ScrollView>
+
+</LinearLayout>
