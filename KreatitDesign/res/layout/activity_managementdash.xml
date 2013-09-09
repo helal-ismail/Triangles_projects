@@ -93,7 +93,7 @@
                             android:gravity="center"
                             android:lines="1"
                             android:tag="bold"
-                            android:text="Mnitoring Centre"
+                            android:text="Monitoring Centre"
                             android:textColor="@color/dark_blue"
                             android:textSize="@dimen/tex_size_small"
                             android:textStyle="bold" />
@@ -410,7 +410,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/btn"
+                        android:id="@+id/alarm_btn"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="1"
