@@ -13,7 +13,7 @@ public class CacheManager {
 	public static CacheManager getInstance(){
 		return instance;
 	}
-	public int update_rate = 10000;
+	public int update_rate = 5000;
 	public MyHash tabs_hash = new MyHash();
 	
 	

@@ -3,7 +3,6 @@ package com.ui;
 import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
@@ -58,7 +57,7 @@ public class Home extends FragmentActivity {
 	Context mContext = this;
 	int bearing_angle = 0;
 	boolean started = false;
-	Timer timer = new Timer();
+	Timer timer;
 	public int round_robin = 0;
 	GoogleMap googleMap;
 	Bitmap weather_bmp;
@@ -89,6 +88,7 @@ public class Home extends FragmentActivity {
 		//======= Init App =======
 		super.onCreate(savedInstanceState);
 		BugSenseHandler.initAndStartSession(mContext, "c417ebfa");
+		timer = new Timer();
 		setContentView(R.layout.activity_home);
 		cache.tabs_hash.clear();
 		initActionBar();
@@ -104,7 +104,9 @@ public class Home extends FragmentActivity {
 		
 		// Init Weather Task
 		if (appInstance.isWeatheroverlayEnabled()) {
-			timer.schedule(weatherTask, 0, 12 * 60 * 1000);
+			//timer.schedule(weatherTask, 0, 12 * 60 * 1000);
+			WeatherTask task = new WeatherTask();
+			task.execute();
 		}
 
 	}
@@ -233,19 +235,20 @@ public class Home extends FragmentActivity {
 
 			float distance = loc.distanceTo(cache.currentLoc) / 1000;
 			distance = (float) (Math.round(distance * 20.0) / 20.0);
-			String snippet = distance + "Km | " + direction + " | " + tab.spd
-					+ "Kts";
-
+			String snippet = flightLevel + " | " + tab.spd + "Km";
+			
+			String dist = distance+"Km | " + direction;
+			
 			if (tab.marker == null) {
 				tab.marker = googleMap.addMarker(new MarkerOptions()
 						.position(latLng)
-						.title(tab.callSign + " | " + flightLevel)
+						.title(tab.callSign + " | " + tab.type)
 						.snippet(snippet)
 						.icon(BitmapDescriptorFactory.fromBitmap(bmp)));
 			} else {
 				LatLng org = new LatLng(tab.xLat, tab.xLon);
 				LatLng dest = new LatLng(tab.lat, tab.lon);
-				animateMarker(tab, org, dest, snippet, flightLevel, isActive);
+				animateMarker(tab, org, dest, snippet,  isActive);
 			}
 			if (cache.selectedReg.equalsIgnoreCase(tab.addr)) {
 				tab.marker.showInfoWindow();
@@ -256,26 +259,25 @@ public class Home extends FragmentActivity {
 	}
 
 	private void animateMarker(Tab tab, final LatLng org, final LatLng dest,
-			String snippet, String flightLevel, boolean isActive) {
+			String snippet, boolean isActive) {
 
 		final Marker marker = tab.marker;
 		Bitmap bmp = BitmapFactory.decodeResource(getResources(), Utils
 				.getInstance().getResourceID(tab, isActive));
 		bmp = Utils.getInstance().rotateImage(bmp, tab.track, bearing_angle);
-		marker.setTitle(tab.callSign + " | " + flightLevel);
+		marker.setTitle(tab.callSign + " | " + tab.type);
 		marker.setSnippet(snippet);
 		marker.setIcon(BitmapDescriptorFactory.fromBitmap(bmp));
 
 		final Handler handler = new Handler();
 		final long start = SystemClock.uptimeMillis();
-		final long duration = 500;
+		final long duration = cache.update_rate;
 		final Interpolator interpolator = new LinearInterpolator();
 		handler.post(new Runnable() {
 			@Override
 			public void run() {
 				long elapsed = SystemClock.uptimeMillis() - start;
-				float t = interpolator.getInterpolation((float) elapsed
-						/ duration);
+				float t = interpolator.getInterpolation((float) elapsed / duration);
 				double lng = t * dest.longitude + (1 - t) * org.longitude;
 				double lat = t * dest.latitude + (1 - t) * org.latitude;
 				marker.setPosition(new LatLng(lat, lng));
@@ -312,6 +314,7 @@ public class Home extends FragmentActivity {
 
 		case R.id.settings:
 			timer.cancel();
+			timer.purge();
 			finish();
 			Intent settings = new Intent(mContext, Settings.class);
 			startActivity(settings);
@@ -472,7 +475,6 @@ public class Home extends FragmentActivity {
 	private class WeatherTask extends GetWeatherOvelay {
 		@Override
 		protected void onPostExecute(Void result) {
-
 			File root = Environment.getExternalStorageDirectory();
 			root.mkdir();
 			File appDir = new File(root, "Time2Fly");
@@ -487,6 +489,8 @@ public class Home extends FragmentActivity {
 						return;
 					}
 					round_robin++;
+					if(files.length == 0)
+						return;
 					round_robin = round_robin % files.length;
 					BitmapFactory.Options opts = new Options();
 					opts.inSampleSize = 2;
