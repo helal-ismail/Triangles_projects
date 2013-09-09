@@ -6,7 +6,8 @@ import java.util.Date;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,10 +17,7 @@ import android.util.Log;
 
 import com.core.CacheManager;
 import com.core.Constants;
-import com.core.Time2FlyApp;
 import com.core.Utils;
-import com.db.TabsTable;
-import com.google.android.gms.maps.model.LatLng;
 import com.modules.Tab;
 
 public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
@@ -31,9 +29,12 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 	protected Boolean doInBackground(Void... params) {
 		try {
 			HttpClient httpclient = new DefaultHttpClient();
-			HttpGet httpget = new HttpGet(Constants.JSON_URL);
+			HttpPost httpPost = new HttpPost(Constants.JSON_URL);
 			HttpResponse response;
-			response = httpclient.execute(httpget);
+			String content = "first="+CacheManager.getInstance().first;
+			StringEntity content_entity = new StringEntity(content);
+			httpPost.setEntity(content_entity);
+			response = httpclient.execute(httpPost);
 			HttpEntity entity = response.getEntity();
 			if (entity != null) {
 				CacheManager.getInstance().cyclesCount++;
@@ -41,7 +42,7 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 				String result = Utils.getInstance().convertStreamToString(instream);
 				JSONObject obj = new JSONObject(result);
 				insertIntoDb(obj);					
-				
+				CacheManager.getInstance().first=0;
 			}
 
 			return true;
@@ -59,6 +60,7 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 			String result = obj.optString("result");
 			if (result == null || !result.equalsIgnoreCase("success"))
 				return false;
+			
 			int num = obj.optInt("num");
 			CacheManager.getInstance().num_targets = num;
 			
@@ -86,12 +88,6 @@ public class GetDataTask extends AsyncTask<Void, Void, Boolean> {
 				t.owner = tabArray.optString(13);
 				t.code = tabArray.optString(14);
 				t.timeStamp = new Date();
-//				if (t.marker != null){
-//					LatLng loc = new LatLng(t.lat, t.lon);
-//					t.marker.setPosition(loc);
-//					t.marker.setTitle(t.callSign);
-//				}
-				
 				CacheManager.getInstance().addTab(t);
 			
 			}

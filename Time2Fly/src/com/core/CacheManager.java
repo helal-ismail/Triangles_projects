@@ -37,14 +37,13 @@ public class CacheManager {
 			t.xLat = oldTab.lat;
 			t.xLon = oldTab.lon;
 			t.marker = oldTab.marker;
-			t.cycles = cyclesCount;
 		}	
 		else{
 			t.xLat = -1;
 			t.xLon = -1;
-			t.cycles = 0;
 			t.marker = null;
 		}
+		t.cycles = cyclesCount;
 		tabs_hash.put(t.addr, t);
 	}
 	

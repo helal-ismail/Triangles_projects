@@ -65,11 +65,9 @@ public class Home extends FragmentActivity {
 	CacheManager cache = CacheManager.getInstance();
 	LinearLayout drawer;
 	LatLng hkLatLng = new LatLng(22.3089, 113.9144);
-
-	//Location hkLoc = new Location("t2f");
 	boolean weatherPlayed = true;
-
 	float weather_transparency;
+	
 	Runnable refreshValsRunnable = new Runnable() {
 		@Override
 		public void run() {
@@ -88,6 +86,7 @@ public class Home extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		//======= Init App =======
 		super.onCreate(savedInstanceState);
 		BugSenseHandler.initAndStartSession(mContext, "c417ebfa");
 		setContentView(R.layout.activity_home);
@@ -96,17 +95,17 @@ public class Home extends FragmentActivity {
 		drawer = (LinearLayout) findViewById(R.id.drawer);
 		drawer.removeAllViews();
 		appInstance = (Time2FlyApp) getApplication();
-
 		initGoogleMap();
-
-		Toast.makeText(mContext, "Loading flights data", Toast.LENGTH_LONG)
-				.show();
+		cache.cyclesCount = 0;
+		Toast.makeText(mContext, "Loading flights data", Toast.LENGTH_LONG).show();
+		
+		// Call the 1st JSON Update
 		runOnUiThread(refreshValsRunnable);
-
+		
+		// Init Weather Task
 		if (appInstance.isWeatheroverlayEnabled()) {
 			timer.schedule(weatherTask, 0, 12 * 60 * 1000);
 		}
-		cache.cyclesCount = 0;
 
 	}
 
@@ -193,7 +192,6 @@ public class Home extends FragmentActivity {
 		Object[] tabs = cache.tabs_hash.exportSortedList();
 		
 		drawer.removeAllViews();
-		int count = 0;
 		for(int i = 0 ; i < tabs.length ; i ++)
 		{
 			Tab tab = (Tab)tabs[i];
@@ -251,11 +249,8 @@ public class Home extends FragmentActivity {
 			}
 			if (cache.selectedReg.equalsIgnoreCase(tab.addr)) {
 				tab.marker.showInfoWindow();
-				// googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,
-				// 11));
 			}
 
-			count++;
 			addFlightTab(tab, isActive, String.valueOf(distance)+"Km");
 		}
 	}
@@ -461,7 +456,6 @@ public class Home extends FragmentActivity {
 
 	// ======= Network Opertaions =======
 	private class NetworkTask extends GetDataTask {
-
 		@Override
 		protected void onPostExecute(Boolean result) {
 			renderTargets();
