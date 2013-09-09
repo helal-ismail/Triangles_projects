@@ -102,13 +102,26 @@ public class ManagementDash extends Activity {
 
 			}
 		});
-		
+
 		// Sensors BUTTON
 		LinearLayout sensors_btn = (LinearLayout) findViewById(R.id.sensors_btn);
 		sensors_btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
 				Intent i = new Intent(myContext, Sensors.class);
+				startActivityForResult(i, 700);
+				overridePendingTransition(R.anim.slide_in_right,
+						R.anim.slide_out_left);
+
+			}
+		});
+
+		// Alarm BUTTON
+		LinearLayout alarm_btn = (LinearLayout) findViewById(R.id.alarm_btn);
+		alarm_btn.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				Intent i = new Intent(myContext, Alarm.class);
 				startActivityForResult(i, 700);
 				overridePendingTransition(R.anim.slide_in_right,
 						R.anim.slide_out_left);

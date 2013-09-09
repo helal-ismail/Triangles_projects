@@ -14,6 +14,8 @@ public class GlobalState {
 	
 	public Sensor sensor = new Sensor();
 	
+	public Temperature temp = new Temperature();
+	
 	
 
 }
