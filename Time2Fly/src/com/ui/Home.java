@@ -40,6 +40,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.GroundOverlayOptions;
@@ -47,6 +48,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.modules.Tab;
 import com.network.GetDataTask;
 import com.network.GetWeatherOvelay;
@@ -66,6 +68,8 @@ public class Home extends FragmentActivity {
 	LatLng hkLatLng = new LatLng(22.3089, 113.9144);
 	boolean weatherPlayed = true;
 	float weather_transparency;
+	TextView timerView;
+	int timePassed = 0;
 	
 	Runnable refreshValsRunnable = new Runnable() {
 		@Override
@@ -99,6 +103,9 @@ public class Home extends FragmentActivity {
 		cache.cyclesCount = 0;
 		Toast.makeText(mContext, "Loading flights data", Toast.LENGTH_LONG).show();
 		
+		timerView = (TextView)findViewById(R.id.timer);
+		//updateTimer();
+
 		// Call the 1st JSON Update
 		runOnUiThread(refreshValsRunnable);
 		
@@ -130,9 +137,16 @@ public class Home extends FragmentActivity {
 		googleMap.setMyLocationEnabled(true);
 		googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(hkLatLng, 9));
 		
+		googleMap.addMarker(new MarkerOptions()
+		.icon(BitmapDescriptorFactory.fromResource(R.drawable.hk_flag))
+		.anchor((float)0.5, (float)0.5)
+		.position(hkLatLng)
+		.title("Hong Kong International Airport"));
+						
 		cache.currentLoc.setLatitude(hkLatLng.latitude);
 		cache.currentLoc.setLongitude(hkLatLng.longitude);
-
+		
+		
 		Location myLoc = getCurrentLocation();
 		if(myLoc != null && !appInstance.isHomeHK()){
 			Log.d(Constants.TAG, myLoc.getLatitude()+" - "+myLoc.getLongitude());
@@ -145,7 +159,8 @@ public class Home extends FragmentActivity {
 				int new_bearing_angle = (int) position.bearing;
 				if (new_bearing_angle != bearing_angle) {
 					bearing_angle = new_bearing_angle;
-					renderTargets();
+					//renderTargets();
+					updateBearing();
 				}
 
 				if (position.zoom != cache.zoom) {
@@ -190,6 +205,16 @@ public class Home extends FragmentActivity {
 
 	}
 
+	private void updateBearing(){
+		Object[] tabs = cache.tabs_hash.exportSortedList();
+		for(int i = 0 ; i < tabs.length ; i ++)
+		{
+			Tab tab = (Tab)tabs[i];
+			Bitmap bmp = BitmapFactory.decodeResource(getResources(), Utils.getInstance().getResourceID(tab));
+			bmp = Utils.getInstance().rotateImage(bmp, tab.track, bearing_angle);
+			tab.marker.setIcon(BitmapDescriptorFactory.fromBitmap(bmp));
+		}
+	}
 	private void renderTargets() {
 		Object[] tabs = cache.tabs_hash.exportSortedList();
 		
@@ -197,8 +222,7 @@ public class Home extends FragmentActivity {
 		for(int i = 0 ; i < tabs.length ; i ++)
 		{
 			Tab tab = (Tab)tabs[i];
-			boolean isActive = false;
-			isActive = ((cache.cyclesCount - tab.cycles) < 2);
+			tab.isActive = ((cache.cyclesCount - tab.cycles) < 2);
 			if ((cache.cyclesCount - tab.cycles) > 3) {
 				if (tab.marker != null)
 					tab.marker.remove();
@@ -208,7 +232,7 @@ public class Home extends FragmentActivity {
 
 			LatLng latLng = new LatLng(tab.lat, tab.lon);
 			Bitmap bmp = BitmapFactory.decodeResource(getResources(), Utils
-					.getInstance().getResourceID(tab, isActive));
+					.getInstance().getResourceID(tab));
 			bmp = Utils.getInstance()
 					.rotateImage(bmp, tab.track, bearing_angle);
 
@@ -235,37 +259,39 @@ public class Home extends FragmentActivity {
 
 			float distance = loc.distanceTo(cache.currentLoc) / 1000;
 			distance = (float) (Math.round(distance * 20.0) / 20.0);
-			String snippet = flightLevel + " | " + tab.spd + "Km";
+			String snippet = flightLevel + "  " + tab.spd + "Kts";
 			
-			String dist = distance+"Km | " + direction;
+			String dist = distance+"Km  " + direction;
 			
 			if (tab.marker == null) {
 				tab.marker = googleMap.addMarker(new MarkerOptions()
 						.position(latLng)
-						.title(tab.callSign + " | " + tab.type)
+						.anchor((float)0.5, (float)0.5)
+						.title(tab.callSign)
 						.snippet(snippet)
 						.icon(BitmapDescriptorFactory.fromBitmap(bmp)));
 			} else {
 				LatLng org = new LatLng(tab.xLat, tab.xLon);
 				LatLng dest = new LatLng(tab.lat, tab.lon);
-				animateMarker(tab, org, dest, snippet,  isActive);
+				animateMarker(tab, org, dest, snippet);
 			}
 			if (cache.selectedReg.equalsIgnoreCase(tab.addr)) {
 				tab.marker.showInfoWindow();
 			}
 
-			addFlightTab(tab, isActive, String.valueOf(distance)+"Km");
+			addFlightTab(tab, dist);
 		}
+		
 	}
 
-	private void animateMarker(Tab tab, final LatLng org, final LatLng dest,
-			String snippet, boolean isActive) {
+	private void animateMarker(final Tab tab, final LatLng org, final LatLng dest,
+			String snippet) {
 
 		final Marker marker = tab.marker;
 		Bitmap bmp = BitmapFactory.decodeResource(getResources(), Utils
-				.getInstance().getResourceID(tab, isActive));
+				.getInstance().getResourceID(tab));
 		bmp = Utils.getInstance().rotateImage(bmp, tab.track, bearing_angle);
-		marker.setTitle(tab.callSign + " | " + tab.type);
+		marker.setTitle(tab.callSign);
 		marker.setSnippet(snippet);
 		marker.setIcon(BitmapDescriptorFactory.fromBitmap(bmp));
 
@@ -274,15 +300,19 @@ public class Home extends FragmentActivity {
 		final long duration = cache.update_rate;
 		final Interpolator interpolator = new LinearInterpolator();
 		handler.post(new Runnable() {
+			
 			@Override
 			public void run() {
 				long elapsed = SystemClock.uptimeMillis() - start;
 				float t = interpolator.getInterpolation((float) elapsed / duration);
 				double lng = t * dest.longitude + (1 - t) * org.longitude;
 				double lat = t * dest.latitude + (1 - t) * org.latitude;
+				
+//				Bitmap bmp = BitmapFactory.decodeResource(getResources(), Utils.getInstance().getResourceID(tab, isActive));				
+//				bmp = Utils.getInstance().rotateImage(bmp, tab.track, bearing_angle);
+//				marker.setIcon(BitmapDescriptorFactory.fromBitmap(bmp));
 				marker.setPosition(new LatLng(lat, lng));
 				if (t < 1.0) {
-					// Post again 16ms later.
 					handler.postDelayed(this, 16);
 				}
 			}
@@ -348,7 +378,7 @@ public class Home extends FragmentActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void addFlightTab(Tab t, boolean isActive, String distance) {
+	private void addFlightTab(Tab t, String distance) {
 
 		LayoutInflater inflater = LayoutInflater.from(mContext);
 		LinearLayout list_item = (LinearLayout) inflater.inflate(
@@ -413,7 +443,7 @@ public class Home extends FragmentActivity {
 
 	private void initActionBar() {
 		ActionBar bar = getActionBar();
-		bar.setDisplayShowHomeEnabled(false);
+		bar.setDisplayShowHomeEnabled(true);
 	}
 
 	private Location getCurrentLocation() {
@@ -461,6 +491,8 @@ public class Home extends FragmentActivity {
 	private class NetworkTask extends GetDataTask {
 		@Override
 		protected void onPostExecute(Boolean result) {
+			timePassed = 0;
+			started = true;
 			renderTargets();
 			TimerTask task = new TimerTask() {
 				@Override
@@ -521,5 +553,27 @@ public class Home extends FragmentActivity {
 									.fromBitmap(weather_bmp)));
 		}
 	};
+	
+	//===== Update Timer =====
+	private void updateTimer(){		
+		final Handler handler = new Handler();
+		Runnable r = new Runnable() {
+			@Override
+			public void run() {
+				if (started)
+				{
+					int nextUpdate = (cache.update_rate - (timePassed * 1000)) / 1000;
+					if (nextUpdate < 0)
+						nextUpdate = 0;
+					timerView.setText("next update in : " + nextUpdate + " seconds");
+					timePassed++;
+				}
+				handler.postDelayed(this, 1000);
+			}
+		};
+		handler.postDelayed(r, 1000);	
+	}
+	
+	
 
 }

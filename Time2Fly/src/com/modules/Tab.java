@@ -28,7 +28,7 @@ public class Tab implements Comparable<Tab> {
 	public int cycles = 0;
 	public float xLat;
 	public float xLon;
-
+	public boolean isActive = true;
 	public Marker marker;
 
 	@Override
