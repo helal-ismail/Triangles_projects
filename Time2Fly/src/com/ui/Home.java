@@ -346,7 +346,6 @@ public class Home extends FragmentActivity {
 				}
 			}
 		});
-
 	}
 
 	@Override
@@ -598,7 +597,7 @@ public class Home extends FragmentActivity {
 		TextView tv = (TextView)drawer2.getChildAt(1);
 		String info = t.callSign + "\n"
 				+ t.spd +" Kts" + "\n"
-				+ t.track +"¡" + "\n"
+				+ t.track +"ï¿½" + "\n"
 				+ t.owner + "\n"
 				+ distance;
 		tv.setText(info);
