@@ -263,19 +263,33 @@ public class MainDash extends Activity {
 				
 				else
 					disp = msg.optString("disp");
+				
+				
+				
+				
+				
+				Intent i = new Intent(myContext, Result.class);
+				overridePendingTransition(R.anim.slide_in_right,
+						R.anim.slide_out_left);
+				
+				i.putExtra("title", title);
+				i.putExtra("result", disp);
+				
+				startActivityForResult(i, 700);
+				
 
-				new AlertDialog.Builder(new ContextThemeWrapper(myContext,
-						android.R.style.Theme_Holo_Dialog))
-						.setTitle(title)
-						.setIcon(R.drawable.icon_1)
-						.setMessage(disp)
-						.setPositiveButton("OK",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int which) {
-										dialog.cancel();
-									}
-								}).show();
+//				new AlertDialog.Builder(new ContextThemeWrapper(myContext,
+//						android.R.style.Theme_Holo_Dialog))
+//						.setTitle(title)
+//						.setIcon(R.drawable.icon_1)
+//						.setMessage(disp)
+//						.setPositiveButton("OK",
+//								new DialogInterface.OnClickListener() {
+//									public void onClick(DialogInterface dialog,
+//											int which) {
+//										dialog.cancel();
+//									}
+//								}).show();
 
 				progress.setVisibility(View.GONE);
 
