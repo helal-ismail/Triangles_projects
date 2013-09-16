@@ -2,7 +2,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@android:color/white"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:id="@+id/parent" >
 
     <ImageView
@@ -12,12 +12,9 @@
         android:layout_weight="1"
         android:src="@drawable/splash" />
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1">
-
+    
         <TextView
+            android:layout_weight="1"
             android:gravity="center"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -26,6 +23,5 @@
             android:textColor="@android:color/black"
             android:textSize="15sp"
             android:textStyle="bold" />
-    </ScrollView>
 
 </LinearLayout>

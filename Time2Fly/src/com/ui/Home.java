@@ -265,7 +265,7 @@ public class Home extends FragmentActivity {
 			float alt = ((int) tab.alt) / 100;
 			int altitude = Math.round(alt);
 			String flightLevel = "";
-			if (alt > 100) {
+			if (alt >= 100) {
 				flightLevel = "FL" + altitude;
 			} else {
 				flightLevel = "A0" + altitude;
@@ -285,7 +285,7 @@ public class Home extends FragmentActivity {
 
 			float distance = loc.distanceTo(cache.currentLoc) / 1000;
 			distance = (float) (Math.round(distance * 20.0) / 20.0);
-			String snippet = tab.type + "  " + tab.spd + "Kts";
+			String snippet = tab.type + "  " + tab.spd + "Kts" + " " +tab.vspd;
 			
 			String dist = distance+"Km  " + direction;
 			
@@ -597,12 +597,15 @@ public class Home extends FragmentActivity {
 		TextView tv = (TextView)drawer2.getChildAt(1);
 		String info = t.callSign + "\n"
 				+ t.spd +" Kts" + "\n"
-				+ t.track +"ï¿½" + "\n"
+				+ "Vertical Speed : " + t.vspd + "\n"
+				+ t.track +"¡" + "\n"
 				+ t.owner + "\n"
-				+ distance;
+				+ distance + "\n" 
+				+ "Squak : " + t.sqw + "\n"
+				+ "Radar ID : " + t.user_id + "\n";
 		tv.setText(info);
 	
-		LatLng latLng = new LatLng(t.lat, t.lon);
+//		LatLng latLng = new LatLng(t.lat, t.lon);
 //		googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
 //				latLng, 11));
 

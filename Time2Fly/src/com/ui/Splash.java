@@ -15,23 +15,20 @@ import com.core.Time2FlyApp;
 public class Splash extends Activity{
 	Context mContext = this;
 	Time2FlyApp appInstance;
-	LinearLayout parent;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         BugSenseHandler.initAndStartSession(mContext, "c417ebfa");
 
-		setContentView(R.layout.activity_splash);
 		appInstance = (Time2FlyApp)getApplication();
-		parent = (LinearLayout)findViewById(R.id.parent);
 		
 		switch (getWindowManager().getDefaultDisplay().getOrientation()) {
 		case Configuration.ORIENTATION_PORTRAIT:
-			parent.setOrientation(LinearLayout.VERTICAL);
+			setContentView(R.layout.activity_splash);
 			break;
 			
 		case Configuration.ORIENTATION_LANDSCAPE:
-			parent.setOrientation(LinearLayout.HORIZONTAL);
+			setContentView(R.layout.activity_splash2);
 			break;
 		default:
 			break;
@@ -53,20 +50,6 @@ public class Splash extends Activity{
 		handler.postDelayed(r, 2000);
 	}
 	
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-		switch (newConfig.orientation) {
-		case Configuration.ORIENTATION_PORTRAIT:
-			parent.setOrientation(LinearLayout.VERTICAL);
-			break;
-			
-		case Configuration.ORIENTATION_LANDSCAPE:
-			parent.setOrientation(LinearLayout.HORIZONTAL);
-			break;
-		default:
-			break;
-		} 
-	}
+	
 
 }
