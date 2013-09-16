@@ -88,9 +88,6 @@ public class Utils {
 			return R.drawable.e195;
 		
 		
-		
-
-		
 		return R.drawable.a320;
 
 	}
@@ -185,27 +182,45 @@ public class Utils {
 	
 	
 	public String getDirectionFromAngle(float bearing){
+		// URL http://nwmtwd.com/misc_character_sets.html
 		if (bearing < 15)
-			return "N";
+			return "N"; // N↑
+		
 		if (bearing < 90)
-			return "NE";
+			return "NE"; // NE↗
 		
 		if (bearing < 105)
-			return "E";
+			return "E"; // E→
+		
 		if (bearing < 180)
-			return "SE";
+			return "SE"; // SE↘
 		
 		if (bearing < 195)
-			return "S";
+			return "S"; // S↓
+		
 		if (bearing < 270)
-			return "SW";
+			return "SW"; // SW↙
 		
 		if (bearing < 285)
-			return "W";
-		if (bearing < 345)
-			return "NW";
+			return "W"; // W←
 		
-		return "N";
+		if (bearing < 345)
+			return "NE"; // NE↖
+		
+		return "N"; // N↑
+	}
+	
+	
+	
+	public String getVSPD(int vspd){
+		// URL http://nwmtwd.com/misc_character_sets.html
+		if (vspd > 0)
+			return "↑"; // climbing
+				
+		if (vspd < 0)
+			return "↓"; // descending
+				
+		return "-"; // leveling
 	}
 	
 	public float getDistance(Tab target, Location toLoc){

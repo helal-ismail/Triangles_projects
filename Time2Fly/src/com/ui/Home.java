@@ -285,7 +285,7 @@ public class Home extends FragmentActivity {
 
 			float distance = loc.distanceTo(cache.currentLoc) / 1000;
 			distance = (float) (Math.round(distance * 20.0) / 20.0);
-			String snippet = tab.type + "  " + tab.spd + "Kts" + " " +tab.vspd;
+			String snippet = tab.type + "  " + tab.spd + "Kts" + " " +Utils.getInstance().getVSPD(tab.vspd) ;
 			
 			String dist = distance+"Km  " + direction;
 			
@@ -597,11 +597,11 @@ public class Home extends FragmentActivity {
 		TextView tv = (TextView)drawer2.getChildAt(1);
 		String info = t.callSign + "\n"
 				+ t.spd +" Kts" + "\n"
-				+ "Vertical Speed : " + t.vspd + "\n"
-				+ t.track +"¡" + "\n"
+				+ t.vspd + " ft/min \n"
+				+ t.track +"ï¿½" + "\n"
 				+ t.owner + "\n"
 				+ distance + "\n" 
-				+ "Squak : " + t.sqw + "\n"
+				+ "SQ : " + t.sqw + "\n"
 				+ "Radar ID : " + t.user_id + "\n";
 		tv.setText(info);
 	

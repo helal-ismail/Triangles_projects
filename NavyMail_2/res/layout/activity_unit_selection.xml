@@ -1,0 +1,715 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white" >
+
+    <LinearLayout
+        android:id="@id/parent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:padding="25dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="20dp"
+                android:tag="label"
+                android:text="رؤساء اﻷفرع"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="12"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس فرع الخدمات الطبية"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="20"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس فرع شئون الضباط"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="23"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس فرع الوقود البحرى"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="37"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس الحرب الكيميائية"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="40"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text=" رئيس فرع الاستطلاع البحرى"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="42"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس فرع المطبوعات والنشر البحرى"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="45"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس فرع المهمات البحرى"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="47"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس فرع اﻷمن البحرى"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="48"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس فرع الشرطة البحرية"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="49"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس فرع القضاء البحرى"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="50"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس فرع التحركات والنفل البحرى"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="51"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس فرع الخدمات البيطرية"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="52"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس فرع الإطفاء البحرى"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:tag="label"
+                android:text="السادة اللواءات"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="1"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="مساعد القائد للشئون الفنية"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="5"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائد ترسانة إصلاح السفن"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="6"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائد المنشآت التعليمية"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="9"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="مدير الكلية البحرية"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="10"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائد وحدات الإنقاذ والسفن المساعدة"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="11"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="مدير معهد الدراسات العليا البحرية"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="18"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائد وحدات المدفعية والصواريخ الساحلية"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="20dp"
+                android:tag="label"
+                android:text="وحدات أخرى"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="24"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائد المستشفى البحرى العام"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="26"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="مدير معهد الطب البحرى واﻷعماق العسكرى"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="27"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس المجلس الطبى البحرى"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="44"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائد فوج المقر البحرى"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="46"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائد المركز الرياضى"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="53"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائد مركز النقليات البحرى"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="54"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس قسم المراسم"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:padding="25dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="20dp"
+                android:tag="label"
+                android:text="رؤساء الشعب"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="0"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text=" رئيس شعبة العمليات البحرية"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="3"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس شعبة التدريـــب البحـــرى"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="4"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس شعبة التنظيــم والإدارة"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="7"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text=" رئيس شعبة التسليح البحــــرى"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="13"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text=" رئيس الشعبة المالية للقوات البحرية"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="17"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text=" رئيس شعبة الإمداد والتموين"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="21"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text=" رئيس شعبة التفتيش البحرى"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="22"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text=" رئيس شعبة صيانة وإصلاح السفن"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="25"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text=" رئيس شعبة الإشارة والمراقبة البحرية"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="31"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text=" رئيس شعبة الحرب الإلكترونية"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="32"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس الشعبـــة الهندسيــــــــة"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="33"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="رئيس شعبة المساحة البحريــة"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:tag="label"
+                android:text="قادة القواعد"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="2"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائــد قاعـــدة الإسكندريــــــة"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="8"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائـــد قاعــــدة البحــر اﻷحمـر"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="14"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائــد قاعـــدة السويــــــــــس"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="15"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائــد قاعــــدة بورسعيــــــــــد"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="16"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائــد قاعــــدة مطــــــــــــروح"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="19"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائـــد قاعــــدة برنيــــــــــــس"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="20dp"
+                android:tag="label"
+                android:text="قادة اﻷلوية"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="28"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائــد لـــــواء مكافحة اﻷلغـــــام "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="29"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائــد لـــــواء سفن الإبرار "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="30"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائــد اللــواء اﻷول لنشــــــــــــات "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="34"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائــد اللـواء الثانى لنشــــــــــات "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="35"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائــد اللـواء ٧١ مدفعية ساحلية "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="36"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائـــــد لـــواء الغواصــــــــــــــــات "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="38"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائــد لـواء الوحــــدات الخاصــــة "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="39"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائـــــد لــــــــواء المدمـــــــــــرات "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:tag="41"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائد اللواء ٦٥ صواريخ ساحلية "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+
+
+            <CheckBox
+                android:tag="43"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="100dp"
+                android:text="قائد لواء المرور الساحلى "
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/done"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="250dp"
+        android:layout_marginBottom="25dp"
+        android:text="تم الاختيار"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
