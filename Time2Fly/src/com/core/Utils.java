@@ -184,6 +184,15 @@ public class Utils {
 	
 	
 	
+	public String getVSPD(int vspd)
+	{
+		if (vspd > 0)
+			return "↑";
+		if (vspd < 0 )
+			return "↓";
+		return "-";
+	}
+	
 	public String getDirectionFromAngle(float bearing){
 		if (bearing < 15)
 			return "N";
