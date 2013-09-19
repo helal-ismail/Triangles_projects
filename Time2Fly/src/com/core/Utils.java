@@ -181,6 +181,15 @@ public class Utils {
 	
 	
 	
+	public String getVSPD(int vspd)
+	{
+		if (vspd > 0)
+			return "↑";
+		if (vspd < 0 )
+			return "↓";
+		return "-";
+	}
+	
 	public String getDirectionFromAngle(float bearing){
 		// URL http://nwmtwd.com/misc_character_sets.html
 		if (bearing < 15)

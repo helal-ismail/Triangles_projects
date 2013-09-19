@@ -285,7 +285,11 @@ public class Home extends FragmentActivity {
 
 			float distance = loc.distanceTo(cache.currentLoc) / 1000;
 			distance = (float) (Math.round(distance * 20.0) / 20.0);
+<<<<<<< HEAD
 			String snippet = tab.type + "  " + tab.spd + "Kts" + " " +Utils.getInstance().getVSPD(tab.vspd) ;
+=======
+			String snippet = tab.type + "  " + tab.spd + "Kts" + " " + Utils.getInstance().getVSPD(tab.vspd);
+>>>>>>> 7292a35e2917292f55ddecd1dce2f6b5a05b9626
 			
 			String dist = distance+"Km  " + direction;
 			
@@ -598,7 +602,11 @@ public class Home extends FragmentActivity {
 		String info = t.callSign + "\n"
 				+ t.spd +" Kts" + "\n"
 				+ t.vspd + " ft/min \n"
+<<<<<<< HEAD
 				+ t.track +"Â°" + "\n"
+=======
+				+ t.track +"¡" + "\n"
+>>>>>>> 7292a35e2917292f55ddecd1dce2f6b5a05b9626
 				+ t.owner + "\n"
 				+ distance + "\n" 
 				+ "SQ : " + t.sqw + "\n"

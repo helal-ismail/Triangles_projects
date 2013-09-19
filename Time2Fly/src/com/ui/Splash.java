@@ -31,6 +31,7 @@ public class Splash extends Activity{
 			setContentView(R.layout.activity_splash2);
 			break;
 		default:
+			setContentView(R.layout.activity_splash);
 			break;
 		}
 			
