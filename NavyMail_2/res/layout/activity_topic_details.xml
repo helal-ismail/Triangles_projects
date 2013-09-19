@@ -41,15 +41,25 @@
             android:gravity="right"
             android:orientation="vertical"
             android:padding="15dp" >
+            
+            <CheckBox
+                android:id="@+id/btn3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="عرض السيد القائــد"
+                android:textColor="@android:color/black"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
             <CheckBox
                 android:id="@+id/btn1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="دراسة وإفادة"
+                android:text="للدراسـة والإفـــادة"
                 android:textColor="@android:color/black"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <CheckBox
@@ -57,27 +67,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="متـــــــــــــــــابعة"
+                android:text="للتنسيق والمتابعة"
                 android:textColor="@android:color/black"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
-            <CheckBox
-                android:id="@+id/btn3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="حفــــــــــــــــــــــظ"
-                android:textColor="@android:color/black"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+            
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/btn_group2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="-5dp"
             android:layout_toLeftOf="@+id/btn_group1"
             android:gravity="right"
             android:orientation="vertical"
@@ -88,30 +90,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="تصـــــــــــــــــــدق"
+                android:text="تصــــــــــــــــــــدق"
                 android:textColor="@android:color/black"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
+            
+             <CheckBox
+                android:id="@+id/btn6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="أقتــرح التصيــق"
+                android:textColor="@android:color/black"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+            
 
             <CheckBox
                 android:id="@+id/btn5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="إتخـــــــاذ اللازم"
+                android:text="إتخـــــــاذ الــلازم"
                 android:textColor="@android:color/black"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
-            <CheckBox
-                android:id="@+id/btn6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="للعـــــــــــــــــرض"
-                android:textColor="@android:color/black"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+           
         </LinearLayout>
 
         <LinearLayout

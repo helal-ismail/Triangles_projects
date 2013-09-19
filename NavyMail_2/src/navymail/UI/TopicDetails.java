@@ -75,6 +75,23 @@ public class TopicDetails extends Activity {
 	
 
 
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		
+		int currentItem = pager.getCurrentItem();
+		ImageAdapter adapter = new ImageAdapter(mContext, currentTopic);
+		pager.setAdapter(adapter);
+//		imgFrame.removeViewAt(1);
+		pager.setCurrentItem(currentItem);
+		
+	}
+
+
+
+
 	private void setUpTopic() {
 		topicID = (Integer) getIntent().getExtras().get("topicID");
 		topicType = (String) getIntent().getExtras().getString("topicType");

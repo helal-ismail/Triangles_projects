@@ -14,6 +14,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -63,7 +64,7 @@ public class EditTopic extends Activity {
 		public CustomView(Context context) {
 			super(context);
 			paint.setAntiAlias(true);
-			paint.setColor(Color.BLACK);
+			paint.setColor(Color.parseColor("#14694C"));
 			paint.setStyle(Paint.Style.STROKE);
 			paint.setStrokeJoin(Paint.Join.ROUND);
 			paint.setStrokeWidth(STROKE_WIDTH);

@@ -598,7 +598,7 @@ public class Home extends FragmentActivity {
 		String info = t.callSign + "\n"
 				+ t.spd +" Kts" + "\n"
 				+ t.vspd + " ft/min \n"
-				+ t.track +"�" + "\n"
+				+ t.track +"°" + "\n"
 				+ t.owner + "\n"
 				+ distance + "\n" 
 				+ "SQ : " + t.sqw + "\n"
