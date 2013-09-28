@@ -29,7 +29,7 @@
     <RelativeLayout
         android:id="@+id/tool_box"
         android:layout_width="fill_parent"
-        android:layout_height="200dp"
+        android:layout_height="220dp"
         android:layout_alignParentBottom="true"
         android:visibility="gone" >
 
@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="دراسة وإفادة"
+                android:text="دراســـــة وإفـــــادة"
                 android:textColor="@android:color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="حفــــــــــــــــــــــظ"
+                android:text="حفـــــــــــــــــــظ"
                 android:textColor="@android:color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="تصـــــــــــــــــــدق"
+                android:text="تصــــــــــــــــدق"
                 android:textColor="@android:color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -98,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="إتخـــــــاذ اللازم"
+                android:text="إتخـــــــاذ الــــلازم"
                 android:textColor="@android:color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -108,7 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="للعـــــــــــــــــرض"
+                android:text="للعـــــــــــــــرض"
                 android:textColor="@android:color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
