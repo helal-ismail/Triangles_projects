@@ -29,7 +29,7 @@
     <RelativeLayout
         android:id="@+id/tool_box"
         android:layout_width="fill_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:layout_alignParentBottom="true"
         android:visibility="gone" >
 
@@ -42,15 +42,7 @@
             android:orientation="vertical"
             android:padding="15dp" >
             
-            <CheckBox
-                android:id="@+id/btn3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="عرض السيد القائــد"
-                android:textColor="@android:color/black"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+           
 
             <CheckBox
                 android:id="@+id/btn1"
@@ -67,7 +59,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="للتنسيق والمتابعة"
+                android:text="للتنسيـق والمتــابعة"
+                android:textColor="@android:color/black"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+            
+              <CheckBox
+                android:id="@+id/btn5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="إتخـــــــاذ الــــلازم"
                 android:textColor="@android:color/black"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -90,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="تصــــــــــــــــــــدق"
+                android:text="تصـــــــــــــــــدق"
                 android:textColor="@android:color/black"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -100,21 +102,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="أقتــرح التصيــق"
+                android:text="أقتـــرح التصديـــــق"
                 android:textColor="@android:color/black"
                 android:textSize="22sp"
                 android:textStyle="bold" />
             
 
-            <CheckBox
-                android:id="@+id/btn5"
-                android:layout_width="wrap_content"
+           <Button
+                android:id="@+id/commander_3ard"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="إتخـــــــاذ الــلازم"
-                android:textColor="@android:color/black"
-                android:textSize="22sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="3dp"
+                android:text="عرض السيد القائــد"
+                android:textColor="#ff0000"
+                android:textSize="20sp"
                 android:textStyle="bold" />
+            
+             
 
            
         </LinearLayout>
@@ -156,6 +161,17 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="3dp"
                 android:text="تأشيرة السيد رئيس اﻷركان"
+                android:textColor="#ff0000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+          
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="3dp"
+                android:text="حذف التأشيرات"
                 android:textColor="#ff0000"
                 android:textSize="25sp"
                 android:textStyle="bold" />

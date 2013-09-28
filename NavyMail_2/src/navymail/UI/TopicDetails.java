@@ -112,16 +112,33 @@ public class TopicDetails extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				if (!currentTopic.eSigned) {
 					putSignature();
-				}
-
-				else {
-					Reverter r = new Reverter();
-					r.execute();
-				}
+				
 			}
 		});
+		
+		Button clear = (Button) findViewById(R.id.clear);
+		clear.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {	
+					Reverter r = new Reverter();
+					r.execute();
+			}
+		});
+		
+		Button commander_3ard = (Button) findViewById(R.id.commander_3ard);
+		commander_3ard.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+					putCommander3ard();
+				
+			}
+		});
+		
+		
+				
+		
 
 		pager.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override
@@ -208,12 +225,25 @@ public class TopicDetails extends Activity {
 	}
 
 	private void putSignature() {
-		Toast.makeText(mContext, "من فضلك ضع تأشيرة السيد رئيس اﻷركان", Toast.LENGTH_LONG)
-				.show();
+		Toast.makeText(mContext, "من فضلك ضع تأشيرة السيد رئيس اﻷركان", Toast.LENGTH_LONG).show();
 		pager.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent e) {
-				Exporter exporter = new Exporter(e);
+				Exporter exporter = new Exporter(e,1);
+				exporter.execute();
+				return false;
+			}
+		});
+	}
+	
+	
+	
+	private void putCommander3ard() {
+		Toast.makeText(mContext, "عرض السيد القائد", Toast.LENGTH_LONG).show();
+		pager.setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent e) {
+				Exporter exporter = new Exporter(e,0);
 				exporter.execute();
 				return false;
 			}
@@ -228,9 +258,11 @@ public class TopicDetails extends Activity {
 		for (int i = 0; i < 2; i++) {
 			LinearLayout container = (LinearLayout) tool_box.getChildAt(i);
 			for (int j = 0; j < container.getChildCount(); j++) {
-				CheckBox c = (CheckBox) container.getChildAt(j);
-				if (c.isChecked()) {
-					str = str + c.getText() + "\n";
+				if (container.getChildAt(j).getClass() == CheckBox.class){
+					CheckBox c = (CheckBox) container.getChildAt(j);
+					if (c.isChecked()) {
+						str = str + c.getText() + "\n";
+					}
 				}
 			}
 		}
@@ -287,9 +319,11 @@ public class TopicDetails extends Activity {
 
 	private class Exporter extends AsyncTask<Void, Void, Void> {
 		MotionEvent me;
+		int type;
 
-		public Exporter(MotionEvent me) {
+		public Exporter(MotionEvent me, int type) {
 			this.me = me;
+			this.type = type;
 		}
 
 		@Override
@@ -299,25 +333,38 @@ public class TopicDetails extends Activity {
 			int y = (int) me.getY();
 
 			LayoutInflater inflater = LayoutInflater.from(mContext);
-			LinearLayout l = (LinearLayout) inflater.inflate(
-					R.layout.custom_signature, null);
-			String preparedStr = prepareSignature();
+			LinearLayout l;
+			
 
+			String preparedStr = "";
+			
+			if (type == 0 )
+			{
+				l = (LinearLayout) inflater.inflate(R.layout.custom_signature, null);	
+			}
+			else
+			{
+			l = (LinearLayout) inflater.inflate(R.layout.custom_signature2, null);	
 			ImageView signature = (ImageView) l.getChildAt(1);
-			signature.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
-
 			TextView sigDate = (TextView) l.getChildAt(2);
+			preparedStr = prepareSignature();
+			signature.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
 			Date d = new Date();
 			String date = d.getDate() + "-" + (d.getMonth() + 1) + "-"
 					+ (d.getYear() + 1900);
 			date = controller.arabization(date);
 
-			String text = date + "\n" + preparedStr + "\n"
+			preparedStr = date + "\n" + preparedStr + "\n"
 					+ controller.selectedUnits;
-			sigDate.setText(text);
+			sigDate.setText(preparedStr);
+
+			}
+			
+			
 			imgFrame.addView(l);
+			
 			Display display = getWindowManager().getDefaultDisplay();
-			String[] lines = text.split("\n");
+			String[] lines = preparedStr.split("\n");
 			int maxLength = 0;
 			for (String s : lines) {
 				if (s.length() > maxLength)
@@ -349,8 +396,8 @@ public class TopicDetails extends Activity {
 			pager.setAdapter(adapter);
 			imgFrame.removeViewAt(1);
 			pager.setCurrentItem(currentItem);
-			Button ta2shera = (Button) findViewById(R.id.ta2shera);
-			ta2shera.setText("حذف التأشيرة");
+			//Button ta2shera = (Button) findViewById(R.id.ta2shera);
+			//ta2shera.setText("حذف التأشيرة");
 
 		}
 	}
