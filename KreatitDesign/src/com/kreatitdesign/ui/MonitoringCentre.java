@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -53,941 +54,18 @@ public class MonitoringCentre extends Activity {
 				android.graphics.PorterDuff.Mode.MULTIPLY);
 		progress.setVisibility(View.GONE);
 
-		// Get mc1 BUTTON
-		Button get_mc1 = (Button) findViewById(R.id.mc1_view);
-		get_mc1.setOnClickListener(new View.OnClickListener() {
+		// =============================================================================
+		// ID
+		LinearLayout monitor_1 = (LinearLayout) findViewById(R.id.monitor1);
+		monitor_1.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
 				try {
 
-					MonitoringTask task = new MonitoringTask();
-					task.taskNumber = 5;
-					task.title = "Mnitoring Centre 1";
-
-					JSONArray arr = new JSONArray();
-					arr.put("mc1");
-					task.arr = arr;
-
-					task.execute();
-
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-		});
-
-		// Update mc1 BUTTON
-		Button update_mc1 = (Button) findViewById(R.id.mc1_update);
-		update_mc1.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-
-				alert.setTitle("Mnitoring Centre 1");
-				alert.setMessage("Please enter the new M.C 1");
-				alert.setIcon(R.drawable.icon_1);
-
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
-
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
-
-								try {
-
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Mnitoring Centre 1";
-
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("mc1", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
-			}
-		});
-
-		// -----------------------------------------------------------------------------
-		// Get mc2 BUTTON
-		Button get_mc2 = (Button) findViewById(R.id.mc2_view);
-		get_mc2.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-
-				try {
-
-					MonitoringTask task = new MonitoringTask();
-					task.taskNumber = 5;
-					task.title = "Mnitoring Centre 2";
-
-					JSONArray arr = new JSONArray();
-					arr.put("mc2");
-					task.arr = arr;
-
-					task.execute();
-
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-		});
-
-		// Update mc2 BUTTON
-		Button update_mc2 = (Button) findViewById(R.id.mc2_update);
-		update_mc2.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-
-				alert.setTitle("Mnitoring Centre 2");
-				alert.setMessage("Please enter the new M.C 2");
-				alert.setIcon(R.drawable.icon_1);
-
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
-
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
-
-								try {
-
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Mnitoring Centre 2";
-
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("mc2", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
-			}
-		});
-
-		// -----------------------------------------------------------------------------
-		// Get mc3 BUTTON
-		Button get_mc3 = (Button) findViewById(R.id.mc3_view);
-		get_mc3.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-
-				try {
-
-					MonitoringTask task = new MonitoringTask();
-					task.taskNumber = 5;
-					task.title = "Mnitoring Centre 3";
-
-					JSONArray arr = new JSONArray();
-					arr.put("mc3");
-					task.arr = arr;
-
-					task.execute();
-
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-		});
-
-		// Update mc1 BUTTON
-		Button update_mc3 = (Button) findViewById(R.id.mc3_update);
-		update_mc3.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-
-				alert.setTitle("Mnitoring Centre 3");
-				alert.setMessage("Please enter the new M.C 3");
-				alert.setIcon(R.drawable.icon_1);
-
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
-
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
-
-								try {
-
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Mnitoring Centre 3";
-
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("mc3", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
-			}
-		});
-
-		// -----------------------------------------------------------------------------
-		// Get mc4 BUTTON
-		Button get_mc4 = (Button) findViewById(R.id.mc4_view);
-		get_mc4.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-
-				try {
-
-					MonitoringTask task = new MonitoringTask();
-					task.taskNumber = 5;
-					task.title = "Mnitoring Centre 4";
-
-					JSONArray arr = new JSONArray();
-					arr.put("mc4");
-					task.arr = arr;
-
-					task.execute();
-
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-		});
-
-		// Update mc4 BUTTON
-		Button update_mc4 = (Button) findViewById(R.id.mc4_update);
-		update_mc4.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-
-				alert.setTitle("Mnitoring Centre 4");
-				alert.setMessage("Please enter the new M.C 4");
-				alert.setIcon(R.drawable.icon_1);
-
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
-
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
-
-								try {
-
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Mnitoring Centre 4";
-
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("mc4", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
-			}
-		});
-		// -----------------------------------------------------------------------------
-		// Get mc5 BUTTON
-		Button get_mc5 = (Button) findViewById(R.id.mc5_view);
-		get_mc5.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-
-				try {
-
-					MonitoringTask task = new MonitoringTask();
-					task.taskNumber = 5;
-					task.title = "Mnitoring Centre 5";
-
-					JSONArray arr = new JSONArray();
-					arr.put("mc5");
-					task.arr = arr;
-
-					task.execute();
-
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-		});
-
-		// Update mc5 BUTTON
-		Button update_mc5 = (Button) findViewById(R.id.mc5_update);
-		update_mc5.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-
-				alert.setTitle("Mnitoring Centre 5");
-				alert.setMessage("Please enter the new M.C 5");
-				alert.setIcon(R.drawable.icon_1);
-
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
-
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
-
-								try {
-
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Mnitoring Centre 5";
-
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("mc5", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
-			}
-		});
-		// -----------------------------------------------------------------------------
-		// Get mc6 BUTTON
-		Button get_mc6 = (Button) findViewById(R.id.mc6_view);
-		get_mc1.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-
-				try {
-
-					MonitoringTask task = new MonitoringTask();
-					task.taskNumber = 5;
-					task.title = "Mnitoring Centre 6";
-
-					JSONArray arr = new JSONArray();
-					arr.put("mc6");
-					task.arr = arr;
-
-					task.execute();
-
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-		});
-
-		// Update mc6 BUTTON
-		Button update_mc6 = (Button) findViewById(R.id.mc6_update);
-		update_mc6.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-
-				alert.setTitle("Mnitoring Centre 6");
-				alert.setMessage("Please enter the new M.C 6");
-				alert.setIcon(R.drawable.icon_1);
-
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
-
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
-
-								try {
-
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Mnitoring Centre 6";
-
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("mc6", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
-			}
-		});
-		// -----------------------------------------------------------------------------
-		// Get mc7 BUTTON
-		Button get_mc7 = (Button) findViewById(R.id.mc7_view);
-		get_mc7.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-
-				try {
-
-					MonitoringTask task = new MonitoringTask();
-					task.taskNumber = 5;
-					task.title = "Mnitoring Centre 7";
-
-					JSONArray arr = new JSONArray();
-					arr.put("mc7");
-					task.arr = arr;
-
-					task.execute();
-
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-		});
-
-		// Update mc7 BUTTON
-		Button update_mc7 = (Button) findViewById(R.id.mc7_update);
-		update_mc7.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-
-				alert.setTitle("Mnitoring Centre 7");
-				alert.setMessage("Please enter the new M.C 7");
-				alert.setIcon(R.drawable.icon_1);
-
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
-
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
-
-								try {
-
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Mnitoring Centre 7";
-
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("mc7", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
-			}
-		});
-
-		// -----------------------------------------------------------------------------
-		// Get mc1 BUTTON
-		Button get_mc8 = (Button) findViewById(R.id.mc8_view);
-		get_mc8.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-
-				try {
-
-					MonitoringTask task = new MonitoringTask();
-					task.taskNumber = 5;
-					task.title = "Mnitoring Centre 8";
-
-					JSONArray arr = new JSONArray();
-					arr.put("mc8");
-					task.arr = arr;
-
-					task.execute();
-
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-		});
-
-		// Update mc8 BUTTON
-		Button update_mc8 = (Button) findViewById(R.id.mc8_update);
-		update_mc8.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-
-				alert.setTitle("Mnitoring Centre 8");
-				alert.setMessage("Please enter the new M.C 8");
-				alert.setIcon(R.drawable.icon_1);
-
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
-
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
-
-								try {
-
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Mnitoring Centre 8";
-
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("mc8", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
-			}
-		});
-		// -----------------------------------------------------------------------------
-		// Get mc9 BUTTON
-		Button get_mc9 = (Button) findViewById(R.id.mc9_view);
-		get_mc9.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-
-				try {
-
-					MonitoringTask task = new MonitoringTask();
-					task.taskNumber = 5;
-					task.title = "Mnitoring Centre 9";
-
-					JSONArray arr = new JSONArray();
-					arr.put("mc9");
-					task.arr = arr;
-
-					task.execute();
-
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-		});
-
-		// Update mc9 BUTTON
-		Button update_mc9 = (Button) findViewById(R.id.mc9_update);
-		update_mc9.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-
-				alert.setTitle("Mnitoring Centre 9");
-				alert.setMessage("Please enter the new M.C 9");
-				alert.setIcon(R.drawable.icon_1);
-
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
-
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
-
-								try {
-
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Mnitoring Centre 9";
-
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("mc9", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
-			}
-		});
-		// -----------------------------------------------------------------------------
-		// Get mc10 BUTTON
-		Button get_mc10 = (Button) findViewById(R.id.mc10_view);
-		get_mc10.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-
-				try {
-
-					MonitoringTask task = new MonitoringTask();
-					task.taskNumber = 5;
-					task.title = "Mnitoring Centre 10";
-
-					JSONArray arr = new JSONArray();
-					arr.put("mc10");
-					task.arr = arr;
-
-					task.execute();
-
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-		});
-
-		// Update mc10 BUTTON
-		Button update_mc10 = (Button) findViewById(R.id.mc10_update);
-		update_mc10.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-
-				alert.setTitle("Mnitoring Centre 10");
-				alert.setMessage("Please enter the new M.C 10");
-				alert.setIcon(R.drawable.icon_1);
-
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
-
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
-
-								try {
-
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Mnitoring Centre 10";
-
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("mc10", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
-			}
-		});
-
-		// -----------------------------------------------------------------------------
-		// Get id BUTTON
-		Button get_id = (Button) findViewById(R.id.id_view);
-		get_id.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-
-				try {
-
-					MonitoringTask task = new MonitoringTask();
+					MonitorTask task = new MonitorTask();
 					task.taskNumber = 5;
 					task.title = "Commercial M.C ID";
+					task.tag = "pmc_bindid";
 
 					JSONArray arr = new JSONArray();
 					arr.put("pmc_bindid");
@@ -1003,83 +81,20 @@ public class MonitoringCentre extends Activity {
 			}
 		});
 
-		// Update id BUTTON
-		Button update_id = (Button) findViewById(R.id.id_update);
-		update_id.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
+		// =============================================================================
 
-				alert.setTitle("Commercial M.C ID");
-				alert.setMessage("Please enter the new M.C ID");
-				alert.setIcon(R.drawable.icon_1);
-
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
-
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
-
-								try {
-
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Commercial M.C ID";
-
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("pmc_bindid", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
-			}
-		});
-		// -----------------------------------------------------------------------------
-		// Get key BUTTON
-		Button get_key = (Button) findViewById(R.id.key_view);
-		get_key.setOnClickListener(new View.OnClickListener() {
+		// =============================================================================
+		// KEY
+		LinearLayout monitor_2 = (LinearLayout) findViewById(R.id.monitor2);
+		monitor_2.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
 				try {
 
-					MonitoringTask task = new MonitoringTask();
+					MonitorTask task = new MonitorTask();
 					task.taskNumber = 5;
-					task.title = "Commercial M.C Key";
+					task.title = "Commercial M.C key";
+					task.tag = "pmc_key";
 
 					JSONArray arr = new JSONArray();
 					arr.put("pmc_key");
@@ -1095,83 +110,20 @@ public class MonitoringCentre extends Activity {
 			}
 		});
 
-		// Update key BUTTON
-		Button update_key = (Button) findViewById(R.id.key_update);
-		update_key.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
+		// =============================================================================
 
-				alert.setTitle("Commercial M.C Key");
-				alert.setMessage("Please enter the new M.C key");
-				alert.setIcon(R.drawable.icon_1);
-
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
-
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
-
-								try {
-
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Commercial M.C Key";
-
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("pmc_key", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
-			}
-		});
-		// -----------------------------------------------------------------------------
-		// Get username BUTTON
-		Button get_username = (Button) findViewById(R.id.username_view);
-		get_username.setOnClickListener(new View.OnClickListener() {
+		// =============================================================================
+		// USER NAME
+		LinearLayout monitor_3 = (LinearLayout) findViewById(R.id.monitor3);
+		monitor_3.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
 				try {
 
-					MonitoringTask task = new MonitoringTask();
+					MonitorTask task = new MonitorTask();
 					task.taskNumber = 5;
-					task.title = "Commercial M.C Username";
+					task.title = "Commercial M.C UserName";
+					task.tag = "pmc_username";
 
 					JSONArray arr = new JSONArray();
 					arr.put("pmc_username");
@@ -1187,83 +139,20 @@ public class MonitoringCentre extends Activity {
 			}
 		});
 
-		// Update username BUTTON
-		Button update_username = (Button) findViewById(R.id.username_update);
-		update_username.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
+		// =============================================================================
 
-				alert.setTitle("Commercial M.C Username");
-				alert.setMessage("Please enter the new M.C username");
-				alert.setIcon(R.drawable.icon_1);
-
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
-
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
-
-								try {
-
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Commercial M.C Username";
-
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("pmc_username", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
-			}
-		});
-		// -----------------------------------------------------------------------------
-		// Get pass BUTTON
-		Button get_pass = (Button) findViewById(R.id.password_view);
-		get_pass.setOnClickListener(new View.OnClickListener() {
+		// =============================================================================
+		// PASSWORD
+		LinearLayout monitor_4 = (LinearLayout) findViewById(R.id.monitor4);
+		monitor_4.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
 				try {
 
-					MonitoringTask task = new MonitoringTask();
+					MonitorTask task = new MonitorTask();
 					task.taskNumber = 5;
 					task.title = "Commercial M.C Password";
+					task.tag = "pmc_password";
 
 					JSONArray arr = new JSONArray();
 					arr.put("pmc_password");
@@ -1279,83 +168,20 @@ public class MonitoringCentre extends Activity {
 			}
 		});
 
-		// Update pass BUTTON
-		Button update_pass = (Button) findViewById(R.id.password_update);
-		update_pass.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
+		// =============================================================================
 
-				alert.setTitle("Commercial M.C Username");
-				alert.setMessage("Please enter the new M.C password");
-				alert.setIcon(R.drawable.icon_1);
-
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
-
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
-
-								try {
-
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Commercial M.C Username";
-
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("pmc_password", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
-			}
-		});
-		// -----------------------------------------------------------------------------
-		// Get enable BUTTON
-		Button get_enable = (Button) findViewById(R.id.enable_view);
-		get_enable.setOnClickListener(new View.OnClickListener() {
+		// =============================================================================
+		// ENABLE
+		LinearLayout monitor_5 = (LinearLayout) findViewById(R.id.monitor5);
+		monitor_5.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
 				try {
 
-					MonitoringTask task = new MonitoringTask();
+					MonitorTask task = new MonitorTask();
 					task.taskNumber = 5;
 					task.title = "Commercial M.C Enable";
+					task.tag = "pmc_en";
 
 					JSONArray arr = new JSONArray();
 					arr.put("pmc_en");
@@ -1371,83 +197,20 @@ public class MonitoringCentre extends Activity {
 			}
 		});
 
-		// Update enable BUTTON
-		Button update_enable = (Button) findViewById(R.id.enable_update);
-		update_enable.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
+		// =============================================================================
 
-				alert.setTitle("Commercial M.C Enable");
-				alert.setMessage("Please enter the new M.C enable");
-				alert.setIcon(R.drawable.icon_1);
-
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
-
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
-
-								try {
-
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Commercial M.C Enable";
-
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("pmc_en", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
-			}
-		});
-		// -----------------------------------------------------------------------------
-		// Get channel BUTTON
-		Button get_channel = (Button) findViewById(R.id.channel_view);
-		get_channel.setOnClickListener(new View.OnClickListener() {
+		// =============================================================================
+		// Modem Channel
+		LinearLayout monitor_6 = (LinearLayout) findViewById(R.id.monitor6);
+		monitor_6.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
 				try {
 
-					MonitoringTask task = new MonitoringTask();
+					MonitorTask task = new MonitorTask();
 					task.taskNumber = 5;
 					task.title = "Modem Channel";
+					task.tag = "modem_channel";
 
 					JSONArray arr = new JSONArray();
 					arr.put("modem_channel");
@@ -1463,83 +226,19 @@ public class MonitoringCentre extends Activity {
 			}
 		});
 
-		// Update channel BUTTON
-		Button update_channel = (Button) findViewById(R.id.channel_update);
-		update_channel.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-
-				alert.setTitle("Modem Channel");
-				alert.setMessage("Please enter the new M.C channel");
-				alert.setIcon(R.drawable.icon_1);
-
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
-
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
-
-								try {
-
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Modem Channel";
-
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("modem_channel", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
-			}
-		});
-		// -----------------------------------------------------------------------------
-		// Get panid BUTTON
-		Button get_panid = (Button) findViewById(R.id.panid_view);
-		get_panid.setOnClickListener(new View.OnClickListener() {
+		// =============================================================================
+		// =============================================================================
+		// Modem PANID
+		LinearLayout monitor_7 = (LinearLayout) findViewById(R.id.monitor7);
+		monitor_7.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
 				try {
 
-					MonitoringTask task = new MonitoringTask();
+					MonitorTask task = new MonitorTask();
 					task.taskNumber = 5;
 					task.title = "Modem PANID";
+					task.tag = "modem_panid";
 
 					JSONArray arr = new JSONArray();
 					arr.put("modem_panid");
@@ -1555,81 +254,306 @@ public class MonitoringCentre extends Activity {
 			}
 		});
 
-		// Update panid BUTTON
-		Button update_panid = (Button) findViewById(R.id.panid_update);
-		update_panid.setOnClickListener(new View.OnClickListener() {
+		// =============================================================================
+
+		// =============================================================================
+		// Center 1
+		LinearLayout monitor_8 = (LinearLayout) findViewById(R.id.monitor8);
+		monitor_8.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
 
-				alert.setTitle("Modem PANID");
-				alert.setMessage("Please enter the new M.C PANID");
-				alert.setIcon(R.drawable.icon_1);
+				try {
 
-				// Set an EditText view to get user input
-				final EditText inputName = new EditText(
-						new ContextThemeWrapper(myContext,
-								android.R.style.Theme_Holo_Dialog));
-				alert.setView(inputName);
+					MonitorTask task = new MonitorTask();
+					task.taskNumber = 5;
+					task.title = "Monitoring Center 1";
+					task.tag = "mc1";
 
-				alert.setPositiveButton("Update",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String mc = inputName.getText().toString();
+					JSONArray arr = new JSONArray();
+					arr.put("mc1");
+					task.arr = arr;
 
-								try {
+					task.execute();
 
-									MonitoringTask task = new MonitoringTask();
-									task.taskNumber = 5;
-									task.title = "Modem PANID";
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
-									JSONArray arr = new JSONArray();
-									JSONObject arm = new JSONObject();
-									try {
-										arm.put("modem_panid", mc);
-
-									} catch (JSONException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									arr.put(arm);
-
-									task.arr = arr;
-
-									task.execute();
-
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-
-							}
-
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
-
-				alert.show();
 			}
 		});
+
+		// =============================================================================
+		// =============================================================================
+		// Center 2
+		LinearLayout monitor_9 = (LinearLayout) findViewById(R.id.monitor9);
+		monitor_9.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				try {
+
+					MonitorTask task = new MonitorTask();
+					task.taskNumber = 5;
+					task.title = "Monitoring Center 2";
+					task.tag = "mc2";
+
+					JSONArray arr = new JSONArray();
+					arr.put("m21");
+					task.arr = arr;
+
+					task.execute();
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+
+		// =============================================================================
+
+		// =============================================================================
+		// Center 3
+		LinearLayout monitor_10 = (LinearLayout) findViewById(R.id.monitor10);
+		monitor_10.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				try {
+
+					MonitorTask task = new MonitorTask();
+					task.taskNumber = 5;
+					task.title = "Monitoring Center 3";
+					task.tag = "mc3";
+
+					JSONArray arr = new JSONArray();
+					arr.put("mc3");
+					task.arr = arr;
+
+					task.execute();
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+
+		// =============================================================================
+
+		// =============================================================================
+		// Center 4
+		LinearLayout monitor_11 = (LinearLayout) findViewById(R.id.monitor11);
+		monitor_11.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				try {
+
+					MonitorTask task = new MonitorTask();
+					task.taskNumber = 5;
+					task.title = "Monitoring Center 4";
+					task.tag = "mc4";
+
+					JSONArray arr = new JSONArray();
+					arr.put("mc4");
+					task.arr = arr;
+
+					task.execute();
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+
+		// =============================================================================
+
+		// =============================================================================
+		// Center 5
+		LinearLayout monitor_12 = (LinearLayout) findViewById(R.id.monitor12);
+		monitor_12.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				try {
+
+					MonitorTask task = new MonitorTask();
+					task.taskNumber = 5;
+					task.title = "Monitoring Center 5";
+					task.tag = "mc5";
+
+					JSONArray arr = new JSONArray();
+					arr.put("mc5");
+					task.arr = arr;
+
+					task.execute();
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+
+		// =============================================================================
+
+		// =============================================================================
+		// Center 6
+		LinearLayout monitor_13 = (LinearLayout) findViewById(R.id.monitor13);
+		monitor_13.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				try {
+
+					MonitorTask task = new MonitorTask();
+					task.taskNumber = 5;
+					task.title = "Monitoring Center 6";
+					task.tag = "mc6";
+
+					JSONArray arr = new JSONArray();
+					arr.put("mc6");
+					task.arr = arr;
+
+					task.execute();
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+
+		// =============================================================================
+
+		// =============================================================================
+		// Center 7
+		LinearLayout monitor_14 = (LinearLayout) findViewById(R.id.monitor14);
+		monitor_14.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				try {
+
+					MonitorTask task = new MonitorTask();
+					task.taskNumber = 5;
+					task.title = "Monitoring Center 7";
+					task.tag = "mc7";
+
+					JSONArray arr = new JSONArray();
+					arr.put("mc7");
+					task.arr = arr;
+
+					task.execute();
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+
+		// =============================================================================
+
+		// =============================================================================
+		// Center 8
+		LinearLayout monitor_15 = (LinearLayout) findViewById(R.id.monitor15);
+		monitor_15.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				try {
+
+					MonitorTask task = new MonitorTask();
+					task.taskNumber = 5;
+					task.title = "Monitoring Center 8";
+					task.tag = "mc8";
+
+					JSONArray arr = new JSONArray();
+					arr.put("mc8");
+					task.arr = arr;
+
+					task.execute();
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+
+		// =============================================================================
+
+		// =============================================================================
+		// Center 9
+		LinearLayout monitor_16 = (LinearLayout) findViewById(R.id.monitor16);
+		monitor_16.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				try {
+
+					MonitorTask task = new MonitorTask();
+					task.taskNumber = 5;
+					task.title = "Monitoring Center 9";
+					task.tag = "mc9";
+
+					JSONArray arr = new JSONArray();
+					arr.put("mc9");
+					task.arr = arr;
+
+					task.execute();
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+
+		// =============================================================================
+
+		// =============================================================================
+		// Center 10
+		LinearLayout monitor_17 = (LinearLayout) findViewById(R.id.monitor17);
+		monitor_17.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+
+				try {
+
+					MonitorTask task = new MonitorTask();
+					task.taskNumber = 5;
+					task.title = "Monitoring Center 10";
+					task.tag = "mc10";
+
+					JSONArray arr = new JSONArray();
+					arr.put("mc10");
+					task.arr = arr;
+
+					task.execute();
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+
+		// =============================================================================
 
 	}
 
 	// =================================================================================
 
-	private class MonitoringTask extends RequestTask {
+	private class MonitorTask extends RequestTask {
 
 		int taskNumber;
 		String title;
+		String tag;
 		JSONArray arr;
 
 		@Override
@@ -1653,58 +577,23 @@ public class MonitoringCentre extends Activity {
 				JSONObject msg = object.optJSONObject("msg");
 
 				String disp = "";
-
-				if (!msg.optString("mc1").equals(""))
-					disp = msg.optString("mc1");
-				else if (!msg.optString("mc2").equals(""))
-					disp = msg.optString("mc2");
-				else if (!msg.optString("mc3").equals(""))
-					disp = msg.optString("mc3");
-				else if (!msg.optString("mc4").equals(""))
-					disp = msg.optString("mc4");
-				else if (!msg.optString("mc5").equals(""))
-					disp = msg.optString("mc5");
-				else if (!msg.optString("mc6").equals(""))
-					disp = msg.optString("mc6");
-				else if (!msg.optString("mc7").equals(""))
-					disp = msg.optString("mc7");
-				else if (!msg.optString("mc8").equals(""))
-					disp = msg.optString("mc8");
-				else if (!msg.optString("mc9").equals(""))
-					disp = msg.optString("mc9");
-				else if (!msg.optString("mc10").equals(""))
-					disp = msg.optString("mc10");
-				
-				else if (!msg.optString("pmc_bindid").equals(""))
-					disp = msg.optString("pmc_bindid");
-				else if (!msg.optString("pmc_key").equals(""))
-					disp = msg.optString("pmc_key");
-				else if (!msg.optString("pmc_username").equals(""))
-					disp = msg.optString("pmc_username");
-				else if (!msg.optString("pmc_password").equals(""))
-					disp = msg.optString("pmc_password");
-				else if (!msg.optString("pmc_en").equals(""))
-					disp = msg.optString("pmc_en");
-				else if (!msg.optString("modem_channel").equals(""))
-					disp = msg.optString("modem_channel");
-				else if (!msg.optString("modem_panid").equals(""))
-					disp = msg.optString("modem_panid");
-				
+				if (!msg.optString(tag).equals(""))
+					disp = msg.optString(tag);
 				else if (!msg.optString("disp").equals(""))
 					disp = msg.optString("disp");
 
-				new AlertDialog.Builder(new ContextThemeWrapper(myContext,
-						android.R.style.Theme_Holo_Dialog))
-						.setTitle(title)
-						.setIcon(R.drawable.icon_1)
-						.setMessage(disp)
-						.setPositiveButton("OK",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int which) {
-										dialog.cancel();
-									}
-								}).show();
+				Intent i = new Intent(myContext, Result.class);
+				overridePendingTransition(R.anim.slide_in_right,
+						R.anim.slide_out_left);
+
+				i.putExtra("title", title);
+				i.putExtra("result", disp);
+				i.putExtra("tag", tag);
+				i.putExtra("mode", "mode_2");
+				String task = "" + taskNumber;
+				i.putExtra("taskNumber", task);
+
+				startActivityForResult(i, 700);
 
 				progress.setVisibility(View.GONE);
 

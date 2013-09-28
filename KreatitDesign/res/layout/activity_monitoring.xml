@@ -74,803 +74,547 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor1"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Commercial M.C ID : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Commercial M.C ID "
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/id_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/id_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Commercial M.C Key : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Commercial M.C Key "
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/key_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/key_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor3"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Com. M.C Username : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Commercial M.C UserName "
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/username_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/username_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor4"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Com. M.C Password : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Commercial M.C Password "
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/password_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/password_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor5"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Commercial M.C Enable : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Commercial M.C Enable"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/enable_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/enable_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor6"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Modem Channel : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Modem Channel"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/channel_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/channel_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor7"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Modem PANID : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Modem PANID"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/panid_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/panid_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor8"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Monitoring Centre 1 : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Monitoring Centre 1"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/mc1_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/mc1_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor9"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Monitoring Centre 2 : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Monitoring Centre 2"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/mc2_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/mc2_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor10"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Monitoring Centre 3 : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Monitoring Centre 3"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/mc3_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/mc3_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor11"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Monitoring Centre 4 : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Monitoring Centre 4"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/mc4_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/mc4_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor12"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Monitoring Centre 5 : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Monitoring Centre 5"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/mc5_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/mc5_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor13"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Monitoring Centre 6 : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Monitoring Centre 6"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/mc6_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/mc6_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor14"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Monitoring Centre 7 : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Monitoring Centre 7"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/mc7_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/mc7_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor15"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Monitoring Centre 8 : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Monitoring Centre 8"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/mc8_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/mc8_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor16"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Monitoring Centre 9 : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Monitoring Centre 9"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/mc9_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/mc9_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/monitor17"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10"
-                    android:layout_marginRight="@dimen/dim_10"
                     android:layout_marginBottom="15dp"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
+                    android:background="@color/gray_167"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dim_5" >
 
                     <TextView
-                        android:id="@+id/text6"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:lines="1"
+                        android:id="@+id/name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical"
                         android:tag="bold"
-                        android:text="Monitoring Centre 10 : "
-                        android:textColor="@color/gray_35"
-                        android:textSize="@dimen/tex_size_small"
+                        android:text="Monitoring Centre 10"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tex_size_xlarge"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/mc10_view"
-                        style="@style/Button_Blue"
-                        android:layout_width="60dp"
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="View"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/mc10_update"
-                        style="@style/Button_Red"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:text="Update"
-                        android:textColor="#ffffff"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ico_right" />
                 </LinearLayout>
             </LinearLayout>
 

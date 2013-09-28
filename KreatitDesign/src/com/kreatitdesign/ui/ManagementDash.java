@@ -1,17 +1,23 @@
 package com.kreatitdesign.ui;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.kreatitdesign.core.Constants;
 import com.kreatitdesign.core.GlobalState;
 import com.kreatitdesign.core.KreatitDesignApp;
 import com.kreatitdesign.core.User;
+import com.kreatitdesign.network.RequestTask;
 
 public class ManagementDash extends Activity {
 
@@ -46,11 +52,26 @@ public class ManagementDash extends Activity {
 		LinearLayout status_btn = (LinearLayout) findViewById(R.id.op_mode_btn);
 		status_btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
+				
+				try {
 
-				Intent i = new Intent(myContext, Op_Mode.class);
-				startActivityForResult(i, 700);
-				overridePendingTransition(R.anim.slide_in_right,
-						R.anim.slide_out_left);
+					ManageDashTask task = new ManageDashTask();
+					task.taskNumber = 4;
+					task.title = "Operational Mode";
+					task.mode = "operational";
+
+					JSONArray arr = new JSONArray();
+					arr.put("op_mode");
+					task.arr = arr;
+
+					task.execute();
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
 
 			}
 		});
@@ -135,4 +156,69 @@ public class ManagementDash extends Activity {
 
 	}
 
+	
+	
+	// =================================================================================
+
+		private class ManageDashTask extends RequestTask {
+
+			int taskNumber;
+			String title;
+			JSONArray arr;
+			String mode;
+
+			@Override
+			protected void onPreExecute() {
+				// TODO Auto-generated method stub
+				super.onPreExecute();
+
+				progress.setVisibility(View.VISIBLE);
+
+				this.setupParams(user.name, taskNumber, user.devID, user.userName,
+						user.password, arr);
+			}
+
+			@Override
+			protected void onPostExecute(String result) {
+				// TODO Auto-generated method stub
+				super.onPostExecute(result);
+				try {
+
+					JSONObject object = new JSONObject(result);
+					JSONObject msg = object.optJSONObject("msg");
+					
+					String disp = "";
+					
+					
+					if (!msg.optString("op_mode").equals(""))
+						disp = msg.optString("op_mode");
+					else if (!msg.optString("disp").equals(""))
+						disp = msg.optString("disp");
+					
+					
+					
+					
+					Intent i = new Intent(myContext, Result.class);
+					overridePendingTransition(R.anim.slide_in_right,
+							R.anim.slide_out_left);
+					
+					i.putExtra("title", title);
+					i.putExtra("result", disp);
+					i.putExtra("mode", mode);
+					
+					startActivityForResult(i, 700);
+					
+
+
+					progress.setVisibility(View.GONE);
+
+					Log.d(Constants.TAG, "RESULT : " + result);
+
+				} catch (Exception e) {
+					// TODO: handle exception
+					Log.d(Constants.TAG, "Exception : " + e.getMessage());
+				}
+			}
+		}
+		
 }
