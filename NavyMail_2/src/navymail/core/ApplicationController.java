@@ -83,5 +83,13 @@ public class ApplicationController {
 		
 		return point;
 	}
+	
+	public String getFileName(int index)
+	{
+		if(index < 10)
+			return "i0"+index+".jpg";
+		else
+			return "i"+index+".jpg";
+	}
 
 }

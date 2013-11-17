@@ -203,7 +203,9 @@ public class TopicDetails extends Activity {
 				File topicFolder = new File(PhotoDir, currentTopic.title);
 				topicFolder.mkdir();
 				topicFolder.setWritable(true);
-				File newImage = new File(topicFolder, "i"+ (pager.getCurrentItem() + 1) + ".jpg");
+				
+				String fileName = ApplicationController.getInstance().getFileName(pager.getCurrentItem() + 1);
+				File newImage = new File(topicFolder, fileName);
 				
 				Intent editIntent = new Intent(mContext, EditTopic.class);
 				editIntent.putExtra("path", newImage.getPath());
@@ -304,8 +306,9 @@ public class TopicDetails extends Activity {
 			File topicFolder = new File(PhotoDir, currentTopic.title);
 			topicFolder.mkdir();
 			topicFolder.setWritable(true);
-			File newImage = new File(topicFolder, "i"
-					+ (pager.getCurrentItem() + 1) + ".jpg");
+			String fileName = ApplicationController.getInstance().getFileName(pager.getCurrentItem() + 1);
+
+			File newImage = new File(topicFolder,fileName);
 			FileOutputStream out = new FileOutputStream(newImage);
 			bm.compress(Bitmap.CompressFormat.JPEG, 50, out);
 
